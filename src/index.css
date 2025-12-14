@@ -315,9 +315,23 @@ body {
   }
 }
 
+/* --- CYBER SCROLLBAR --- */
+.cyber-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
 
+.cyber-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
 
+.cyber-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6 0%, #0d9488 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-
-
-
+.cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c3aed 0%, #0f766e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}

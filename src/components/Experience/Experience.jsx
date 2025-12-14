@@ -96,8 +96,8 @@ const Experience = () => {
               <a href={experience.certificate}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-0.5 px-5 py-2.5 mt-5 rounded-full font-medium text-teal-600 dark:text-white bg-teal-50 dark:bg-[#071e22]/80 backdrop-blur-xl border border-teal-200 dark:border-[#4FB7B3]/40 shadow-sm dark:shadow-[0_0_12px_rgba(79,183,179,0.25)] hover:bg-teal-100 dark:hover:bg-[#0b2e33]/80 transition-all duration-300 w-32">
-                Details <ArrowRight size={18} />
+                className="flex items-center gap-0.5 px-5 py-2.5 mt-5 rounded-full font-medium text-teal-600 dark:text-white bg-teal-50 dark:bg-[#071e22]/80 backdrop-blur-xl border border-teal-200 dark:border-[#4FB7B3]/40 shadow-sm dark:shadow-[0_0_12px_rgba(79,183,179,0.25)] hover:bg-teal-100 dark:hover:bg-[#0b2e33]/80 transition-all duration-300 w-36">
+                Certificate <ArrowRight size={18} />
               </a>
 
             </div>
