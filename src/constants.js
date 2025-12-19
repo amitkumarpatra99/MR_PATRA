@@ -68,6 +68,7 @@ import face from './assets/Project Photo/Face Detection.png'
 import mind from './assets/Project Photo/mindforge.png'
 import connect from './assets/Project Photo/ConnectX.png'
 import battery from './assets/Project Photo/Battery.png'
+import job from './assets/Project Photo/JobFLow.png'
 
 
 export const SkillsInfo = [
@@ -213,6 +214,17 @@ export const projects = [
     github: "https://github.com/amitkumarpatra99/Battery_Report",
     live: "https://batteryhelth.vercel.app/",
   },
+
+  {
+    id: 99,
+    title: "Job Flow",
+    description: "A full-stack job portal that connects recruiters and job seekers through a secure, user-friendly platform with real-time job postings and applications.Built with modern web technologies, it features authentication, role-based dashboards, resume management, and seamless end-to-end hiring workflows.",
+    image: job,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/Job_Flow",
+  },
+
+
   {
     id: 20,
     title: "ConnectX",
