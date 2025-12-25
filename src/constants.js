@@ -46,7 +46,7 @@ import python from './assets/certificate/Python.pdf'
 import java from './assets/certificate/JAVA CERTIFICATE.pdf'
 import aiml from './assets/certificate/AIML.pdf'
 
-// Project Section Logo
+// Project Section
 import cup from './assets/Project Photo/Warm Cup.png'
 import url from './assets/Project Photo/URL shortner.png'
 import password from './assets/Project Photo/Password Mannager.png'
