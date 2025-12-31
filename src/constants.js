@@ -232,7 +232,7 @@ export const projects = [
     image: random,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/Random_Password_Generator",
-    live: "https://randompasswordgenerator05.netlify.app/",
+    live: "https://randomcodegenerater.netlify.app/",
   },
 
   {
