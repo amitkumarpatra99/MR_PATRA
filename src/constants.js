@@ -70,6 +70,7 @@ import connect from './assets/Project Photo/ConnectX.png'
 import battery from './assets/Project Photo/Battery.png'
 import job from './assets/Project Photo/Job.png'
 import random from './assets/Project Photo/randompg.png'
+import jaap from './assets/Project Photo/Jaap.png'
 
 
 export const SkillsInfo = [
@@ -187,25 +188,14 @@ export const projects = [
   },
 
   {
-    id: 5,
-    title: "ValuneX",
-    description: "Currency Converter – A web-based tool designed to convert values between multiple international currencies instantly. Developed using HTML, CSS, and JavaScript with a clean and user-friendly interface that ensures accuracy and responsiveness across all devices.",
-    image: value,
-    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/ValuneX",
-    live: "https://valunex.netlify.app/",
-  },
-
-  {
     id: 6,
-    title: "TIC TAC TOE GAME",
-    description: "Tic Tac Toe Challenge – A simple yet engaging browser-based game where two players compete for victory. Designed with clean UI and smart game logic that instantly declares the winner or draw — perfect for testing your strategy skills!",
-    image: tic,
+    title: "Jaap Seva",
+    description: "Currency Converter – A web-based tool designed to convert values between multiple international currencies instantly. Developed using HTML, CSS, and JavaScript with a clean and user-friendly interface that ensures accuracy and responsiveness across all devices.",
+    image: jaap,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/TicBox",
-    live: "https://ticbox.netlify.app/",
+    github: "https://github.com/amitkumarpatra99/JaapSeva",
+    live: "https://jaapseva.vercel.app/",
   },
-
   {
     id: 7,
     title: "Battery Report",
@@ -243,6 +233,27 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/JobPortal",
   },
+  {
+    id: 5,
+    title: "ValuneX",
+    description: "Currency Converter – A web-based tool designed to convert values between multiple international currencies instantly. Developed using HTML, CSS, and JavaScript with a clean and user-friendly interface that ensures accuracy and responsiveness across all devices.",
+    image: value,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/ValuneX",
+    live: "https://valunex.netlify.app/",
+  },
+
+  {
+    id: 6,
+    title: "TIC TAC TOE GAME",
+    description: "Tic Tac Toe Challenge – A simple yet engaging browser-based game where two players compete for victory. Designed with clean UI and smart game logic that instantly declares the winner or draw — perfect for testing your strategy skills!",
+    image: tic,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/TicBox",
+    live: "https://ticbox.netlify.app/",
+  },
+
+
 
 
   {
