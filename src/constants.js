@@ -163,7 +163,8 @@ export const projects = [
     title: "ACTION PLAN",
     description: "TODO LIST - A task management application that helps users organize and prioritize their daily activities. With a simple interface, users can add, edit, and delete tasks, set deadlines, and mark tasks as complete, enhancing productivity and time management",
     image: todo,
-    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"], github: "https://github.com/amitkumarpatra99/ACTION_PLAN",
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"], 
+    github: "https://github.com/amitkumarpatra99/ACTION_PLAN",
     live: "https://actionp.netlify.app/",
 
   },
@@ -174,7 +175,7 @@ export const projects = [
     description: "Password Keeper is a secure and user-friendly application designed to store and manage passwords with encryption. It helps users organize, access, and protect sensitive login information effortlessly, ensuring robust security with features like auto-fill and password generation",
     image: password,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/Password_Keeper",
+    github: "https://github.com/amitkumarpatra99/PasswordKeeper",
   },
 
   {
@@ -221,7 +222,7 @@ export const projects = [
     description: "A secure and customizable password generator that creates strong, unique passwords with various options for length, character sets, and complexity.",
     image: random,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/Random_Password_Generator",
+    github: "https://github.com/amitkumarpatra99/RandomPasswordGenerator",
     live: "https://randomcodegenerater.netlify.app/",
   },
 
@@ -254,8 +255,6 @@ export const projects = [
   },
 
 
-
-
   {
     id: 9,
     title: "ConnectX",
@@ -264,8 +263,6 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ConnectX",
   },
-
-
 
 
 
@@ -293,7 +290,7 @@ export const projects = [
     description: "Animated Portfolio Website – A visually appealing and fully responsive personal portfolio designed with HTML, CSS, JavaScript and  React. It includes engaging animations, smooth scrolling, and interactive UI elements that highlight my skills, projects, and contact details in an elegant way.",
     image: mrpatra,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/MR_PATRA_WEB",
+    github: "https://github.com/amitkumarpatra99/MR_PATRA",
     live: "https://mrpatra.vercel.app/"
   },
 
@@ -316,7 +313,7 @@ export const projects = [
     description: "A Face Detection project- using AI/ML that identifies and recognizes human faces in images or video streams. Built with machine learning algorithms to enable real-time detection with high accuracy. Demonstrates practical application of computer vision techniques.",
     image: face,
     tags: ["AI", "ML", "Keras", "Matplot", "Python"],
-    github: "https://github.com/amitkumarpatra99/FACE_DETECTION",
+    github: "https://github.com/amitkumarpatra99/FaceDetection",
   },
 
 
@@ -337,7 +334,7 @@ export const projects = [
     description: "Pic Finder-  A responsive and user-friendly web app built with HTML, CSS, and JavaScript. It enables users to search and browse high-quality images fetched from an external API, displaying results dynamically with smooth UI transitions.",
     image: picfinder,
     tags: ["React JS", "API", "Search Feature", "CSS", "Javascript"],
-    github: "https://github.com/amitkumarpatra99/Picture_Finder",
+    github: "https://github.com/amitkumarpatra99/PictureFinder",
   },
   {
     id: 18,
