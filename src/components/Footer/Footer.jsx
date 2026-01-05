@@ -14,43 +14,6 @@ import {
 import { FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
-  const [visitCount, setVisitCount] = useState(0);
-
-  // 🌟 REAL LIVE COUNTER LOGIC 🌟
-  useEffect(() => {
-    const fetchVisitCount = async () => {
-      try {
-        // We use your GitHub username as a unique namespace so it doesn't clash with others
-        const NAMESPACE = "amitkumarpatra99"; 
-        const KEY = "portfolio_visits"; 
-
-        // check if user visited in this session to prevent spamming refreshes
-        const hasVisitedSession = sessionStorage.getItem("visit_session_active");
-
-        let response;
-        
-        if (!hasVisitedSession) {
-          // If new session: HIT the API (Increment +1)
-          // Using CountAPI (free service)
-          response = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
-          sessionStorage.setItem("visit_session_active", "true");
-        } else {
-          // If already visited: GET the API (Read only, no increment)
-          response = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`);
-        }
-
-        const data = await response.json();
-        setVisitCount(data.value);
-        
-      } catch (error) {
-        console.error("Error fetching visit count:", error);
-        // Fallback: If API is down or blocked by adblocker, show a default 'cool' number
-        setVisitCount(12450); 
-      }
-    };
-
-    fetchVisitCount();
-  }, []);
 
   const icons = [
     {
@@ -232,8 +195,7 @@ const Footer = () => {
               transition-all duration-300 cursor-default hover:pl-3"
             >
               <Eye size={16} className="mr-3 text-teal-500" />
-              <span className="font-medium">
-                {visitCount.toLocaleString()} <span className="font-normal opacity-80">Views</span>
+              <span className="font-medium">1890+ <span className="font-normal opacity-80">Views</span>
               </span>
             </li>
           </ul>
@@ -318,14 +280,14 @@ const Footer = () => {
 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="group flex items-center gap-2 px-4 py-2 rounded-full 
+          className="group flex items-center gap-2 px-4 py-2 rounded-full  
             bg-black/5 dark:bg-white/5 
             hover:bg-teal-500/20 
             border border-black/10 dark:border-white/10 
             hover:border-teal-500/50 
             transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-teal-500/20"
         >
-          <span className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 font-medium transition-colors">
+          <span className="text-sm  text-gray-600 dark:text-gray-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 font-medium transition-colors">
             Back to top
           </span>
           <ArrowUp
