@@ -30,6 +30,11 @@ const NAV_ITEMS = [
 export default function NavbarPremium() {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // NEW: State to track navbar visibility
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
   const { theme, toggleTheme } = useTheme();
   const menuRef = useRef(null);
 
@@ -53,6 +58,37 @@ export default function NavbarPremium() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
+
+  // =================================================================
+  //  🌟 NEW: SMART SCROLL LOGIC (Hide on Scroll Down, Show on Up)
+  // =================================================================
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // If menu is open, ALWAYS keep navbar visible
+      if (isMenuOpen) {
+        setIsNavbarVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Threshold to prevent jitter (only hide after scrolling 10px)
+      if (Math.abs(currentScrollY - lastScrollY.current) > 10) {
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+          // Scrolling DOWN -> Hide
+          setIsNavbarVisible(false);
+        } else {
+          // Scrolling UP -> Show
+          setIsNavbarVisible(true);
+        }
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen]); // Re-run effect if menu state changes
 
   // Track active section on scroll
   useEffect(() => {
@@ -108,18 +144,15 @@ export default function NavbarPremium() {
             overflow-hidden transition-colors duration-300
           "
         >
-           {/* Spotlight Glow */}
            <motion.div className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, ${theme === 'light' ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.12)'}, transparent 75%)` }} />
            
-           {/* Logo */}
            <div className="flex items-center gap-3 cursor-pointer relative z-20" onClick={() => scrollToSection("home")}>
              <div className="h-10 w-10 rounded-full border border-black/10 dark:border-white/20 overflow-hidden shadow-lg">
                <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
              </div>
            </div>
 
-           {/* Nav Items */}
            <ul className="flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full px-2 py-[6px] border border-black/5 dark:border-white/10 relative z-20 transition-colors duration-300">
             {[...NAV_ITEMS, { id: "Journey", label: "Journey" }].map((item) => (
               <li key={item.id} className="relative">
@@ -131,7 +164,6 @@ export default function NavbarPremium() {
             ))}
            </ul>
 
-           {/* Desktop Icons */}
            <div className="flex items-center gap-5 relative z-20 ml-4">
              <div className="flex items-center gap-3 pr-5 border-r border-black/10 dark:border-white/20">
                <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10">
@@ -159,23 +191,23 @@ export default function NavbarPremium() {
         </motion.nav>
       </div>
 
-      {/* ========================================================
-          MOBILE TOP BAR
-      ======================================================== */}
+      {/* 
+          MOBILE TOP BAR (Always Visible)
+      */}
       <div className="md:hidden fixed top-4 left-0 right-0 z-40 px-4 flex justify-between items-center pointer-events-none">
          <div onClick={() => scrollToSection("home")} className="pointer-events-auto h-10 w-10 rounded-full border border-white/20 dark:border-white/10 overflow-hidden shadow-lg">
              <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
          </div>
       </div>
 
-      {/* ========================================================
-          MOBILE BOTTOM FLOATING DOCK
-      ======================================================== */}
+      {/* 
+          MOBILE BOTTOM FLOATING DOCK (Hides on Scroll)
+     */}
       <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-full max-w-[360px]">
         
         {/* --- POPUP MENU ("...") --- */}
         <AnimatePresence>
-          {isMenuOpen && (
+          {isMenuOpen && isNavbarVisible && (
             <motion.div
               ref={menuRef}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -190,14 +222,12 @@ export default function NavbarPremium() {
                 origin-bottom-right
               "
             >
-              {/* Header Label (No Close Button here anymore) */}
               <div className="px-2 pb-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-black/30 dark:text-white/30">
                   Menu
                 </span>
               </div>
 
-              {/* Menu Items */}
               <button onClick={() => scrollToSection("Journey")} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white transition-colors">
                 <FiCompass className="text-lg text-blue-500" />
                 <span className="text-sm font-medium">My Journey</span>
@@ -213,10 +243,8 @@ export default function NavbarPremium() {
                 <span className="text-sm font-medium">Scroll Top</span>
               </button>
 
-              {/* Divider */}
               <div className="h-[1px] w-full bg-black/5 dark:bg-white/10 my-1"></div>
 
-              {/* Social Icons (Inside Menu) */}
               <div className="flex items-center justify-evenly py-1">
                  <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
                     <FaGithub size={20} />
@@ -232,7 +260,11 @@ export default function NavbarPremium() {
         {/* --- MAIN DOCK --- */}
         <motion.div
           initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          // 🌟 ANIMATE based on isNavbarVisible state
+          animate={{ 
+             y: isNavbarVisible ? 0 : 120, 
+             opacity: isNavbarVisible ? 1 : 0 
+          }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           className="
             flex items-center justify-evenly px-2 py-2
@@ -243,7 +275,6 @@ export default function NavbarPremium() {
             rounded-full 
           "
         >
-          {/* Main Links */}
           {NAV_ITEMS.map((item) => {
              const Icon = item.icon;
              const isActive = activeTab === item.id;
@@ -259,24 +290,21 @@ export default function NavbarPremium() {
              );
           })}
 
-          {/* TOGGLE BUTTON (Dots <-> X) */}
           <button
             onClick={toggleMenu}
             className={`
               relative flex flex-col items-center justify-center h-12 w-12 rounded-full
               transition-all duration-300
               ${isMenuOpen 
-                ? "bg-black text-white dark:bg-white/20 dark:text-white scale-110 shadow-lg rotate-90" 
+                ? "bg-black text-white dark:bg-white dark:text-black scale-110 shadow-lg rotate-90" 
                 : "text-black/50 dark:text-white/50 hover:bg-white/10"}
             `}
           >
             {isMenuOpen ? <FiX className="text-xl" /> : <FiMoreVertical className="text-xl" />}
           </button>
 
-          {/* Divider */}
           <div className="w-[1px] h-6 bg-black/10 dark:bg-white/10 mx-1"></div>
 
-          {/* WhatsApp */}
           <a href="https://wa.me/8144129955?text=Hi%20Amit" target="_blank" rel="noopener noreferrer" className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full transition-transform active:scale-95">
              <span className="text-2xl text-green-500 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)] filter hover:brightness-110">
                <FaWhatsapp />
