@@ -163,7 +163,7 @@ export const projects = [
     title: "ACTION PLAN",
     description: "TODO LIST - A task management application that helps users organize and prioritize their daily activities. With a simple interface, users can add, edit, and delete tasks, set deadlines, and mark tasks as complete, enhancing productivity and time management",
     image: todo,
-    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"], 
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ACTION_PLAN",
     live: "https://actionp.netlify.app/",
 
@@ -178,17 +178,17 @@ export const projects = [
     github: "https://github.com/amitkumarpatra99/PasswordKeeper",
   },
 
-  {
-    id: 4,
-    title: "REMOVER AI",
-    description: "Remove image backgrounds instantly with our powerful AI background remover.Upload any photo and get a clean, transparent background in seconds — no design skills needed!",
-    image: Bgremove,
-    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/Remover.AI",
-    live: "https://removerai.netlify.app/",
-  },
 
-  {
+
+    {
+    id: 8,
+    title: "Job Flow",
+    description: "A full-stack job portal that connects recruiters and job seekers through a secure, user-friendly platform with real-time job postings and applications.Built with modern web technologies, it features authentication, role-based dashboards, resume management, and seamless end-to-end hiring workflows.",
+    image: job,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/JobPortal",
+  },
+    {
     id: 6,
     title: "Jaap Seva",
     description: "Currency Converter – A web-based tool designed to convert values between multiple international currencies instantly. Developed using HTML, CSS, and JavaScript with a clean and user-friendly interface that ensures accuracy and responsiveness across all devices.",
@@ -197,15 +197,8 @@ export const projects = [
     github: "https://github.com/amitkumarpatra99/JaapSeva",
     live: "https://jaapseva.vercel.app/",
   },
-  {
-    id: 7,
-    title: "Battery Report",
-    description: "A modern, full-stack MERN application that provides real-time telemetry and historical data for your Windows laptop's battery health. Built with a beautiful, dark-themed UI using Tailwind CSS and Glassmorphism design principles..",
-    image: battery,
-    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/Battery_Report",
-    live: "https://batteryhelth.vercel.app/",
-  },
+
+
   {
     id: 10,
     title: "MindForge",
@@ -226,14 +219,17 @@ export const projects = [
     live: "https://randomcodegenerater.netlify.app/",
   },
 
+
   {
-    id: 8,
-    title: "Job Flow",
-    description: "A full-stack job portal that connects recruiters and job seekers through a secure, user-friendly platform with real-time job postings and applications.Built with modern web technologies, it features authentication, role-based dashboards, resume management, and seamless end-to-end hiring workflows.",
-    image: job,
+    id: 4,
+    title: "REMOVER AI",
+    description: "Remove image backgrounds instantly with our powerful AI background remover.Upload any photo and get a clean, transparent background in seconds — no design skills needed!",
+    image: Bgremove,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
-    github: "https://github.com/amitkumarpatra99/JobPortal",
+    github: "https://github.com/amitkumarpatra99/Remover.AI",
+    live: "https://removerai.netlify.app/",
   },
+
   {
     id: 5,
     title: "ValuneX",
@@ -244,6 +240,7 @@ export const projects = [
     live: "https://valunex.netlify.app/",
   },
 
+
   {
     id: 6,
     title: "TIC TAC TOE GAME",
@@ -253,7 +250,14 @@ export const projects = [
     github: "https://github.com/amitkumarpatra99/TicBox",
     live: "https://ticbox.netlify.app/",
   },
-
+  {
+    id: 7,
+    title: "Battery Report",
+    description: "A modern, full-stack MERN application that provides real-time telemetry and historical data for your Windows laptop's battery health. Built with a beautiful, dark-themed UI using Tailwind CSS and Glassmorphism design principles..",
+    image: battery,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/Battery_Report",
+  },
 
   {
     id: 9,
@@ -263,7 +267,6 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ConnectX",
   },
-
 
 
   {
