@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactTypingEffect from 'react-typing-effect'
 import { ArrowRight } from "lucide-react"
-import { FaCode } from 'react-icons/fa6'
+import { FaCode, FaHandPeace } from 'react-icons/fa6'
 import { Link } from "react-scroll"
 // import ScrollButtons from '../ScrollButtons'
 
@@ -72,8 +72,8 @@ const Home = () => {
           />
         </div>
 
-        <h1 className="text-sm sm:text-base md:text-lg font-medium text-gray-600 dark:text-gray-400 uppercase tracking-[0.25em]">
-          Hello World, My name is
+        <h1 className="text-sm sm:text-base md:text-lg font-medium text-gray-600 dark:text-gray-400 uppercase tracking-[0.25em] flex items-center gap-2">
+          Hello World <FaHandPeace className="text-teal-500 hover:rotate-12 transition-transform duration-300" />, My name is
         </h1>
 
         <h2 className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-tight drop-shadow-[0_0_12px_rgba(79,183,179,0.25)]">

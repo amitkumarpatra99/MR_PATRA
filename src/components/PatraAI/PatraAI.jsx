@@ -14,6 +14,7 @@ import { FaMessage } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 // Ensure these paths are correct in your project
 import { projects, SkillsInfo, experiences, education, contactDetails, aboutMe } from "../../constants";
+import mrpatra from "/DP.jpg";
 
 const sendSound = new Audio(
   "https://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3"
@@ -110,7 +111,7 @@ const PatraAI = () => {
     if (!soundEnabled) return;
     const sound = type === "send" ? sendSound : receiveSound;
     sound.currentTime = 0;
-    sound.play().catch(() => {});
+    sound.play().catch(() => { });
   };
 
   useEffect(() => {
@@ -141,7 +142,7 @@ const PatraAI = () => {
       return experiences.map((e) => `💼 <b>${e.role}</b><br/>${e.company} (${e.date})`).join("<br/><br/>");
     }
     if (q.includes("contact") || q.includes("mail") || q.includes("hire") || q.includes("linkedin")) {
-      return `Let's connect! 🤝<br/><br/>📧 <b>Email:</b> <a href="mailto:${contactDetails.email}" style="color:#8b5cf6;">${contactDetails.email}</a><br/>🔗 <b>LinkedIn:</b> <a href="${contactDetails.linkedin}" target="_blank" style="color:#8b5cf6;">Profile</a>`;
+      return `Let's connect! 🤝<br/><br/>📧 <b>Email:</b> <a href="mailto:${contactDetails.email}" style="color:#14b8a6;">${contactDetails.email}</a><br/>🔗 <b>LinkedIn:</b> <a href="${contactDetails.linkedin}" target="_blank" style="color:#14b8a6;">Profile</a>`;
     }
     if (q.includes("clear")) {
       setMessages([{ id: Date.now(), text: "Chat cleared! 🧹 How can I help?", sender: "bot" }]);
@@ -190,27 +191,29 @@ const PatraAI = () => {
               className="
                 group relative flex items-center justify-center
                 w-14 h-14 md:w-16 md:h-16 rounded-full
-                bg-[#0a0a0a]/80 backdrop-blur-xl
-                shadow-[0_0_30px_rgba(139,92,246,0.3)]
-                hover:shadow-[0_0_50px_rgba(139,92,246,0.5)]
+                bg-white/90 dark:bg-[#0a0a0a]/80 backdrop-blur-xl
+                shadow-[0_0_30px_rgba(20,184,166,0.2)]
+                dark:shadow-[0_0_30px_rgba(20,184,166,0.3)]
+                hover:shadow-[0_0_50px_rgba(20,184,166,0.4)]
+                dark:hover:shadow-[0_0_50px_rgba(20,184,166,0.5)]
                 transition-all duration-300 hover:scale-105
-                border border-white/10
+                border border-gray-200 dark:border-white/10
               "
             >
               {/* Notification Dot (Delighter) */}
-              <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-[#0a0a0a] z-20 animate-pulse"></span>
+              <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white dark:border-[#0a0a0a] z-20 animate-pulse"></span>
 
               {/* Spinning Ring */}
               <div
-                className="absolute inset-1 rounded-full border border-dashed border-violet-500/30"
+                className="absolute inset-1 rounded-full border border-dashed border-teal-500/30"
                 style={{ animation: "spin 10s linear infinite" }}
               />
 
               {/* Scroll Progress Ring */}
               <svg className="absolute inset-0 w-full h-full -rotate-90 p-1" viewBox="0 0 60 60">
-                <circle cx="30" cy="30" r={scrollRingRadius} fill="transparent" stroke="#1f2937" strokeWidth="3" />
+                <circle cx="30" cy="30" r={scrollRingRadius} fill="transparent" stroke="currentColor" className="text-gray-200 dark:text-[#1f2937]" strokeWidth="3" />
                 <circle
-                  cx="30" cy="30" r={scrollRingRadius} fill="transparent" stroke="#8b5cf6" strokeWidth="3"
+                  cx="30" cy="30" r={scrollRingRadius} fill="transparent" stroke="#14b8a6" strokeWidth="3"
                   strokeLinecap="round"
                   strokeDasharray={circumference}
                   strokeDashoffset={strokeDashoffset}
@@ -219,8 +222,8 @@ const PatraAI = () => {
               </svg>
 
               {/* Icon */}
-              <div className="absolute inset-0 m-auto w-9 h-9 md:w-10 md:h-10 rounded-full bg-violet-600/20 backdrop-blur-md flex items-center justify-center text-white">
-                <FaMessage size={20} />
+              <div className="absolute inset-0 m-auto w-9 h-9 md:w-10 md:h-10 rounded-full bg-teal-100 dark:bg-teal-600/20 backdrop-blur-md flex items-center justify-center text-teal-600 dark:text-white overflow-hidden p-[2px]">
+                <img src={mrpatra} alt="Patra AI" className="w-full h-full object-cover rounded-full" />
               </div>
             </button>
           </motion.div>
@@ -232,12 +235,12 @@ const PatraAI = () => {
         {isOpen && (
           <>
             {/* Backdrop for Mobile (Optional: darker background focus) */}
-            <motion.div 
-               initial={{ opacity: 0 }} 
-               animate={{ opacity: 1 }} 
-               exit={{ opacity: 0 }}
-               onClick={() => setIsOpen(false)}
-               className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[9998]"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[9998]"
             />
 
             <motion.div
@@ -248,7 +251,8 @@ const PatraAI = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className={`
                 fixed z-[9999] flex flex-col overflow-hidden shadow-2xl
-                bg-[#09090b]/95 backdrop-blur-2xl border border-white/10
+                bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-2xl 
+                border border-gray-200 dark:border-white/10
                 
                 /* MOBILE: Full width bottom sheet style */
                 bottom-0 left-0 right-0 w-full h-[80vh] rounded-t-[24px]
@@ -258,32 +262,32 @@ const PatraAI = () => {
               `}
             >
               {/* --- HEADER --- */}
-              <div className="relative flex items-center justify-between px-5 py-4 border-b border-white/5 bg-gradient-to-r from-violet-900/10 to-transparent">
+              <div className="relative flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/5 bg-gradient-to-r from-teal-50/50 via-transparent dark:from-teal-900/10 dark:to-transparent">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300">
-                    <FaUser size={14} />
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-[#09090b] rounded-full animate-pulse"></span>
+                  <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-teal-100 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 text-teal-600 dark:text-teal-300 p-[2px]">
+                    <img src={mrpatra} alt="Patra AI" className="w-full h-full object-cover rounded-full" />
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-[#09090b] rounded-full animate-pulse"></span>
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="text-sm font-bold text-white tracking-wide">Patra AI</h3>
-                    <span className="text-[10px] text-green-400 font-medium tracking-wider uppercase flex items-center gap-1">
-                      <span className="w-1 h-1 bg-green-400 rounded-full"></span> Online
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white tracking-wide">Patra AI</h3>
+                    <span className="text-[10px] text-green-500 dark:text-green-400 font-medium tracking-wider uppercase flex items-center gap-1">
+                      <span className="w-1 h-1 bg-green-500 dark:bg-green-400 rounded-full"></span> Online
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <button onClick={() => setSoundEnabled(!soundEnabled)} className="p-2 rounded-full hover:bg-white/5 text-white/40 hover:text-white transition-colors">
+                  <button onClick={() => setSoundEnabled(!soundEnabled)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors">
                     {soundEnabled ? <FaVolumeUp size={14} /> : <FaVolumeMute size={14} />}
                   </button>
-                  <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-white/5 text-white/40 hover:text-white transition-colors">
+                  <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors">
                     <FaTimes size={16} />
                   </button>
                 </div>
               </div>
 
               {/* --- MESSAGES --- */}
-              <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth">
+              <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-gray-50/50 dark:bg-transparent">
                 {messages.map((m) => (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -293,10 +297,10 @@ const PatraAI = () => {
                   >
                     <div
                       className={`
-                        relative px-4 py-2.5 text-[13px] leading-relaxed max-w-[80%] shadow-md
+                        relative px-4 py-2.5 text-[13px] leading-relaxed max-w-[80%] shadow-sm
                         ${m.sender === "user"
-                          ? "bg-violet-600 text-white rounded-2xl rounded-tr-sm"
-                          : "bg-[#18181b] text-gray-200 border border-white/5 rounded-2xl rounded-tl-sm"
+                          ? "bg-teal-600 text-white rounded-2xl rounded-tr-sm"
+                          : "bg-white dark:bg-[#18181b] text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-white/5 rounded-2xl rounded-tl-sm"
                         }
                       `}
                     >
@@ -307,11 +311,11 @@ const PatraAI = () => {
 
                 {isTyping && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-                    <div className="bg-[#18181b] px-3 py-3 rounded-2xl rounded-tl-sm border border-white/5 flex gap-1 items-center ml-1">
+                    <div className="bg-white dark:bg-[#18181b] px-3 py-3 rounded-2xl rounded-tl-sm border border-gray-200 dark:border-white/5 flex gap-1 items-center ml-1 shadow-sm">
                       {[0, 0.2, 0.4].map((delay) => (
                         <motion.div
                           key={delay}
-                          className="w-1.5 h-1.5 bg-violet-500/50 rounded-full"
+                          className="w-1.5 h-1.5 bg-teal-500/50 rounded-full"
                           animate={{ y: [0, -4, 0] }}
                           transition={{ duration: 0.6, repeat: Infinity, delay }}
                         />
@@ -323,9 +327,9 @@ const PatraAI = () => {
               </div>
 
               {/* --- FOOTER (Suggestions + Input) --- */}
-              <div className="bg-[#09090b]">
+              <div className="bg-white dark:bg-[#09090b] border-t border-gray-100 dark:border-white/5">
                 {/* Suggestions */}
-                <div className="px-5 pb-2">
+                <div className="px-5 pb-2 pt-3">
                   <div className="flex gap-2 overflow-x-auto cyber-scrollbar pb-2 mask-linear-fade">
                     {suggestions.map((s, i) => (
                       <button
@@ -333,9 +337,9 @@ const PatraAI = () => {
                         onClick={() => handleSendMessage(s.val)}
                         className="
                           flex items-center gap-1.5 px-3 py-1.5 
-                          bg-white/5 hover:bg-violet-500/20 
-                          border border-white/5 hover:border-violet-500/30 
-                          rounded-full text-[11px] text-gray-400 hover:text-white 
+                          bg-gray-100 dark:bg-white/5 hover:bg-teal-100 dark:hover:bg-teal-500/20 
+                          border border-gray-200 dark:border-white/5 hover:border-teal-200 dark:hover:border-teal-500/30 
+                          rounded-full text-[11px] text-gray-600 dark:text-gray-400 hover:text-teal-700 dark:hover:text-white 
                           transition-all whitespace-nowrap
                         "
                       >
@@ -347,13 +351,13 @@ const PatraAI = () => {
 
                 {/* Input Field */}
                 <div className="p-4 pt-0">
-                  <div className="relative flex items-center gap-2 p-1.5 pl-4 bg-[#18181b] border border-white/10 rounded-full focus-within:border-violet-500/50 transition-all">
+                  <div className="relative flex items-center gap-2 p-1.5 pl-4 bg-gray-100 dark:bg-[#18181b] border border-gray-200 dark:border-white/10 rounded-full focus-within:border-teal-500/50 transition-all">
                     <input
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                       placeholder="Ask me anything..."
-                      className="flex-1 bg-transparent text-sm text-white placeholder:text-gray-500 outline-none"
+                      className="flex-1 bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-500 outline-none"
                     />
                     <motion.button
                       whileTap={{ scale: 0.9 }}
@@ -361,7 +365,7 @@ const PatraAI = () => {
                       disabled={!inputValue.trim()}
                       className={`
                         p-2.5 rounded-full flex-shrink-0 transition-all duration-200
-                        ${inputValue.trim() ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/25' : 'bg-white/5 text-gray-500'}
+                        ${inputValue.trim() ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/25' : 'bg-gray-200 dark:bg-white/5 text-gray-400 dark:text-gray-500'}
                       `}
                     >
                       <FaPaperPlane size={13} className={inputValue.trim() ? "translate-x-0.5" : ""} />

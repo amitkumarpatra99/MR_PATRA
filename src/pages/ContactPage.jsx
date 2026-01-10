@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaUser, FaEnvelope, FaTag, FaCommentDots } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,9 +9,9 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 
 // Define input fields configuration outside component to clean up render logic
 const INPUT_FIELDS = [
-  { name: "user_email", type: "email", placeholder: "Your Email", autoComplete: "email" },
-  { name: "user_name", type: "text", placeholder: "Your Name", autoComplete: "name" },
-  { name: "subject", type: "text", placeholder: "Subject", autoComplete: "off" },
+  { name: "user_email", type: "email", placeholder: "Your Email", autoComplete: "email", icon: <FaEnvelope className="text-xl" /> },
+  { name: "user_name", type: "text", placeholder: "Your Name", autoComplete: "name", icon: <FaUser className="text-xl" /> },
+  { name: "subject", type: "text", placeholder: "Subject", autoComplete: "off", icon: <FaTag className="text-xl" /> },
 ];
 
 const ContactPage = () => {
@@ -138,14 +138,17 @@ const ContactPage = () => {
           <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-5">
             {/* Input Fields Loop */}
             {INPUT_FIELDS.map((field, i) => (
-              <motion.div key={field.name} variants={itemVariants}>
+              <motion.div key={field.name} variants={itemVariants} className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-teal-500 transition-colors duration-300">
+                  {field.icon}
+                </div>
                 <input
                   type={field.type}
                   name={field.name}
                   placeholder={field.placeholder}
                   autoComplete={field.autoComplete}
                   required
-                  className="w-full px-5 py-4 rounded-xl 
+                  className="w-full pl-12 pr-5 py-4 rounded-xl 
                              bg-gray-50 dark:bg-[#131025]/60 
                              text-gray-900 dark:text-gray-100 placeholder-gray-400
                              border border-gray-200 dark:border-gray-700
@@ -156,13 +159,16 @@ const ContactPage = () => {
             ))}
 
             {/* Message Textarea */}
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="relative group">
+              <div className="absolute left-4 top-5 text-gray-400 group-focus-within:text-teal-500 transition-colors duration-300">
+                <FaCommentDots className="text-xl" />
+              </div>
               <textarea
                 name="message"
                 placeholder="Write your message here..."
                 rows={4}
                 required
-                className="w-full px-5 py-4 rounded-xl 
+                className="w-full pl-12 pr-5 py-4 rounded-xl 
                            bg-gray-50 dark:bg-[#131025]/60 
                            text-gray-900 dark:text-gray-100 placeholder-gray-400
                            border border-gray-200 dark:border-gray-700

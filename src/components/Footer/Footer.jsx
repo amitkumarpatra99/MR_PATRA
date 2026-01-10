@@ -11,7 +11,7 @@ import {
   CreditCard,
   Eye,
 } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaLinkedin, FaHome, FaUser, FaTools, FaBriefcase, FaCompass, FaReact, FaMagic, FaMobileAlt, FaGithubAlt, FaRegEye } from "react-icons/fa";
 
 const Footer = () => {
 
@@ -54,11 +54,11 @@ const Footer = () => {
   ];
 
   const links = [
-    { name: "Home", to: "home" },
-    { name: "About", to: "about" },
-    { name: "Skill Set", to: "skills" },
-    { name: "Project Hub", to: "work" },
-    { name: "My Journey", to: "Journey" },
+    { name: "Home", to: "home", icon: <FaHome size={14} /> },
+    { name: "About", to: "about", icon: <FaUser size={14} /> },
+    { name: "Skill Set", to: "skills", icon: <FaTools size={14} /> },
+    { name: "Project Hub", to: "work", icon: <FaBriefcase size={14} /> },
+    { name: "My Journey", to: "Journey", icon: <FaCompass size={14} /> },
   ];
 
   return (
@@ -154,9 +154,11 @@ const Footer = () => {
                   smooth={true}
                   duration={600}
                   spy={true}
-                  className="flex items-center group cursor-pointer text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-all duration-300 hover:translate-x-2"
+                  className="flex items-center gap-2 group cursor-pointer text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-all duration-300 hover:translate-x-2"
                 >
-                  <span className="w-0 group-hover:w-3 h-[2px] bg-teal-500 mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                  <span className="text-teal-500 group-hover:text-teal-600 transition-colors duration-300">
+                    {link.icon}
+                  </span>
                   {link.name}
                 </ScrollLink>
               </li>
@@ -194,7 +196,7 @@ const Footer = () => {
               hover:bg-teal-500/5 dark:hover:bg-teal-500/10
               transition-all duration-300 cursor-default hover:pl-3"
             >
-              <Eye size={16} className="mr-3 text-teal-500" />
+              <FaRegEye size={16} className="mr-3 text-teal-500" />
               <span className="font-medium">2591+ <span className="font-normal opacity-80">Views</span>
               </span>
             </li>
