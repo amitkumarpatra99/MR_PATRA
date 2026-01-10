@@ -128,9 +128,7 @@ export default function NavbarPremium() {
 
   return (
     <>
-      {/* ========================================================
-          DESKTOP TOP BAR (Unchanged)
-      ======================================================== */}
+      {/* DESKTOP */}
       <div className="hidden md:block fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 pointer-events-none">
         <motion.nav
           onMouseMove={handleMouseMove}
