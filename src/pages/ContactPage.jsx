@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { X } from "lucide-react";
+import { FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
@@ -74,7 +74,7 @@ const ContactPage = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300 overflow-hidden py-5 pb-20 px-4">
-      
+
       {/* Background decoration elements (Optional visual flair) */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] left-[20%] w-72 h-72 bg-teal-500/10 rounded-full blur-[80px]" />
@@ -96,7 +96,7 @@ const ContactPage = () => {
                    transition-colors duration-300"
         aria-label="Close Contact Form"
       >
-        <X size={24} />
+        <FaTimes size={24} />
       </motion.button>
 
       {/* Main Content Container */}
@@ -113,18 +113,18 @@ const ContactPage = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
             CONT<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">ACT</span>
           </h2>
-          
+
           <div className="flex justify-center mt-3">
             <div className="w-24 h-1 rounded-full bg-gradient-to-r from-[#2351A8] via-[#4FB7B3] to-[#2CB67D]" />
           </div>
-          
+
           <p className="mt-4 text-gray-600 dark:text-gray-400 font-medium">
             Feel free to get in touch — I’m eager to explore 🚀
           </p>
         </motion.div>
 
         {/* Form Card */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="bg-white/80 dark:bg-[#0E1314]/80 backdrop-blur-xl
                      rounded-3xl p-6 sm:p-8 md:p-10

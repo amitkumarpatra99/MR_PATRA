@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { X, Calendar, MapPin } from "lucide-react";
+import { FaTimes, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { education } from "../constants";
 
@@ -35,7 +35,7 @@ const EducationPage = () => {
                    hover:text-red-500 dark:hover:text-red-400 
                    transition-all duration-300"
       >
-        <X size={24} />
+        <FaTimes size={24} />
       </motion.button>
 
       {/* --- CONTENT CONTAINER --- */}
@@ -62,8 +62,8 @@ const EducationPage = () => {
           </motion.div>
         </div>
 
-        {/* --- GRID SECTION (Replaced Timeline) --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* --- GRID SECTION --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {education.map((edu, index) => (
             <motion.div
               key={edu.id}
@@ -109,11 +109,11 @@ const EducationPage = () => {
                     {/* Meta Badges */}
                     <div className="flex flex-wrap gap-2">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-700/30">
-                        <Calendar size={12} />
+                        <FaCalendarAlt size={12} />
                         {edu.date}
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-purple-100/50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-200/50 dark:border-purple-700/30">
-                        <MapPin size={12} />
+                        <FaMapMarkerAlt size={12} />
                         {edu.add}
                       </span>
                     </div>
