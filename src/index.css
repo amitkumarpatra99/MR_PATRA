@@ -13,11 +13,6 @@
   cursor: none !important;
 }
 
-
-
-
-
-/* Optional: keep the text cursor for typing */
 input[type="text"],
 textarea {
   cursor: text !important;
@@ -30,7 +25,6 @@ textarea {
   top: 0;
   left: 0;
   z-index: 999999;
-  /* 👈 Highest layer */
 }
 
 .modal-wrapper {

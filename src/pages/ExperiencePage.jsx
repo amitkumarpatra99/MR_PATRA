@@ -12,7 +12,7 @@ const ExperiencePage = () => {
     }, []);
 
     return (
-        <div className="relative min-h-screen bg-gray-100 dark:bg-[#011028] transition-colors duration-300">
+        <div className="relative min-h-screen bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300">
             {/* Close Button - Floating Glassmorphism */}
             <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}

@@ -195,7 +195,7 @@ const Footer = () => {
               transition-all duration-300 cursor-default hover:pl-3"
             >
               <Eye size={16} className="mr-3 text-teal-500" />
-              <span className="font-medium">1890+ <span className="font-normal opacity-80">Views</span>
+              <span className="font-medium">2591+ <span className="font-normal opacity-80">Views</span>
               </span>
             </li>
           </ul>
