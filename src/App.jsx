@@ -9,6 +9,7 @@ import About from './components/About/About';
 import Journey from "./components/Journey/Journey";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
+import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -31,6 +32,7 @@ const App = () => {
           <div className="bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300">
 
             <StickyMiniNavbar />
+            <MobileTopBar />
             <div className="relative pt-20">
 
               {/* Routing logic */}
