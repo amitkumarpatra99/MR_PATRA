@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { FaLinkedin, FaHome, FaUser, FaTools, FaBriefcase, FaCompass, FaReact, FaMagic, FaMobileAlt, FaGithubAlt, FaRegEye } from "react-icons/fa";
 
+
 const Footer = () => {
 
   const icons = [
