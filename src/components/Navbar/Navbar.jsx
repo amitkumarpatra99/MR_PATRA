@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { 
-  FiHome, 
-  FiUser, 
-  FiCpu, 
-  FiLayers, 
+import {
+  FiHome,
+  FiUser,
+  FiCpu,
+  FiLayers,
   FiCompass,
   FiMoreVertical,
   FiSun,
   FiMoon,
   FiArrowUp,
-  FiX 
+  FiX
 } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 import {
@@ -30,7 +30,7 @@ const NAV_ITEMS = [
 export default function NavbarPremium() {
   const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // NEW: State to track navbar visibility
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -65,7 +65,7 @@ export default function NavbarPremium() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // If menu is open, ALWAYS keep navbar visible
       if (isMenuOpen) {
         setIsNavbarVisible(true);
@@ -142,16 +142,16 @@ export default function NavbarPremium() {
             overflow-hidden transition-colors duration-300
           "
         >
-           <motion.div className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          <motion.div className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, ${theme === 'light' ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.12)'}, transparent 75%)` }} />
-           
-           <div className="flex items-center gap-3 cursor-pointer relative z-20" onClick={() => scrollToSection("home")}>
-             <div className="h-10 w-10 rounded-full border border-black/10 dark:border-white/20 overflow-hidden shadow-lg">
-               <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
-             </div>
-           </div>
 
-           <ul className="flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full px-2 py-[6px] border border-black/5 dark:border-white/10 relative z-20 transition-colors duration-300">
+          <div className="flex items-center gap-3 cursor-pointer relative z-20" onClick={() => scrollToSection("home")}>
+            <div className="h-10 w-10 rounded-full border border-black/10 dark:border-white/20 overflow-hidden shadow-lg">
+              <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          <ul className="flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full px-2 py-[6px] border border-black/5 dark:border-white/10 relative z-20 transition-colors duration-300">
             {[...NAV_ITEMS, { id: "Journey", label: "Journey" }].map((item) => (
               <li key={item.id} className="relative">
                 <button onClick={() => scrollToSection(item.id)} className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${activeTab === item.id ? "text-white dark:text-black" : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"}`}>
@@ -160,49 +160,45 @@ export default function NavbarPremium() {
                 </button>
               </li>
             ))}
-           </ul>
+          </ul>
 
-           <div className="flex items-center gap-5 relative z-20 ml-4">
-             <div className="flex items-center gap-3 pr-5 border-r border-black/10 dark:border-white/20">
-               <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10">
-                  {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
-               </button>
-               <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10">
-                 <FaGithub size={18} />
-               </a>
-               <a href="https://linkedin.com/in/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400">
-                 <FaLinkedin size={18} />
-               </a>
-             </div>
-             
-             <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://wa.me/8144129955?text=Hi%20Amit" 
-                target="_blank" 
-                className="px-5 py-2 rounded-full text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 flex items-center gap-2 font-medium transition"
-             >
-                <FaWhatsapp className="text-xl text-green-500" />
-                Contact
-             </motion.a>
-           </div>
+          <div className="flex items-center gap-5 relative z-20 ml-4">
+            <div className="flex items-center gap-3 pr-5 border-r border-black/10 dark:border-white/20">
+              <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10">
+                {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
+              </button>
+              <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10">
+                <FaGithub size={18} />
+              </a>
+              <a href="https://linkedin.com/in/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black/70 dark:text-gray-400 hover:scale-110 transition-all hover:bg-black/10 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400">
+                <FaLinkedin size={18} />
+              </a>
+            </div>
+
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://wa.me/8144129955?text=Hi%20Amit"
+              target="_blank"
+              className="px-5 py-2 rounded-full text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 flex items-center gap-2 font-medium transition"
+            >
+              <FaWhatsapp className="text-xl text-green-500" />
+              Contact
+            </motion.a>
+          </div>
         </motion.nav>
       </div>
 
       {/* 
           MOBILE TOP BAR (Always Visible)
       */}
-      <div className="md:hidden fixed top-4 left-0 right-0 z-40 px-4 flex justify-between items-center pointer-events-none">
-         <div onClick={() => scrollToSection("home")} className="pointer-events-auto h-10 w-10 rounded-full border border-white/20 dark:border-white/10 overflow-hidden shadow-lg">
-             <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
-         </div>
-      </div>
+
 
       {/* 
           MOBILE BOTTOM FLOATING DOCK (Hides on Scroll)
      */}
       <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-full max-w-[360px]">
-        
+
         {/* --- POPUP MENU ("...") --- */}
         <AnimatePresence>
           {isMenuOpen && isNavbarVisible && (
@@ -244,12 +240,12 @@ export default function NavbarPremium() {
               <div className="h-[1px] w-full bg-black/5 dark:bg-white/10 my-1"></div>
 
               <div className="flex items-center justify-evenly py-1">
-                 <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
-                    <FaGithub size={20} />
-                 </a>
-                 <a href="https://linkedin.com/in/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-blue-600 dark:text-blue-400 hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
-                    <FaLinkedin size={20} />
-                 </a>
+                <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+                  <FaGithub size={20} />
+                </a>
+                <a href="https://linkedin.com/in/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-blue-600 dark:text-blue-400 hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+                  <FaLinkedin size={20} />
+                </a>
               </div>
             </motion.div>
           )}
@@ -259,9 +255,9 @@ export default function NavbarPremium() {
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           // 🌟 ANIMATE based on isNavbarVisible state
-          animate={{ 
-             y: isNavbarVisible ? 0 : 120, 
-             opacity: isNavbarVisible ? 1 : 0 
+          animate={{
+            y: isNavbarVisible ? 0 : 120,
+            opacity: isNavbarVisible ? 1 : 0
           }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           className="
@@ -274,18 +270,18 @@ export default function NavbarPremium() {
           "
         >
           {NAV_ITEMS.map((item) => {
-             const Icon = item.icon;
-             const isActive = activeTab === item.id;
-             return (
-               <button key={item.id} onClick={() => scrollToSection(item.id)} className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full">
-                 {isActive && (
-                   <motion.div layoutId="mobile-active-pill" className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-full border border-white/20 dark:border-white/5 shadow-inner" transition={{ type: "spring", duration: 0.5 }} />
-                 )}
-                 <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-black dark:text-white scale-110" : "text-black/50 dark:text-white/50"}`}>
-                   <Icon />
-                 </span>
-               </button>
-             );
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button key={item.id} onClick={() => scrollToSection(item.id)} className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full">
+                {isActive && (
+                  <motion.div layoutId="mobile-active-pill" className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-full border border-white/20 dark:border-white/5 shadow-inner" transition={{ type: "spring", duration: 0.5 }} />
+                )}
+                <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-black dark:text-white scale-110" : "text-black/50 dark:text-white/50"}`}>
+                  <Icon />
+                </span>
+              </button>
+            );
           })}
 
           <button
@@ -293,8 +289,8 @@ export default function NavbarPremium() {
             className={`
               relative flex flex-col items-center justify-center h-12 w-12 rounded-full
               transition-all duration-300
-              ${isMenuOpen 
-                ? "bg-black text-white dark:bg-white dark:text-black scale-110 shadow-lg rotate-90" 
+              ${isMenuOpen
+                ? "bg-black text-white dark:bg-white dark:text-black scale-110 shadow-lg rotate-90"
                 : "text-black/50 dark:text-white/50 hover:bg-white/10"}
             `}
           >
@@ -304,9 +300,9 @@ export default function NavbarPremium() {
           <div className="w-[1px] h-6 bg-black/10 dark:bg-white/10 mx-1"></div>
 
           <a href="https://wa.me/8144129955?text=Hi%20Amit" target="_blank" rel="noopener noreferrer" className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full transition-transform active:scale-95">
-             <span className="text-2xl text-green-500 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)] filter hover:brightness-110">
-               <FaWhatsapp />
-             </span>
+            <span className="text-2xl text-green-500 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)] filter hover:brightness-110">
+              <FaWhatsapp />
+            </span>
           </a>
 
         </motion.div>
