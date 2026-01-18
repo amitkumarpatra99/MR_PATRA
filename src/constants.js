@@ -71,6 +71,7 @@ import battery from './assets/Project Photo/Battery.png'
 import job from './assets/Project Photo/Job.png'
 import random from './assets/Project Photo/randompg.png'
 import jaap from './assets/Project Photo/Jaap.png'
+import finman from './assets/Project Photo/finman.png'
 
 
 export const SkillsInfo = [
@@ -187,6 +188,14 @@ export const projects = [
     image: job,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/JobPortal",
+  },
+   {
+    id: 29,
+    title: "FIN MAN",
+    description: "FINMAN is a modern, responsive financial management dashboard built with Next.js. It helps users track their multiple bank accounts, view transaction history, and transfer funds seamlessly. Featuring a sleek UI, real-time data updates, and secure authentication, FINMAN simplifies personal finance management with intuitive charts and insights.",
+    image: finman,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/FinMan",
   },
     {
     id: 6,
