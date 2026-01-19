@@ -208,7 +208,7 @@ const Projects = () => {
                   />
                 </div>
 
-                <div className="w-full md:w-1/2 flex flex-col justify-between p-5 sm:p-6 md:p-8 overflow-hidden">
+                <div className="w-full md:w-1/2 flex flex-col justify-between p-5 sm:p-6 md:p-8 overflow-y-auto md:overflow-hidden custom-scrollbar">
 
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                     {selectedProject.title}

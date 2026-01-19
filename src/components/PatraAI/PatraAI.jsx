@@ -255,7 +255,7 @@ const PatraAI = () => {
                 border border-gray-200 dark:border-white/10
                 
                 /* MOBILE: Full width bottom sheet style */
-                bottom-0 left-0 right-0 w-full h-[80vh] rounded-t-[24px]
+                bottom-0 left-0 right-0 w-full h-[85dvh] rounded-t-[24px]
                 
                 /* DESKTOP: Floating window */
                 md:bottom-24 md:right-8 md:w-[380px] md:h-[600px] md:rounded-2xl md:left-auto

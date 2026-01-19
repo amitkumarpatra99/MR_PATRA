@@ -149,6 +149,8 @@ html,
 body {
   overflow-x: hidden !important;
   width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
 }
 
 /* Hide particles on mobile */
@@ -350,5 +352,3 @@ body {
   background: linear-gradient(180deg, #7c3aed 0%, #0f766e 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-

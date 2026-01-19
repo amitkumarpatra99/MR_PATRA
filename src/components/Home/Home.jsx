@@ -76,7 +76,7 @@ const Home = () => {
           Hello World <FaHandPeace className="text-teal-500 hover:rotate-12 transition-transform duration-300" />, My name is
         </h1>
 
-        <h2 className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-tight drop-shadow-[0_0_12px_rgba(79,183,179,0.25)]">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-tight drop-shadow-[0_0_12px_rgba(79,183,179,0.25)]">
           AMIT KUMAR PATRA
         </h2>
 

@@ -73,7 +73,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300 overflow-hidden py-5 pb-20 px-4">
+    <div className="relative min-h-screen flex items-start md:items-center justify-center bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300 overflow-hidden py-5 pt-28 md:pt-5 pb-20 px-4">
 
       {/* Background decoration elements (Optional visual flair) */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

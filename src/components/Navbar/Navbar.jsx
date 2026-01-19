@@ -197,7 +197,7 @@ export default function NavbarPremium() {
       {/* 
           MOBILE BOTTOM FLOATING DOCK (Hides on Scroll)
      */}
-      <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-full max-w-[360px]">
+      <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-[90%] max-w-[350px]">
 
         {/* --- POPUP MENU ("...") --- */}
         <AnimatePresence>
