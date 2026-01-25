@@ -29,7 +29,7 @@ A dynamic and interactive showcase of my work, skills, and creativity — powere
 | **TailwindCSS** | Utility-first CSS framework for rapid and modern styling |
 | **Vite** | Next-generation frontend tooling for fast build and dev server |
 | **GSAP** | GreenSock Animation Platform for complex, high-performance animations |
-| **Lenis** | Smooth scroll library for a premium scrolling experience |
+| **Lenis** | Smooth scroll library for scrolling experience |
 | **Lucide React** | Beautiful, consistent icons |
 
 ---
