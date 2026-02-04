@@ -11,7 +11,7 @@ This portfolio is designed to feel like an **experience**, not just a website.
 
 ---
 
-## 🎯 Purpose & Vision
+## 🎯 Purpose 
 
 **MR PATRA .WEB** is a living product that evolves with my skills and experience.
 
