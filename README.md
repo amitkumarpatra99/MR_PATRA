@@ -13,7 +13,7 @@ This portfolio is designed to feel like an **experience**, not just a website.
 
 ## 🎯 Purpose 
 
-**MR PATRA .WEB** is a living product that evolves with my skills and experience.
+**MR PATRA WEBSITE** is a living product that evolves with my skills and experience.
 
 ### Goals:
 - Showcase real-world **frontend engineering skills**
