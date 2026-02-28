@@ -1,7 +1,9 @@
 import { ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
-const ScrollDownButton = ({ next }) => {
+const ScrollDownButton = ({ next = "about" }) => {
+  const prefersReduced = useReducedMotion();
+
   const handleScroll = () => {
     const section = document.getElementById(next);
     if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -9,16 +11,19 @@ const ScrollDownButton = ({ next }) => {
 
   return (
     <div className="absolute bottom-10 md:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-auto">
-      {/* <p className="text-gray-300 text-sm font-medium mb-2 select-none">
-        Scroll Down
-      </p> */}
       <motion.button
         onClick={handleScroll}
-        className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-500 bg-black/30 backdrop-blur-sm hover:bg-white/10 transition"
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 1.3, repeat: Infinity, ease: "easeInOut" }}
+        aria-label="Scroll down"
+        className="relative flex items-center justify-center w-12 h-12 rounded-full border border-white/20 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-md shadow-lg hover:shadow-[0_0_20px_rgba(79,183,179,0.3)] hover:border-teal-400/50 transition-all duration-300 group"
+        {...(!prefersReduced
+          ? {
+              animate: { y: [0, 8, 0] },
+              transition: { duration: 1.4, repeat: Infinity, ease: "easeInOut" },
+            }
+          : {})}
       >
-        <ChevronDown className="text-white" size={20} />
+        <span className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-400/10 to-cyan-300/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <ChevronDown className="relative text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" size={20} />
       </motion.button>
     </div>
   );
