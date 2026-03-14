@@ -45,7 +45,7 @@ import rec from './assets/Education Logo/REC Logo.jpg';
 import python from './assets/certificate/Python.pdf'
 import java from './assets/certificate/JAVA CERTIFICATE.pdf'
 import aiml from './assets/certificate/AIML.pdf'
-
+import data from './assets/certificate/Data Analytics.pdf'
 // Project Section
 import cup from './assets/Project Photo/Warm Cup.png'
 import url from './assets/Project Photo/URL shortner.png'
@@ -181,7 +181,7 @@ export const projects = [
 
 
 
-    {
+  {
     id: 8,
     title: "Job Flow",
     description: "A full-stack job portal that connects recruiters and job seekers through a secure, user-friendly platform with real-time job postings and applications.Built with modern web technologies, it features authentication, role-based dashboards, resume management, and seamless end-to-end hiring workflows.",
@@ -189,7 +189,7 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/JobPortal",
   },
-   {
+  {
     id: 29,
     title: "FIN MAN",
     description: "FINMAN is a modern, responsive financial management dashboard built with Next.js. It helps users track their multiple bank accounts, view transaction history, and transfer funds seamlessly. Featuring a sleek UI, real-time data updates, and secure authentication, FINMAN simplifies personal finance management with intuitive charts and insights.",
@@ -197,7 +197,7 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/FinMan",
   },
-    {
+  {
     id: 6,
     title: "Jaap Seva",
     description: "Currency Converter – A web-based tool designed to convert values between multiple international currencies instantly. Developed using HTML, CSS, and JavaScript with a clean and user-friendly interface that ensures accuracy and responsiveness across all devices.",
@@ -393,7 +393,10 @@ export const experiences = [
     company: "Central Tool and Training Center ",
     date: "July 2025 - Sept 2025",
     project: "Face Detection, Netflix Dashboard",
-    certificate: aiml,
+    certificates: [
+      { label: "AIML Certificate", file: aiml },
+      { label: "Data Analytics Certificate", file: data },
+    ],
     skills: [
       "AI & ML",
       "Python",

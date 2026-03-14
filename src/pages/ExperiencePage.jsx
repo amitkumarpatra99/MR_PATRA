@@ -132,8 +132,30 @@ const ExperiencePage = () => {
                       ))}
                     </div>
 
-                    {/* Certificate Link (Conditional) */}
-                    {exp.certificate && (
+                    {/* Certificate Link(s) */}
+                    {exp.certificates ? (
+                      <div className="mt-2 flex flex-col gap-2">
+                        {exp.certificates.map((cert, ci) => (
+                          <a
+                            key={ci}
+                            href={cert.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+                                                  bg-gray-100 dark:bg-white/5 
+                                                  hover:bg-teal-50 dark:hover:bg-teal-500/10
+                                                  border border-transparent hover:border-teal-500/30
+                                                  text-xs font-semibold text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400
+                                                  transition-all duration-300 group/btn"
+                            >
+                              {cert.label}
+                              <FaArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                            </button>
+                          </a>
+                        ))}
+                      </div>
+                    ) : exp.certificate ? (
                       <a
                         href={exp.certificate}
                         target="_blank"
@@ -151,7 +173,7 @@ const ExperiencePage = () => {
                           <FaArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                         </button>
                       </a>
-                    )}
+                    ) : null}
 
                   </div>
 
