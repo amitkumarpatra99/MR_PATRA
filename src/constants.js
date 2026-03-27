@@ -277,6 +277,16 @@ export const projects = [
     github: "https://github.com/amitkumarpatra99/ConnectX",
   },
 
+  {
+    id: 9,
+    title: "AI PORTFOLIO ANALYTICS",
+    description: "AI Portfolio Analytics is a cutting-edge web application that leverages artificial intelligence to provide users with deep insights into their investment portfolios. By analyzing market trends, asset performance, and risk factors, it offers personalized recommendations to optimize returns and manage risks effectively.",
+    image: portfolio01,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/PortfolioAnalyzer",
+  },
+
+
 
   {
     id: 11,
