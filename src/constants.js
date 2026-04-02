@@ -72,6 +72,7 @@ import job from './assets/Project Photo/Job.png'
 import random from './assets/Project Photo/randompg.png'
 import jaap from './assets/Project Photo/Jaap.png'
 import finman from './assets/Project Photo/finman.png'
+import panalysis from './assets/Project Photo/'
 
 
 export const SkillsInfo = [
