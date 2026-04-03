@@ -16,6 +16,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 
 import { ThemeProvider } from "./context/ThemeContext";
@@ -70,6 +71,17 @@ const App = () => {
                   element={
                     <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
                       <EducationPage />
+                      <Footer />
+                    </div>
+                  }
+                />
+
+                {/* PROJECTS PAGE */}
+                <Route
+                  path="/projects"
+                  element={
+                    <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
+                      <ProjectsPage />
                       <Footer />
                     </div>
                   }

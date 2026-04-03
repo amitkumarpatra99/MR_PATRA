@@ -1,25 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { projects } from "../../constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, ChevronUp, ExternalLink, Folder, Github, X } from "lucide-react";
+import { ArrowRight, ExternalLink, Folder, Github, X } from "lucide-react";
 import { RiExternalLinkLine } from "react-icons/ri";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showAll, setShowAll] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpenModal = (project) => setSelectedProject(project);
   const handleCloseModal = () => setSelectedProject(null);
 
-  const visibleProjects = showAll ? projects : projects.slice(0, 3);
-
-  // ⭐ Smooth scroll helper (fixed navbar offset)
-  const scrollToProjectsTop = (offset = 76) => {
-    const el = document.getElementById("projects");
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
+  const visibleProjects = projects.slice(0, 3);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -146,26 +140,13 @@ const Projects = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            if (showAll) {
-              // hide all → scroll to top of projects
-              setShowAll(false);
-              setTimeout(() => scrollToProjectsTop(76), 60);
-            } else {
-              // show all
-              setShowAll(true);
-            }
-          }}
+          onClick={() => navigate("/projects")}
           className="
-            group flex items-center gap-3 px-5 py-3 rounded-full
-            text-gray-800 dark:text-white font-semibold tracking-wide bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20  hover:bg-teal-100 dark:hover:bg-teal-500/20 hover:text-teal-700 dark:hover:text-white transition-all duration-300"
+            group flex items-center gap-3 px-6 py-3.5 rounded-full
+            text-gray-800 dark:text-white font-semibold tracking-wide bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 hover:text-teal-700 dark:hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
         >
-          {showAll ? "Show Less" : "View All Projects"}
-          {showAll ? (
-            <ChevronUp className="text-teal-400 group-hover:-translate-y-1 transition-transform" />
-          ) : (
-            <ChevronDown className="text-teal-400 group-hover:translate-y-1 transition-transform" />
-          )}
+          View All Projects
+          <BsArrowRightCircleFill className="text-teal-500 dark:text-teal-400 text-xl group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
 
