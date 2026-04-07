@@ -147,7 +147,7 @@ npm run preview
 *   ✅ Chrome
 *   ✅ Firefox
 *   ✅ Edge
-*   ✅ S
+*   ✅ Safari
 *   ✅ Mobile Browsers
 *   ❌ Internet Explorer (Legacy)
 
