@@ -17,7 +17,7 @@ const MobileTopBar = () => {
                 className="pointer-events-auto relative group"
             >
                 {/* GLOW EFFECT - Ambient light behind the glass */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-blue-500/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 via-purple-500/ to-blue-500/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* MAIN GLASS CAPSULE */}
                 <div className="relative flex items-center gap-4 px-5 py-2.5 
