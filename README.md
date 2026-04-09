@@ -1,4 +1,4 @@
-# ⚡ MR PATRA WEBSITE 
+# ⚡ MR PATRA
 
 ![MR PATRA .WEB](src/assets/Project%20Photo/MRPATRA.png)
 
