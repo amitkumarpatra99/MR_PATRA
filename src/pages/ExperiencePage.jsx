@@ -176,7 +176,6 @@ const ExperiencePage = () => {
                     ) : null}
 
                   </div>
-
                 </div>
               </div>
             </motion.div>
