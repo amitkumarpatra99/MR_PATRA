@@ -198,7 +198,7 @@ const Footer = () => {
               transition-all duration-300 cursor-default hover:pl-3"
             >
               <FaRegEye size={16} className="mr-3 text-teal-500" />
-              <span className="font-medium">2591+ <span className="font-normal opacity-80">Views</span>
+              <span className="font-medium">4786+ <span className="font-normal opacity-80">Views</span>
               </span>
             </li>
           </ul>
