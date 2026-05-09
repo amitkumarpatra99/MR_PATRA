@@ -73,6 +73,8 @@ import random from './assets/Project Photo/randompg.png'
 import jaap from './assets/Project Photo/Jaap.png'
 import finman from './assets/Project Photo/finman.png'
 import panalysis from './assets/Project Photo/portfolioanalysis.png'
+import bdms from './assets/Project Photo/bdms.png'
+
 
 
 export const SkillsInfo = [
@@ -277,9 +279,20 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ConnectX",
   },
+  
+  {
+    id: 23,
+    title: "BDMS",
+    description: "A modern, full-stack MERN application that provides real-time telemetry and historical data for your Windows laptop's battery health. Built with a beautiful, dark-themed UI using Tailwind CSS and Glassmorphism design principles..",
+    image: bdms,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/BDMS",
+
+  },
+
 
   {
-    id: 9,
+    id: 19,
     title: "AI PORTFOLIO ANALYTICS",
     description: "AI Portfolio Analytics is a cutting-edge web application that leverages artificial intelligence to provide users with deep insights into their investment portfolios. By analyzing market trends, asset performance, and risk factors, it offers personalized recommendations to optimize returns and manage risks effectively.",
     image: panalysis,
