@@ -9,11 +9,13 @@ import {
   FaBriefcase,
   FaEnvelope,
   FaUser,
+  FaCog,
 } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
-// Ensure these paths are correct in your project
-import { projects, SkillsInfo, experiences, education, contactDetails, aboutMe } from "../../constants";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { generateLocalResponse, generateGeminiResponse } from "./aiEngine";
 import mrpatra from "/DP.jpg";
 
 const sendSound = new Audio(
@@ -31,22 +33,27 @@ const PatraAI = () => {
   const [showButton, setShowButton] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  // AI Engine settings
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [engine, setEngine] = useState(() => localStorage.getItem("patra_ai_engine") || "local");
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("patra_ai_apikey") || "");
+  const [showApiKey, setShowApiKey] = useState(false);
+
   const messagesEndRef = useRef(null);
-  const chatContainerRef = useRef(null); // Ref for click-outside detection
+  const chatContainerRef = useRef(null);
   const scrollTimer = useRef(null);
 
   // Suggested questions
-  const suggestions = [
-    { label: "Projects", icon: <FaCode />, val: "Show me your projects" },
-    { label: "Skills", icon: <FaUserTie />, val: "What are your skills?" },
-    { label: "Experience", icon: <FaBriefcase />, val: "Tell me about your experience" },
-    { label: "Contact", icon: <FaEnvelope />, val: "How can I contact you?" },
-  ];
+  const [activeSuggestions, setActiveSuggestions] = useState([
+    { label: "Projects 💻", val: "Show me your projects" },
+    { label: "Skills 🚀", val: "What are your skills?" },
+    { label: "Experience 💼", val: "Tell me about your experience" },
+    { label: "Contact 📞", val: "How can I contact you?" },
+  ]);
 
   /* ---------------- SCROLL & AUTO HIDE ---------------- */
   useEffect(() => {
     const handleScroll = () => {
-      // Only hide on scroll if chat is CLOSED
       if (!isOpen) {
         setShowButton(false);
         clearTimeout(scrollTimer.current);
@@ -68,12 +75,14 @@ const PatraAI = () => {
     const handleClickOutside = (event) => {
       if (chatContainerRef.current && !chatContainerRef.current.contains(event.target) && isOpen) {
         setIsOpen(false);
+        setIsSettingsOpen(false);
       }
     };
 
     const handleEscKey = (event) => {
       if (event.key === "Escape" && isOpen) {
         setIsOpen(false);
+        setIsSettingsOpen(false);
       }
     };
 
@@ -99,6 +108,7 @@ const PatraAI = () => {
       id: 1,
       text: `${getTimeGreeting()}<br/>I’m <b>Patra AI</b>. How can I help you today?`,
       sender: "bot",
+      isMarkdown: false,
     },
   ]);
 
@@ -116,57 +126,87 @@ const PatraAI = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping, isOpen]);
+  }, [messages, isTyping, isOpen, isSettingsOpen]);
 
   /* ---------------- AI LOGIC ---------------- */
-  const generateResponse = (input) => {
-    const q = input.toLowerCase().trim();
-
-    if (/^(hi|hii+|hello+|hey+|hola)$/.test(q)) {
-      return "Hello! 👋<br/>I can tell you about my <b>Projects</b>, <b>Skills</b>, or <b>Contact</b> info.";
-    }
-    if (q.includes("about") || q.includes("who is") || q.includes("bio") || q.includes("amit")) {
-      return `👨‍💻 <b>${aboutMe.name}</b><br/><br/>${aboutMe.bio}<br/><br/><b>Core Focus:</b><br/>${aboutMe.skills.join(" • ")}`;
-    }
-    if (q.includes("project") || q.includes("work") || q.includes("built")) {
-      const projectList = projects.map((p) => `🔹 <b>${p.title}</b> <span style="opacity:0.7">(${p.tags.join(', ')})</span>`).join("<br/>");
-      return `Here are some of my recent projects:<br/><br/>${projectList}<br/><br/>Would you like to see more details?`;
-    }
-    if (q.includes("skill") || q.includes("stack") || q.includes("tech")) {
-      return SkillsInfo.map((s) => `🚀 <b>${s.title}</b><br/>${s.skills.map((x) => x.name).join(", ")}`).join("<br/><br/>");
-    }
-    if (q.includes("education") || q.includes("study") || q.includes("degree")) {
-      return education.map((e) => `🎓 <b>${e.degree}</b><br/>${e.school}`).join("<br/><br/>");
-    }
-    if (q.includes("experience") || q.includes("job") || q.includes("internship")) {
-      return experiences.map((e) => `💼 <b>${e.role}</b><br/>${e.company} (${e.date})`).join("<br/><br/>");
-    }
-    if (q.includes("contact") || q.includes("mail") || q.includes("hire") || q.includes("linkedin")) {
-      return `Let's connect! 🤝<br/><br/>📧 <b>Email:</b> <a href="mailto:${contactDetails.email}" style="color:#14b8a6;">${contactDetails.email}</a><br/>🔗 <b>LinkedIn:</b> <a href="${contactDetails.linkedin}" target="_blank" style="color:#14b8a6;">Profile</a>`;
-    }
-    if (q.includes("clear")) {
-      setMessages([{ id: Date.now(), text: "Chat cleared! 🧹 How can I help?", sender: "bot" }]);
-      return null;
-    }
-    return "🤖 I'm still learning!<br/>Try asking about <b>Projects</b>, <b>Skills</b>, or simply say <b>Hi</b>.";
-  };
-
-  const handleSendMessage = (text = inputValue) => {
+  const handleSendMessage = async (text = inputValue) => {
     if (!text.trim()) return;
     playSound("send");
-    const userMsg = { id: Date.now(), text: text, sender: "user" };
+    
+    // Add user message
+    const userMsg = { id: Date.now(), text: text, sender: "user", isMarkdown: false };
     setMessages((p) => [...p, userMsg]);
     setInputValue("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      const responseText = generateResponse(userMsg.text);
-      if (responseText) {
-        setMessages((p) => [...p, { id: Date.now() + 1, text: responseText, sender: "bot" }]);
+    // Clear settings screen if open
+    setIsSettingsOpen(false);
+
+    // Check for clear chat
+    const normalizedText = text.toLowerCase().trim();
+    if (normalizedText === "clear" || normalizedText.includes("clear chat") || normalizedText.includes("clear history")) {
+      setTimeout(() => {
+        setMessages([{ id: Date.now(), text: "Chat cleared! 🧹 How can I help?", sender: "bot", isMarkdown: false }]);
+        setActiveSuggestions([
+          { label: "Projects 💻", val: "Show me your projects" },
+          { label: "Skills 🚀", val: "What are your skills?" },
+          { label: "Experience 💼", val: "Tell me about your experience" },
+          { label: "Contact 📞", val: "How can I contact you?" },
+        ]);
         playSound("receive");
+        setIsTyping(false);
+      }, 600);
+      return;
+    }
+
+    // Small delay to simulate thinking feel
+    setTimeout(async () => {
+      try {
+        if (engine === "gemini" && apiKey) {
+          const chatHistory = messages.filter(m => m.id !== 1);
+          const responseText = await generateGeminiResponse(text, apiKey, chatHistory);
+          
+          setMessages((p) => [
+            ...p,
+            { id: Date.now() + 1, text: responseText, sender: "bot", isMarkdown: true }
+          ]);
+          playSound("receive");
+          
+          setActiveSuggestions([
+            { label: "Tell me about projects 💻", val: "Tell me about your projects" },
+            { label: "What are your skills? 🚀", val: "What are your skills?" },
+            { label: "Show certifications 📜", val: "Show certifications" },
+            { label: "Contact Amit 📞", val: "How can I contact you?" }
+          ]);
+        } else {
+          // Local engine response
+          const localResult = generateLocalResponse(text);
+          setMessages((p) => [
+            ...p,
+            { id: Date.now() + 1, text: localResult.text, sender: "bot", isMarkdown: false }
+          ]);
+          playSound("receive");
+          
+          if (localResult.chips) {
+            setActiveSuggestions(localResult.chips);
+          }
+        }
+      } catch (err) {
+        console.error("Chat Error:", err);
+        setMessages((p) => [
+          ...p,
+          { 
+            id: Date.now() + 1, 
+            text: `⚠️ <b>Gemini API Error:</b> ${err.message || "Failed to fetch response."}<br/><br/>Please ensure your API Key is valid and you have an internet connection, or switch back to the <b>Local Engine</b> in settings.`, 
+            sender: "bot", 
+            isMarkdown: false 
+          }
+        ]);
+        playSound("receive");
+      } finally {
+        setIsTyping(false);
       }
-      setIsTyping(false);
-    }, 1200);
+    }, 1000);
   };
 
   return (
@@ -178,13 +218,7 @@ const PatraAI = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className={`
-              fixed z-[50]
-              /* MOBILE: Bottom-24 to avoid Navbar overlap */
-              bottom-24 right-4 
-              /* DESKTOP: Standard corner positioning */
-              md:bottom-8 md:right-8
-            `}
+            className="fixed z-[50] bottom-24 right-4 md:bottom-8 md:right-8"
           >
             <button
               onClick={() => setIsOpen(true)}
@@ -200,16 +234,13 @@ const PatraAI = () => {
                 border border-gray-200 dark:border-white/10
               "
             >
-              {/* Notification Dot (Delighter) */}
               <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white dark:border-[#0a0a0a] z-20 animate-pulse"></span>
 
-              {/* Spinning Ring */}
               <div
                 className="absolute inset-1 rounded-full border border-dashed border-teal-500/30"
                 style={{ animation: "spin 10s linear infinite" }}
               />
 
-              {/* Scroll Progress Ring */}
               <svg className="absolute inset-0 w-full h-full -rotate-90 p-1" viewBox="0 0 60 60">
                 <circle cx="30" cy="30" r={scrollRingRadius} fill="transparent" stroke="currentColor" className="text-gray-200 dark:text-[#1f2937]" strokeWidth="3" />
                 <circle
@@ -221,7 +252,6 @@ const PatraAI = () => {
                 />
               </svg>
 
-              {/* Icon */}
               <div className="absolute inset-0 m-auto w-9 h-9 md:w-10 md:h-10 rounded-full bg-teal-100 dark:bg-teal-600/20 backdrop-blur-md flex items-center justify-center text-teal-600 dark:text-white overflow-hidden p-[2px]">
                 <img src={mrpatra} alt="Patra AI" className="w-full h-full object-cover rounded-full" />
               </div>
@@ -234,12 +264,14 @@ const PatraAI = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop for Mobile (Optional: darker background focus) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setIsSettingsOpen(false);
+              }}
               className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[9998]"
             />
 
@@ -249,17 +281,13 @@ const PatraAI = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 50, scale: 0.9 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className={`
+              className="
                 fixed z-[9999] flex flex-col overflow-hidden shadow-2xl
                 bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-2xl 
                 border border-gray-200 dark:border-white/10
-                
-                /* MOBILE: Full width bottom sheet style */
                 bottom-0 left-0 right-0 w-full h-[85dvh] rounded-t-[24px]
-                
-                /* DESKTOP: Floating window */
                 md:bottom-24 md:right-8 md:w-[380px] md:h-[600px] md:rounded-2xl md:left-auto
-              `}
+              "
             >
               {/* --- HEADER --- */}
               <div className="relative flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/5 bg-gradient-to-r from-teal-50/50 via-transparent dark:from-teal-900/10 dark:to-transparent">
@@ -269,110 +297,244 @@ const PatraAI = () => {
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-[#09090b] rounded-full animate-pulse"></span>
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white tracking-wide">Patra AI</h3>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white tracking-wide">
+                      Patra AI
+                    </h3>
                     <span className="text-[10px] text-green-500 dark:text-green-400 font-medium tracking-wider uppercase flex items-center gap-1">
-                      <span className="w-1 h-1 bg-green-500 dark:bg-green-400 rounded-full"></span> Online
+                      <span className="w-1 h-1 bg-green-500 dark:bg-green-400 rounded-full"></span> 
+                      {engine === "gemini" ? "Gemini Engine" : "Local Engine"}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1">
+                  <button 
+                    onClick={() => setIsSettingsOpen(!isSettingsOpen)} 
+                    className={`p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-colors ${isSettingsOpen ? 'text-teal-600 dark:text-teal-400' : 'text-gray-500 dark:text-white/40'}`}
+                    title="AI Settings"
+                  >
+                    <FaCog size={15} className={isSettingsOpen ? "rotate-90 duration-300" : "duration-300"} />
+                  </button>
                   <button onClick={() => setSoundEnabled(!soundEnabled)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors">
                     {soundEnabled ? <FaVolumeUp size={14} /> : <FaVolumeMute size={14} />}
                   </button>
-                  <button onClick={() => setIsOpen(false)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors">
+                  <button 
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsSettingsOpen(false);
+                    }} 
+                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
                     <FaTimes size={16} />
                   </button>
                 </div>
               </div>
 
-              {/* --- MESSAGES --- */}
-              <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-gray-50/50 dark:bg-transparent">
-                {messages.map((m) => (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    key={m.id}
-                    className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`
-                        relative px-4 py-2.5 text-[13px] leading-relaxed max-w-[80%] shadow-sm
-                        ${m.sender === "user"
-                          ? "bg-teal-600 text-white rounded-2xl rounded-tr-sm"
-                          : "bg-white dark:bg-[#18181b] text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-white/5 rounded-2xl rounded-tl-sm"
-                        }
-                      `}
-                    >
-                      <div dangerouslySetInnerHTML={{ __html: m.text }} />
-                    </div>
-                  </motion.div>
-                ))}
+              {/* --- SETTINGS SCREEN PANEL --- */}
+              {isSettingsOpen ? (
+                <div className="flex-1 flex flex-col px-5 py-6 bg-white dark:bg-[#09090b] text-gray-800 dark:text-gray-200 overflow-y-auto space-y-4">
+                  <div className="flex items-center gap-2 border-b border-gray-100 dark:border-white/5 pb-2">
+                    <FaCog className="text-teal-600 dark:text-teal-400" />
+                    <h3 className="text-sm font-bold">AI Chatbot Engine</h3>
+                  </div>
 
-                {isTyping && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-                    <div className="bg-white dark:bg-[#18181b] px-3 py-3 rounded-2xl rounded-tl-sm border border-gray-200 dark:border-white/5 flex gap-1 items-center ml-1 shadow-sm">
-                      {[0, 0.2, 0.4].map((delay) => (
-                        <motion.div
-                          key={delay}
-                          className="w-1.5 h-1.5 bg-teal-500/50 rounded-full"
-                          animate={{ y: [0, -4, 0] }}
-                          transition={{ duration: 0.6, repeat: Infinity, delay }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* --- FOOTER (Suggestions + Input) --- */}
-              <div className="bg-white dark:bg-[#09090b] border-t border-gray-100 dark:border-white/5">
-                {/* Suggestions */}
-                <div className="px-5 pb-2 pt-3">
-                  <div className="flex gap-2 overflow-x-auto cyber-scrollbar pb-2 mask-linear-fade">
-                    {suggestions.map((s, i) => (
+                  <div className="space-y-3">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Select Engine</span>
+                    <div className="grid grid-cols-2 gap-2">
                       <button
-                        key={i}
-                        onClick={() => handleSendMessage(s.val)}
-                        className="
-                          flex items-center gap-1.5 px-3 py-1.5 
-                          bg-gray-100 dark:bg-white/5 hover:bg-teal-100 dark:hover:bg-teal-500/20 
-                          border border-gray-200 dark:border-white/5 hover:border-teal-200 dark:hover:border-teal-500/30 
-                          rounded-full text-[11px] text-gray-600 dark:text-gray-400 hover:text-teal-700 dark:hover:text-white 
-                          transition-all whitespace-nowrap
-                        "
+                        onClick={() => {
+                          setEngine("local");
+                          localStorage.setItem("patra_ai_engine", "local");
+                        }}
+                        className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
+                          engine === "local"
+                            ? "bg-teal-600 border-teal-600 text-white shadow-md shadow-teal-600/25"
+                            : "bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10"
+                        }`}
                       >
-                        {s.icon} {s.label}
+                        ⚡ Local Engine
                       </button>
-                    ))}
+                      <button
+                        onClick={() => {
+                          setEngine("gemini");
+                          localStorage.setItem("patra_ai_engine", "gemini");
+                        }}
+                        className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
+                          engine === "gemini"
+                            ? "bg-teal-600 border-teal-600 text-white shadow-md shadow-teal-600/25"
+                            : "bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10"
+                        }`}
+                      >
+                        🤖 Gemini LLM
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                {/* Input Field */}
-                <div className="p-4 pt-0">
-                  <div className="relative flex items-center gap-2 p-1.5 pl-4 bg-gray-100 dark:bg-[#18181b] border border-gray-200 dark:border-white/10 rounded-full focus-within:border-teal-500/50 transition-all">
-                    <input
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                      placeholder="Ask me anything..."
-                      className="flex-1 bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-500 outline-none"
-                    />
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => handleSendMessage()}
-                      disabled={!inputValue.trim()}
-                      className={`
-                        p-2.5 rounded-full flex-shrink-0 transition-all duration-200
-                        ${inputValue.trim() ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/25' : 'bg-gray-200 dark:bg-white/5 text-gray-400 dark:text-gray-500'}
-                      `}
+                  {engine === "local" ? (
+                    <div className="text-xs text-gray-500 leading-relaxed bg-gray-50 dark:bg-[#18181b] p-3 rounded-xl border border-gray-100 dark:border-white/5">
+                      💡 <b>Local Engine:</b> Fast, works offline, and searches a pre-built directory of Amit's skills, projects, certificates, and credentials. Uses zero API calls.
+                    </div>
+                  ) : (
+                    <div className="space-y-3 pt-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Gemini API Key</span>
+                        <a
+                          href="https://aistudio.google.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10px] text-teal-600 dark:text-teal-400 hover:underline flex items-center gap-0.5"
+                        >
+                          Get Free Key ↗
+                        </a>
+                      </div>
+
+                      <div className="relative flex items-center bg-gray-50 dark:bg-[#18181b] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2.5 focus-within:border-teal-500/50 transition-all">
+                        <input
+                          type={showApiKey ? "text" : "password"}
+                          value={apiKey}
+                          onChange={(e) => {
+                            setApiKey(e.target.value);
+                            localStorage.setItem("patra_ai_apikey", e.target.value);
+                          }}
+                          placeholder="Paste API key here (AIzaSy...)"
+                          className="flex-1 bg-transparent text-xs text-gray-900 dark:text-white outline-none"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowApiKey(!showApiKey)}
+                          className="text-[10px] text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 font-medium px-1"
+                        >
+                          {showApiKey ? "Hide" : "Show"}
+                        </button>
+                      </div>
+                      
+                      <div className="text-[11px] text-gray-500 leading-relaxed space-y-1">
+                        <p>🔒 Your API key is stored securely in your local browser storage and sent directly to Google. It never touches any third-party servers.</p>
+                        <p className="mt-1 text-teal-600 dark:text-teal-400">⚡ Modeled on Gemini 1.5 Flash for natural conversations!</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                    <button
+                      onClick={() => setIsSettingsOpen(false)}
+                      className="w-full py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold shadow-md shadow-teal-600/25 transition-all"
                     >
-                      <FaPaperPlane size={13} className={inputValue.trim() ? "translate-x-0.5" : ""} />
-                    </motion.button>
+                      Save & Close
+                    </button>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <>
+                  {/* --- MESSAGES --- */}
+                  <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-gray-50/50 dark:bg-transparent">
+                    {messages.map((m) => (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        key={m.id}
+                        className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}
+                      >
+                        <div
+                          className={`
+                            relative px-4 py-2.5 text-[13px] leading-relaxed max-w-[85%] shadow-sm
+                            ${m.sender === "user"
+                              ? "bg-teal-600 text-white rounded-2xl rounded-tr-sm"
+                              : "bg-white dark:bg-[#18181b] text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-white/5 rounded-2xl rounded-tl-sm"
+                            }
+                          `}
+                        >
+                          {m.isMarkdown ? (
+                            <ReactMarkdown 
+                              remarkPlugins={[remarkGfm]}
+                              className="prose prose-sm dark:prose-invert max-w-none text-xs leading-relaxed text-gray-800 dark:text-gray-200 break-words"
+                              components={{
+                                a: ({ node, ...props }) => (
+                                  <a 
+                                    {...props} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    style={{ color: '#14b8a6', fontWeight: 'bold', textDecoration: 'underline' }}
+                                  />
+                                )
+                              }}
+                            >
+                              {m.text}
+                            </ReactMarkdown>
+                          ) : (
+                            <div dangerouslySetInnerHTML={{ __html: m.text }} className="break-words font-medium" />
+                          )}
+                        </div>
+                      </motion.div>
+                    ))}
+
+                    {isTyping && (
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
+                        <div className="bg-white dark:bg-[#18181b] px-3 py-3 rounded-2xl rounded-tl-sm border border-gray-200 dark:border-white/5 flex gap-1 items-center ml-1 shadow-sm">
+                          {[0, 0.2, 0.4].map((delay) => (
+                            <motion.div
+                              key={delay}
+                              className="w-1.5 h-1.5 bg-teal-500/50 rounded-full"
+                              animate={{ y: [0, -4, 0] }}
+                              transition={{ duration: 0.6, repeat: Infinity, delay }}
+                            />
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                    <div ref={messagesEndRef} />
+                  </div>
+
+                  {/* --- FOOTER (Suggestions + Input) --- */}
+                  <div className="bg-white dark:bg-[#09090b] border-t border-gray-100 dark:border-white/5">
+                    {/* Suggestions */}
+                    <div className="px-5 pb-2 pt-3">
+                      <div className="flex gap-2 overflow-x-auto cyber-scrollbar pb-2 mask-linear-fade">
+                        {activeSuggestions.map((s, i) => (
+                          <button
+                            key={i}
+                            onClick={() => handleSendMessage(s.val)}
+                            className="
+                              flex items-center gap-1.5 px-3 py-1.5 
+                              bg-gray-100 dark:bg-white/5 hover:bg-teal-100 dark:hover:bg-teal-500/20 
+                              border border-gray-200 dark:border-white/5 hover:border-teal-200 dark:hover:border-teal-500/30 
+                              rounded-full text-[11px] text-gray-600 dark:text-gray-400 hover:text-teal-700 dark:hover:text-white 
+                              transition-all whitespace-nowrap
+                            "
+                          >
+                            {s.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Input Field */}
+                    <div className="p-4 pt-0">
+                      <div className="relative flex items-center gap-2 p-1.5 pl-4 bg-gray-100 dark:bg-[#18181b] border border-gray-200 dark:border-white/10 rounded-full focus-within:border-teal-500/50 transition-all">
+                        <input
+                          value={inputValue}
+                          onChange={(e) => setInputValue(e.target.value)}
+                          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                          placeholder={engine === "gemini" && !apiKey ? "Please configure API key in settings..." : "Ask me anything..."}
+                          disabled={engine === "gemini" && !apiKey}
+                          className="flex-1 bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-500 outline-none disabled:opacity-50"
+                        />
+                        <motion.button
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => handleSendMessage()}
+                          disabled={!inputValue.trim() || (engine === "gemini" && !apiKey)}
+                          className={`
+                            p-2.5 rounded-full flex-shrink-0 transition-all duration-200
+                            ${inputValue.trim() && !(engine === "gemini" && !apiKey) ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/25' : 'bg-gray-200 dark:bg-white/5 text-gray-400 dark:text-gray-500'}
+                          `}
+                        >
+                          <FaPaperPlane size={13} className={inputValue.trim() ? "translate-x-0.5" : ""} />
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </motion.div>
           </>
         )}
