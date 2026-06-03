@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import {
   FiHome,
   FiUser,
@@ -90,35 +91,23 @@ export default function NavbarPremium() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]); // Re-run effect if menu state changes
 
-  // Track active section on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActiveTab(entry.target.id);
-        });
-      },
-      { threshold: 0.38 }
-    );
-    [...NAV_ITEMS, { id: "Journey" }].forEach(item => {
-      const section = document.getElementById(item.id);
-      if (section) observer.observe(section);
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  // Smooth scroll
+  // Smooth scroll using react-scroll
   const scrollToSection = useCallback((id) => {
     setIsMenuOpen(false);
-    const el = document.getElementById(id);
-    if (!el) return;
-    const offset = el.getBoundingClientRect().top + window.scrollY - 85;
-    window.scrollTo({ top: offset, behavior: "smooth" });
+    scroller.scrollTo(id, {
+      duration: 600,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -85,
+    });
   }, []);
 
   const scrollToTop = () => {
     setIsMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scroll.scrollToTop({
+      duration: 600,
+      smooth: "easeInOutQuart",
+    });
   };
 
   const toggleMenu = (e) => {
@@ -154,10 +143,24 @@ export default function NavbarPremium() {
           <ul className="flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-full px-2 py-[6px] border border-black/5 dark:border-white/10 relative z-20 transition-colors duration-300">
             {[...NAV_ITEMS, { id: "Journey", label: "Journey" }].map((item) => (
               <li key={item.id} className="relative">
-                <button onClick={() => scrollToSection(item.id)} className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${activeTab === item.id ? "text-white dark:text-black" : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"}`}>
-                  {activeTab === item.id && <motion.div layoutId="active-pill-desktop" className="absolute inset-0 bg-black dark:bg-white/90 rounded-full" transition={{ type: "spring", stiffness: 250, damping: 28 }} />}
-                  <span className="relative z-20">{item.label}</span>
-                </button>
+                <Link
+                  to={item.id}
+                  spy={true}
+                  smooth={true}
+                  offset={-85}
+                  duration={600}
+                  onSetActive={() => setActiveTab(item.id)}
+                  className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all block cursor-pointer relative z-20 ${activeTab === item.id ? "text-white dark:text-black" : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"}`}
+                >
+                  {activeTab === item.id && (
+                    <motion.div
+                      layoutId="active-pill-desktop"
+                      className="absolute inset-0 bg-black dark:bg-white/90 rounded-full"
+                      transition={{ type: "spring", stiffness: 250, damping: 28 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -222,10 +225,19 @@ export default function NavbarPremium() {
                 </span>
               </div>
 
-              <button onClick={() => scrollToSection("Journey")} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white transition-colors">
+              <Link
+                to="Journey"
+                spy={true}
+                smooth={true}
+                offset={-85}
+                duration={600}
+                onSetActive={() => setActiveTab("Journey")}
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white cursor-pointer transition-colors"
+              >
                 <FiCompass className="text-lg text-blue-500" />
                 <span className="text-sm font-medium">My Journey</span>
-              </button>
+              </Link>
 
               <button onClick={toggleTheme} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white transition-colors">
                 {theme === "dark" ? <FiSun className="text-lg text-yellow-400" /> : <FiMoon className="text-lg text-violet-500" />}
@@ -273,14 +285,23 @@ export default function NavbarPremium() {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
-              <button key={item.id} onClick={() => scrollToSection(item.id)} className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full">
+              <Link
+                key={item.id}
+                to={item.id}
+                spy={true}
+                smooth={true}
+                offset={-85}
+                duration={600}
+                onSetActive={() => setActiveTab(item.id)}
+                className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full cursor-pointer"
+              >
                 {isActive && (
                   <motion.div layoutId="mobile-active-pill" className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-full border border-white/20 dark:border-white/5 shadow-inner" transition={{ type: "spring", duration: 0.5 }} />
                 )}
                 <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-black dark:text-white scale-110" : "text-black/50 dark:text-white/50"}`}>
                   <Icon />
                 </span>
-              </button>
+              </Link>
             );
           })}
 

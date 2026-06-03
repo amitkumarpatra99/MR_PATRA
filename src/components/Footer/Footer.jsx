@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import {
   Mail,
   Phone,
@@ -282,7 +282,7 @@ const Footer = () => {
         </p>
 
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => scroll.scrollToTop({ duration: 600, smooth: "easeInOutQuart" })}
           className="group flex items-center gap-2 px-4 py-2 rounded-full  
             bg-black/5 dark:bg-white/5 
             hover:bg-teal-500/20 
