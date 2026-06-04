@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import PatraAI from "./components/PatraAI/PatraAI";
 import Home from "./components/Home/Home";
@@ -10,6 +10,7 @@ import Journey from "./components/Journey/Journey";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
+import IntroLoader from "./components/IntroLoader/IntroLoader";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,11 +23,13 @@ import ProjectsPage from "./pages/ProjectsPage";
 import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
+  const [showIntro, setShowIntro] = useState(true);
 
   return (
     <ThemeProvider>
-      <CustomCursor />
-      <PatraAI />
+      {showIntro && <IntroLoader onComplete={() => setShowIntro(false)} />}
+      {!showIntro && <CustomCursor />}
+      {!showIntro && <PatraAI />}
 
       <div className="App">
         <BrowserRouter>
