@@ -3,11 +3,25 @@ import { gsap } from "gsap";
 
 const CustomCursor = () => {
   useEffect(() => {
-    const cursor = document.createElement("div");
-    cursor.className = "magic-cursor";
-    document.body.appendChild(cursor);
+    let cursor = null;
+
+    const isMobileDevice = () => {
+      return window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches;
+    };
 
     const moveCursor = (e) => {
+      if (isMobileDevice()) {
+        if (cursor) cursor.style.display = "none";
+        return;
+      }
+
+      if (!cursor) {
+        cursor = document.createElement("div");
+        cursor.className = "magic-cursor";
+        document.body.appendChild(cursor);
+      }
+      cursor.style.display = "block";
+
       gsap.to(cursor, {
         x: e.clientX,
         y: e.clientY,
@@ -20,6 +34,8 @@ const CustomCursor = () => {
     };
 
     const createSpark = (x, y) => {
+      if (isMobileDevice()) return;
+
       const spark = document.createElement("span");
       spark.className = "cursor-spark";
       spark.style.left = `${x}px`;
@@ -41,48 +57,56 @@ const CustomCursor = () => {
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-      cursor.remove();
+      if (cursor) cursor.remove();
     };
   }, []);
 
   return (
     <style>{`
-      body {
-        cursor: none !important;
+      @media (min-width: 769px) and (pointer: fine) {
+        body {
+          cursor: none !important;
+        }
+
+        .magic-cursor {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          background: rgba(0, 255, 255, 0.9);
+          box-shadow: 
+            0 0 12px rgba(0,255,255,0.8),
+            0 0 25px rgba(0,150,255,0.7);
+          transform: translate(-50%, -50%);
+          mix-blend-mode: screen;
+          z-index: 999999;
+        }
+
+        .cursor-spark {
+          position: fixed;
+          width: 6px;
+          height: 6px;
+          background: white;
+          border-radius: 50%;
+          pointer-events: none;
+          box-shadow: 
+            0 0 8px rgba(0,255,255,0.8),
+            0 0 18px rgba(0,120,255,0.6);
+          z-index: 999998;
+        }
+
+        button, a, input, textarea, .modal, .toggle-menu {
+          cursor: pointer !important; /* Ensures buttons still click */
+        }
       }
 
-      .magic-cursor {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        background: rgba(0, 255, 255, 0.9);
-        box-shadow: 
-          0 0 12px rgba(0,255,255,0.8),
-          0 0 25px rgba(0,150,255,0.7);
-        transform: translate(-50%, -50%);
-        mix-blend-mode: screen;
-        z-index: 999999;
-      }
-
-      .cursor-spark {
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        background: white;
-        border-radius: 50%;
-        pointer-events: none;
-        box-shadow: 
-          0 0 8px rgba(0,255,255,0.8),
-          0 0 18px rgba(0,120,255,0.6);
-        z-index: 999998;
-      }
-
-      button, a, input, textarea, .modal, .toggle-menu {
-        cursor: pointer !important; /* Ensures buttons still click */
+      @media (max-width: 768px), (pointer: coarse) {
+        .magic-cursor, .cursor-spark {
+          display: none !important;
+        }
       }
     `}</style>
   );

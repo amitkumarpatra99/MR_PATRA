@@ -9,14 +9,17 @@
 }
 
 
-* {
-  cursor: none !important;
+@media (min-width: 769px) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+
+  input[type="text"],
+  textarea {
+    cursor: text !important;
+  }
 }
 
-input[type="text"],
-textarea {
-  cursor: text !important;
-}
 
 .custom-cursor,
 .custom-cursor-dot {
@@ -43,10 +46,7 @@ textarea {
 
 
 
-/* Hide default cursor */
-* {
-  cursor: none !important;
-}
+
 
 
 
