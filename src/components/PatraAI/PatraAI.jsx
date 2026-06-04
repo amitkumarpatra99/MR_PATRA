@@ -170,6 +170,22 @@ const PatraAI = () => {
     }, 600);
   };
 
+  const isNavChip = (chip) => {
+    const label = chip.label.toLowerCase();
+    const val = chip.val.toLowerCase();
+    return (
+      val === "main menu" ||
+      val === "show me your projects" ||
+      val === "tell me about other projects" ||
+      label.includes("back") ||
+      label.includes("menu") ||
+      label.includes("other projects")
+    );
+  };
+
+  const navOptions = activeSuggestions.filter(isNavChip);
+  const contentOptions = activeSuggestions.filter(c => !isNavChip(c));
+
   return (
     <>
       {/* ================= FLOATING BUTTON ================= */}
@@ -343,26 +359,50 @@ const PatraAI = () => {
 
               {/* --- FOOTER (Suggestions / Interactive Buttons) --- */}
               <div className="bg-white dark:bg-[#09090b] border-t border-gray-100 dark:border-white/5 p-4 pb-6">
-                <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2 text-center select-none">
-                  Select a topic to explore
-                </div>
-                <div className="flex flex-wrap gap-2 justify-center max-h-[160px] overflow-y-auto cyber-scrollbar p-1">
-                  {activeSuggestions.map((s, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleSendMessage(s.val)}
-                      className="
-                        flex items-center gap-1.5 px-3.5 py-2 
-                        bg-gray-100 dark:bg-white/5 hover:bg-teal-50 dark:hover:bg-teal-950/30 
-                        border border-gray-200 dark:border-white/10 hover:border-teal-200 dark:hover:border-teal-800/50 
-                        rounded-full text-[11px] font-medium text-gray-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-white 
-                        transition-all shadow-sm active:scale-95 transform duration-150
-                      "
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
+                {/* Fixed Navigation / Back Buttons at the top of the footer */}
+                {navOptions.length > 0 && (
+                  <div className="flex flex-wrap gap-2 justify-center mb-3">
+                    {navOptions.map((s, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleSendMessage(s.val)}
+                        className="
+                          flex items-center gap-1.5 px-4 py-1.5 
+                          bg-teal-600 hover:bg-teal-700 dark:bg-teal-700 dark:hover:bg-teal-600
+                          text-white font-semibold rounded-full text-[11px] 
+                          transition-all shadow-md active:scale-95 transform duration-150
+                        "
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                
+                {contentOptions.length > 0 && (
+                  <>
+                    <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2 text-center select-none">
+                      Select a topic to explore
+                    </div>
+                    <div className="flex flex-wrap gap-2 justify-center max-h-[140px] overflow-y-auto cyber-scrollbar p-1">
+                      {contentOptions.map((s, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleSendMessage(s.val)}
+                          className="
+                            flex items-center gap-1.5 px-3.5 py-2 
+                            bg-gray-100 dark:bg-white/5 hover:bg-teal-50 dark:hover:bg-teal-950/30 
+                            border border-gray-200 dark:border-white/10 hover:border-teal-200 dark:hover:border-teal-800/50 
+                            rounded-full text-[11px] font-medium text-gray-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-white 
+                            transition-all shadow-sm active:scale-95 transform duration-150
+                          "
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </motion.div>
           </>

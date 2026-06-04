@@ -53,6 +53,7 @@ export const generateLocalResponse = (query) => {
         { label: "Face Detection 👤", val: "Tell me about Face Detection" },
         { label: "Twitter Clone 🐦", val: "Tell me about Twitter Clone" },
         { label: "Netflix Clone 🎥", val: "Tell me about Netflix Clone" },
+        { label: "Back to Projects Menu 🔙", val: "Show me your projects" },
         { label: "Main Menu 🏠", val: "Main Menu" }
       ]
     };
