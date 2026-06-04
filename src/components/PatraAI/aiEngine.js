@@ -21,6 +21,43 @@ const getScore = (query, keywords) => {
 export const generateLocalResponse = (query) => {
   const q = query.toLowerCase().trim();
 
+  // Custom Navigation Handlers
+  if (q === "main menu" || q === "menu" || q.includes("back to main")) {
+    return {
+      text: "🏠 <b>Main Menu</b><br/>What would you like to explore next? Click any option below:",
+      chips: [
+        { label: "Projects 💻", val: "Show me your projects" },
+        { label: "Skills 🚀", val: "What are your skills?" },
+        { label: "Experience 💼", val: "Tell me about your experience" },
+        { label: "Contact 📞", val: "How can I contact you?" }
+      ]
+    };
+  }
+
+  if (q.includes("other projects") || q.includes("all projects") || q.includes("show all projects") || q === "tell me about other projects") {
+    return {
+      text: "💻 <b>More Projects</b><br/>Here are some of the other projects designed and built by Amit. Click on any to explore details:",
+      chips: [
+        { label: "Link Compressor 🔗", val: "Tell me about Link Compressor" },
+        { label: "Action Plan 📋", val: "Tell me about Action Plan" },
+        { label: "Password Keeper 🔑", val: "Tell me about Password Keeper" },
+        { label: "Job Flow 💼", val: "Tell me about Job Flow" },
+        { label: "Fin Man 📊", val: "Tell me about Fin Man" },
+        { label: "Jaap Seva 🕉️", val: "Tell me about Jaap Seva" },
+        { label: "ValuneX 💱", val: "Tell me about ValuneX" },
+        { label: "Battery Report 🔋", val: "Tell me about Battery Report" },
+        { label: "ConnectX 💬", val: "Tell me about ConnectX" },
+        { label: "BDMS 🩸", val: "Tell me about BDMS" },
+        { label: "AI Portfolio 📈", val: "Tell me about AI Portfolio Analytics" },
+        { label: "Web Store 🛒", val: "Tell me about Web Store" },
+        { label: "Face Detection 👤", val: "Tell me about Face Detection" },
+        { label: "Twitter Clone 🐦", val: "Tell me about Twitter Clone" },
+        { label: "Netflix Clone 🎥", val: "Tell me about Netflix Clone" },
+        { label: "Main Menu 🏠", val: "Main Menu" }
+      ]
+    };
+  }
+
   // A. Check for specific project matches first
   const projectMapping = [
     { keys: ["warm cup", "warmcup"], id: 0 },
@@ -66,7 +103,8 @@ export const generateLocalResponse = (query) => {
           chips: [
             { label: "Other Projects 💻", val: "Tell me about other projects" },
             { label: "Skills 🚀", val: "What are your skills?" },
-            { label: "Contact Amit 📞", val: "How can I contact you?" }
+            { label: "Contact 📞", val: "How can I contact you?" },
+            { label: "Main Menu 🏠", val: "Main Menu" }
           ]
         };
       }
@@ -264,20 +302,14 @@ export const generateLocalResponse = (query) => {
       id: "projects",
       keywords: ["project", "work", "built", "portfolio", "development"],
       response: {
-        text: `💻 <b>Amit's Projects</b><br/>
-        He has engineered over 20+ web applications. Key highlights include:<br/><br/>
-        • ☕ <b>Warm Cup</b> - A creator support platform ("Buy Me a Coffee" clone)<br/>
-        • 💬 <b>ConnectX</b> - A feature-rich Next.js social network with MongoDB<br/>
-        • 🧠 <b>MindForge</b> - A productivity-focused task management system<br/>
-        • 🖼️ <b>Remover AI</b> - Image background removal utilizing AI tools<br/>
-        • 📊 <b>AI Portfolio Analytics</b> - Deep financial portfolio analysis app<br/><br/>
-        Click any button below to examine a project's details, code repo, and live site!`,
+        text: `💻 <b>Which project do you want to explore?</b><br/><br/>Amit has built 20+ web applications. Select a highlighted project below or click <b>All Projects 📁</b> to see more:`,
         chips: [
           { label: "Warm Cup ☕", val: "Tell me about Warm Cup" },
           { label: "ConnectX 💬", val: "Tell me about ConnectX" },
           { label: "MindForge 🧠", val: "Tell me about MindForge" },
           { label: "Remover AI 🖼️", val: "Tell me about Remover AI" },
-          { label: "All Projects 📁", val: "Show all projects" }
+          { label: "All Projects 📁", val: "Show all projects" },
+          { label: "Main Menu 🏠", val: "Main Menu" }
         ]
       }
     }
