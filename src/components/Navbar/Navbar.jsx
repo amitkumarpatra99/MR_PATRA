@@ -60,9 +60,7 @@ export default function NavbarPremium() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMenuOpen]);
 
-  // =================================================================
-  //  🌟 NEW: SMART SCROLL LOGIC (Hide on Scroll Down, Show on Up)
-  // =================================================================
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -183,10 +181,9 @@ export default function NavbarPremium() {
               whileTap={{ scale: 0.95 }}
               href="https://wa.me/8144129955?text=Hi%20Amit"
               target="_blank"
-              className="px-5 py-2 rounded-full text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 flex items-center gap-2 font-medium transition"
+              className="w-10 h-10 justify-center rounded-full text-teal-600 dark:text-teal-300 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 flex items-center gap-2 font-medium transition"
             >
               <FaWhatsapp className="text-xl text-green-500" />
-              Contact
             </motion.a>
           </div>
         </motion.nav>
