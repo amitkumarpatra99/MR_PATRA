@@ -1,4 +1,4 @@
-# ⚡ MR PATRA WEBSITE
+# ⚡ MR PATRA
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black&style=flat-square)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&style=flat-square)](https://vite.dev/)
