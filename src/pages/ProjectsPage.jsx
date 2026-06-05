@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { projects } from "../constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, Folder, Github, X } from "lucide-react";
-import { RiExternalLinkLine } from "react-icons/ri";
-import { FaTimes } from "react-icons/fa";
+import { ArrowRight, ExternalLink, Folder, Github, X, Search } from "lucide-react";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOpenModal = (project) => setSelectedProject(project);
   const handleCloseModal = () => setSelectedProject(null);
+  const handleSearchChange = (event) => setSearchTerm(event.target.value);
+
+  const filteredProjects = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return projects;
+    return projects.filter((project) => {
+      const title = project.title.toLowerCase();
+      const description = (project.description || "").toLowerCase();
+      const tags = project.tags.join(" ").toLowerCase();
+      return title.includes(query) || description.includes(query) || tags.includes(query);
+    });
+  }, [searchTerm]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -21,223 +32,254 @@ const ProjectsPage = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.5, type: "spring" }
+      transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }
     },
   };
 
   return (
-    <div className="relative min-h-screen -mt-20 bg-[#F0F2F5] dark:bg-[#020617] transition-colors duration-300 overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-black text-white font-sans selection:bg-blue-900/50 selection:text-white overflow-x-hidden flex flex-col items-center">
       
-      {/* AMBIENT BACKGROUND ORBS */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-400/20 dark:bg-teal-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500/20 dark:bg-blue-600/10 rounded-full blur-[120px]" />
-        <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 dark:bg-purple-900/10 rounded-full blur-[120px]" />
-      </div>
+      {/* Ambient Midnight Blue Glows */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/[0.06] rounded-[100%] blur-[120px] pointer-events-none" />
+      <div className="fixed bottom-0 right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
-      {/* CLOSE BUTTON */}
+      {/* Floating Close Button */}
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1, rotate: 90 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/")}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full 
-                   bg-white/70 dark:bg-black/40 backdrop-blur-xl 
-                   border border-white/60 dark:border-white/10 shadow-lg
-                   text-gray-700 dark:text-gray-200 
-                   hover:text-red-500 dark:hover:text-red-400 
-                   transition-all duration-300"
+        className="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 hover:text-white hover:bg-white/[0.1] hover:border-white/[0.15] backdrop-blur-md transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
       >
-        <FaTimes size={24} />
+        <X size={20} strokeWidth={2.5} />
       </motion.button>
 
-      {/* CONTENT CONTAINER */}
+      {/* Main Content Container */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="relative z-10 max-w-7xl mx-auto pt-28 pb-20 px-4 sm:px-6 lg:px-8"
+        className="relative z-10 w-full max-w-[1200px] pt-24 pb-20 px-4 sm:px-6 md:px-8"
       >
-        {/* HEADER */}
-        <div className="text-center mb-16 relative">
+        {/* Header Section */}
+        <div className="mb-10 flex flex-col gap-6 lg:gap-10">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="flex flex-col items-center text-center"
           >
-            <span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-widest uppercase mb-4 border border-teal-500/20">
-              <Folder size={14} className="text-[#4FB7B3] animate-spin-slow" />
-              My Portfolio
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-6">
-              All <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">Projects</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/[0.05] border border-blue-500/[0.15] mb-5">
+              <Folder size={14} className="text-blue-400" />
+              <span className="text-blue-300 text-xs font-semibold tracking-widest uppercase">
+                My Portfolio
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tighter mb-4">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Projects.</span>
             </h2>
-            <div className="w-20 h-1.5 mx-auto rounded-full bg-gradient-to-r from-teal-400 to-blue-600" />
+            <p className="text-blue-100/50 text-base md:text-lg font-medium tracking-tight max-w-2xl">
+              A collection of things I have built, focusing on intuitive design and robust engineering.
+            </p>
           </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-[1fr_auto] items-center">
+            <div className="space-y-2">
+              <p className="text-sm text-blue-100/70">
+                Showing <span className="text-blue-200 font-semibold">{filteredProjects.length}</span> of <span className="text-blue-200 font-semibold">{projects.length}</span> projects.
+              </p>
+              <p className="text-sm text-blue-100/40 max-w-2xl">
+                Search by project name, description, or technology to quickly find the work you want to explore.
+              </p>
+            </div>
+
+            <div className="relative w-full sm:w-[340px]">
+              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-300/70" />
+              <input
+                type="search"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="Search projects..."
+                className="w-full rounded-3xl border border-white/[0.08] bg-slate-950/80 py-3 pl-12 pr-5 text-sm text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.05)] outline-none transition focus:border-blue-400/70 focus:ring-2 focus:ring-blue-500/20"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* PROJECTS GRID */}
+        {/* Projects Grid Layout */}
         <motion.div
           layout
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-gray-800 dark:text-white"
+          className="grid gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr"
         >
           <AnimatePresence mode="popLayout">
-            {projects.map((project) => (
+            {filteredProjects.length === 0 ? (
               <motion.div
-                key={project.id}
                 variants={itemVariants}
                 layout
-                className="group relative rounded-3xl border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-[#111623]/60 backdrop-blur-xl shadow-lg dark:shadow-2xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(79,183,179,0.3)] hover:border-teal-500/30 overflow-hidden cursor-pointer"
-                onClick={() => handleOpenModal(project)}
+                className="col-span-full rounded-[2rem] border border-blue-500/[0.08] bg-[#081026]/80 p-10 text-center"
               >
-                <div className="p-4 pb-0 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#071e22]/90 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover rounded-2xl"
-                  />
-                </div>
-
-                <div className="p-6 relative z-20">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-6 line-clamp-2">
-                    Click for details.
-                  </p>
-
-                  <div className="flex items-center gap-3">
-                    <button
-                      className="flex-1 flex items-center justify-center gap-1 px-4 py-2.5 
-                      rounded-full text-sm font-semibold 
-                      text-gray-700 dark:text-white bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 
-                      hover:bg-teal-500/20 hover:border-teal-500/50 
-                      transition-all duration-300"
-                    >
-                      Details <ArrowRight size={16} className="text-teal-500 dark:text-teal-400" />
-                    </button>
-
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 
-                        rounded-full text-sm font-semibold 
-                        text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 
-                        hover:bg-teal-100 dark:hover:bg-teal-500/20 hover:text-teal-700 dark:hover:text-white 
-                        transition-all duration-300"
-                      >
-                        Live <RiExternalLinkLine size={18} />
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <p className="text-lg font-semibold text-white mb-2">No matching projects found.</p>
+                <p className="text-sm text-blue-100/60">Try a different search term or explore the full collection by clearing the search.</p>
               </motion.div>
-            ))}
+            ) : (
+              filteredProjects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  layout
+                  onClick={() => handleOpenModal(project)}
+                  className="group relative rounded-[2rem] bg-gradient-to-br from-[#0a0f1a] to-black border border-blue-500/[0.08] overflow-hidden transition-all duration-500 hover:border-blue-500/[0.2] hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] cursor-pointer flex flex-col"
+                >
+                  {/* Inner Ambient Sheen */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-blue-400/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+
+                  {/* Image Section */}
+                  <div className="relative h-48 w-full overflow-hidden bg-[#050914]">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    />
+                    {/* Bottom fade into card body */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/20 to-transparent z-10" />
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="p-6 pt-4 relative z-20 flex flex-col flex-grow">
+                    <h3 className="text-xl font-semibold text-white tracking-tight mb-2 group-hover:text-blue-300 transition-colors">
+                      {project.title}
+                    </h3>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tags.slice(0, 3).map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 text-[10px] font-medium rounded-md text-blue-200/70 bg-blue-500/[0.05] border border-blue-500/[0.1]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <span className="px-2 py-1 text-[10px] font-medium rounded-md text-blue-200/50 bg-white/[0.02] border border-white/[0.05]">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Minimal Details Button */}
+                    <div className="mt-auto flex items-center justify-between border-t border-white/[0.05] pt-4">
+                      <span className="text-sm font-medium text-blue-100/40 group-hover:text-blue-400 transition-colors">
+                        View Details
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] transition-all duration-300">
+                        <ArrowRight size={14} className="text-neutral-400 group-hover:text-blue-400 transition-colors group-hover:-rotate-45" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
           </AnimatePresence>
         </motion.div>
 
-        {/* MODAL */}
+        {/* OLED Frost Modal */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center px-3 bg-black/60 backdrop-blur-md"
+              className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/60 backdrop-blur-xl"
               onClick={handleCloseModal}
             >
               <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                className="
-                  relative w-full max-w-3xl rounded-2xl overflow-hidden 
-                  bg-white dark:bg-[#0B1215] border border-gray-200 dark:border-teal-500/30 shadow-2xl
-                  max-h-[90vh] flex flex-col
-                "
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-4xl rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#0a0f1a] to-black border border-blue-500/[0.15] shadow-[0_0_80px_rgba(59,130,246,0.1)] flex flex-col md:flex-row max-h-[85vh]"
                 onClick={(e) => e.stopPropagation()}
               >
+                {/* Modal Close Button */}
                 <button
                   onClick={handleCloseModal}
-                  className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 text-white/70 hover:text-white hover:bg-red-500/80 transition"
+                  className="absolute top-5 right-5 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 border border-white/10 text-neutral-400 hover:text-white hover:bg-white/10 backdrop-blur-md transition-all duration-300"
                 >
                   <X size={18} />
                 </button>
 
-                <div className="flex flex-col md:flex-row w-full h-full">
-                  <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100 dark:bg-transparent dark:bg-gradient-to-br dark:from-teal-900/20 dark:to-black p-4">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="rounded-xl shadow-lg border border-white/5 object-contain max-h-[180px] sm:max-h-[240px] md:max-h-[320px] w-full"
-                    />
+                {/* Modal Image Side */}
+                <div className="w-full md:w-[45%] relative bg-[#050914] flex items-center justify-center p-6 md:p-8 min-h-[250px] border-b md:border-b-0 md:border-r border-white/[0.05]">
+                  <div className="absolute inset-0 bg-blue-500/[0.02] pointer-events-none" />
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="relative z-10 w-full h-auto object-contain rounded-2xl shadow-2xl drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]"
+                  />
+                </div>
+
+                {/* Modal Content Side */}
+                <div className="w-full md:w-[55%] p-6 md:p-10 flex flex-col overflow-y-auto custom-scrollbar">
+                  <div className="mb-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-500/[0.1] border border-blue-500/[0.2] text-blue-300 text-[10px] font-bold uppercase tracking-widest w-fit">
+                    Project Overview
                   </div>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-4">
+                    {selectedProject.title}
+                  </h3>
+                  
+                  <p className="text-blue-100/50 text-sm leading-relaxed mb-6">
+                    {selectedProject.description}
+                  </p>
 
-                  <div className="w-full md:w-1/2 flex flex-col justify-between p-5 sm:p-6 md:p-8 overflow-y-auto md:overflow-hidden custom-scrollbar">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                      {selectedProject.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed mb-4">
-                      {selectedProject.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-5">
+                  <div className="mb-8">
+                    <h4 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-2">
                       {selectedProject.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="px-2 py-1 text-[10px] sm:text-xs font-medium rounded-full text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20"
+                          className="px-3 py-1.5 text-xs font-medium rounded-lg text-blue-200/80 bg-white/[0.03] border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
+                  </div>
 
-                    <div className="flex gap-3 w-full">
+                  {/* Action Buttons */}
+                  <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                    {selectedProject.live && (
                       <a
-                        href={selectedProject.github}
+                        href={selectedProject.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 px-5 py-3 
-                        rounded-full text-sm sm:text-base font-semibold 
-                        text-gray-700 dark:text-white bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 
-                        hover:bg-gray-200 dark:hover:bg-white/10 transition"
+                        className="flex-1 group flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-300 active:scale-95"
                       >
-                        <Github size={16} /> Code
+                        Visit Live Site
+                        <ExternalLink size={16} className="text-blue-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       </a>
-
-                      {selectedProject.live && (
-                        <a
-                          href={selectedProject.live}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 
-                          rounded-full text-sm sm:text-base font-semibold 
-                          text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 
-                          hover:bg-teal-100 dark:hover:bg-teal-500/20 hover:text-teal-700 dark:hover:text-white 
-                          transition-all duration-300"
-                        >
-                          <ExternalLink size={16} /> Live
-                        </a>
-                      )}
-                    </div>
+                    )}
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-blue-100/70 bg-blue-500/[0.05] border border-blue-500/[0.1] hover:bg-blue-500/[0.1] hover:text-white transition-all duration-300 active:scale-95"
+                    >
+                      <Github size={16} /> 
+                      Source Code
+                    </a>
                   </div>
                 </div>
               </motion.div>

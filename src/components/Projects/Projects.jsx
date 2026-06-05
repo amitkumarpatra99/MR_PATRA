@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { projects } from "../../constants";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ExternalLink, Folder, Github, X } from "lucide-react";
 import { RiExternalLinkLine } from "react-icons/ri";
-import { BsArrowRightCircleFill } from "react-icons/bs";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const navigate = useNavigate();
 
   const handleOpenModal = (project) => setSelectedProject(project);
   const handleCloseModal = () => setSelectedProject(null);
 
-  const visibleProjects = projects.slice(0, 3);
+  const visibleProjects = projects;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -135,20 +132,6 @@ const Projects = () => {
         </AnimatePresence>
       </motion.div>
 
-
-      <div className="flex justify-center mt-16">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/projects")}
-          className="
-            group flex items-center gap-3 px-6 py-3.5 rounded-full
-            text-gray-800 dark:text-white font-semibold tracking-wide bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20 hover:bg-teal-100 dark:hover:bg-teal-500/20 hover:text-teal-700 dark:hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          View All Projects
-          <BsArrowRightCircleFill className="text-teal-500 dark:text-teal-400 text-xl group-hover:translate-x-1 transition-transform" />
-        </motion.button>
-      </div>
 
       <AnimatePresence>
         {selectedProject && (

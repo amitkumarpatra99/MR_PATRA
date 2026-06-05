@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import PatraAI from "./components/PatraAI/PatraAI";
 import Home from "./components/Home/Home";
@@ -18,7 +18,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
-import ProjectsPage from "./pages/ProjectsPage";
 
 
 import { ThemeProvider } from "./context/ThemeContext";
@@ -80,18 +79,6 @@ const App = () => {
                     </div>
                   }
                 />
-
-                {/* PROJECTS PAGE */}
-                <Route
-                  path="/projects"
-                  element={
-                    <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
-                      <ProjectsPage />
-                      <Footer />
-                    </div>
-                  }
-                />
-
 
 
                 {/* contact page  */}
