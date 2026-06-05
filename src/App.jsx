@@ -11,6 +11,7 @@ import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
 import IntroLoader from "./components/IntroLoader/IntroLoader";
+import SectionDivider from "./components/SectionDivider";
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -49,6 +50,7 @@ const App = () => {
                       <Navbar />
                       <Home />
                       <About />
+                      <SectionDivider />
                       <Skills />
                       <Projects />
                       <Journey />
