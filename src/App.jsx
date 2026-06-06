@@ -51,6 +51,7 @@ const App = () => {
                       <About />
                       <SectionDivider />
                       <Skills />
+                      <SectionDivider/>
                       <Projects />
                       <Journey />
                       <Footer />

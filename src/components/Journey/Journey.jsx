@@ -1,180 +1,132 @@
-// Ultra-Modern Journey Component
-// Includes: 3D Hover Depth, Particle Background, Floating Icons, Parallax Scroll,
-// Light/Dark Modes, Page Transition Animations
-
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  Briefcase,
-  GraduationCap,
-  Mail,
-  Coffee,
-  Sparkles,
-  Zap,
+import { 
+  Briefcase, 
+  GraduationCap, 
+  Mail, 
+  Coffee, 
+  Zap, 
+  Compass 
 } from "lucide-react";
 
 const Journey = () => {
   const navigate = useNavigate();
+  
+  // Subtle parallax for the ambient background glow
   const parallaxRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: parallaxRef });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   const navItems = [
-    { label: "Experience", icon: Briefcase, path: "/experience" },
-    { label: "Education", icon: GraduationCap, path: "/education" },
-    { label: "Contact", icon: Mail, path: "/contact" },
+    { label: "Experience", icon: Briefcase, path: "/experience", desc: "Professional timeline & roles" },
+    { label: "Education", icon: GraduationCap, path: "/education", desc: "Academic background & certs" },
+    { label: "Contact", icon: Mail, path: "/contact", desc: "Let's build something together" },
   ];
 
-  // PARTICLE BACKGROUND CANVAS
-  useEffect(() => {
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    let particles = [];
-    let w, h;
-
-    const init = () => {
-      w = (canvas.width = window.innerWidth);
-      h = (canvas.height = window.innerHeight);
-
-      particles = Array.from({ length: 60 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 2 + 1,
-        dx: (Math.random() - 0.5) * 0.4,
-        dy: (Math.random() - 0.5) * 0.4,
-      }));
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, w, h);
-      particles.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(79,183,179,0.4)";
-        ctx.fill();
-
-        p.x += p.dx;
-        p.y += p.dy;
-
-        if (p.x < 0 || p.x > w) p.dx *= -1;
-        if (p.y < 0 || p.y > h) p.dy *= -1;
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    init();
-    animate();
-    window.onresize = init;
-  }, []);
-
   return (
-    <motion.section
+    <section
       id="Journey"
       ref={parallaxRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 relative overflow-hidden dark:bg-[#0A0D12] bg-transparent"
+      // z-0 ensures it stays behind the Projects modal!
+      className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-0 overflow-hidden bg-[#050505] font-sans selection:bg-blue-900/50 selection:text-white"
     >
-      {/* PARTICLES */}
-      <canvas
-        id="particles"
-        className="absolute inset-0 pointer-events-none opacity-60"
+      {/* Ambient OLED Glows */}
+      <motion.div 
+        style={{ y: parallaxY }} 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/[0.05] rounded-[100%] blur-[120px] pointer-events-none" 
       />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
-      {/* PARALLAX FLOATING ICONS */}
-      <motion.div
-        style={{ y: parallaxY }}
-        className="absolute top-10 left-10 opacity-30 dark:opacity-40"
-      >
-        <Sparkles size={70} className="text-[#4FB7B3]" />
-      </motion.div>
-
-      <motion.div
-        style={{ y: parallaxY }}
-        className="absolute bottom-10 right-10 opacity-30 dark:opacity-40"
-      >
-        <Zap size={70} className="text-[#2CB67D]" />
-      </motion.div>
-
-      {/* HEADING */}
-      <div className="mb-16 flex items-center justify-center gap-2">
-        <Sparkles
-          size={30}
-          className="text-4xl text-[#4FB7B3] animate-spin-slow drop-shadow-[0_0_12px_#4FB7B3]"
-        />
-
-        <div className="text-center">
-          <p className="text-gray-500 dark:text-gray-400 mb-1 cursor-default text-sm tracking-[3px] uppercase">
-            Expl<span className="text-[#4FB7B3]">ore</span>
-          </p>
-
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white cursor-pointer hover:scale-105 transform transition-transform duration-300">
-            MY<span className="text-[#4FB7B3]">JOURNEY</span>
-          </h2>
-
-          <div className="w-32 h-[3px] rounded-full mx-auto mb-3 mt-3 bg-gradient-to-r from-[#2351A8] via-[#4FB7B3] to-[#2CB67D] shadow-[0_0_10px_#4FB7B3]"></div>
-        </div>
-      </div>
-
-      {/* NAV CARDS */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl w-full place-items-center relative z-10">
-        {navItems.map((item, i) => (
+      <div className="max-w-[1200px] w-full mx-auto relative z-10 flex flex-col items-center">
+        
+        {/* Header Section */}
+        <div className="mb-20 flex flex-col items-center justify-center text-center">
           <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.2, type: "spring", stiffness: 140 }}
-            onClick={() => navigate(item.path)}
-            className="cursor-pointer group"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="flex flex-col items-center"
           >
-            <motion.div
-              whileHover={{ rotateX: 15, rotateY: -15, scale: 1.08 }}
-              transition={{ type: "spring", stiffness: 150 }}
-              className="w-72 h-80 rounded-3xl p-10 backdrop-blur-xl border shadow-xl flex flex-col items-center justify-center gap-8 transition-all duration-300 dark:bg-white/[0.05] bg-white border-gray-200 dark:border-white/10 dark:shadow-[0_0_40px_rgba(0,0,0,0.4)]"
-            >
-              {/* ICON */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="p-6 rounded-full bg-[#4FB7B3]/20 text-[#4FB7B3] border border-[#4FB7B3]/30 shadow-lg"
-              >
-                {React.createElement(item.icon, { size: 38 })}
-              </motion.div>
-
-              {/* LABEL */}
-              <p className="text-2xl font-semibold dark:text-gray-200 text-gray-700 group-hover:text-[#4FB7B3] transition">
-                {item.label}
-              </p>
-            </motion.div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/[0.05] border border-blue-500/[0.15] mb-5">
+              <Compass size={14} className="text-blue-400" />
+              <span className="text-blue-300 text-xs font-semibold tracking-widest uppercase">
+                Explore
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tighter mb-4">
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Journey.</span>
+            </h2>
+            <p className="text-blue-100/50 text-base md:text-lg font-medium tracking-tight max-w-lg">
+              The path that shaped my engineering and design philosophy.
+            </p>
           </motion.div>
-        ))}
-      </div>
+        </div>
 
-      {/* CTA BUTTON */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-        whileHover={{ scale: 1.1 }}
-        className="mt-20 relative z-10"
-      >
-        <a
-          href="https://warmcup.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-9 py-3 text-lg font-medium rounded-full border dark:text-white text-black dark:border-[#4FB7B3] border-[#4FB7B3] dark:bg-[#4FB7B3]/10 bg-[#4FB7B3]/20 hover:bg-[#4FB7B3]/30 backdrop-blur-md transition-all duration-300 shadow-[0_0_20px_#4FB7B360]"
+        {/* NAV CARDS (Premium 3D Glassmorphism) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full place-items-center perspective-[1000px]">
+          {navItems.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+              onClick={() => navigate(item.path)}
+              className="w-full max-w-[340px] h-[320px] cursor-pointer group"
+            >
+              <motion.div
+                // Smoother, more realistic 3D tilt
+                whileHover={{ rotateX: 6, rotateY: -6, scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full h-full rounded-[2.5rem] bg-gradient-to-br from-[#0a0f1a] to-black border border-blue-500/[0.08] p-8 md:p-10 flex flex-col items-center justify-center gap-6 relative overflow-hidden hover:border-blue-500/[0.2] hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]"
+              >
+                {/* Inner Ambient Sheen */}
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-400/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+
+                {/* ICON */}
+                <div className="w-20 h-20 rounded-full bg-blue-500/[0.03] border border-blue-500/[0.08] flex items-center justify-center text-blue-300/80 group-hover:bg-blue-500/[0.1] group-hover:text-blue-400 group-hover:scale-110 transition-all duration-500 shadow-[inset_0_1px_1px_rgba(59,130,246,0.05)] relative z-20">
+                  {React.createElement(item.icon, { size: 32, strokeWidth: 1.5 })}
+                </div>
+
+                {/* TEXT */}
+                <div className="text-center relative z-20">
+                  <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                    {item.label}
+                  </h3>
+                  <p className="text-blue-100/40 text-sm font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA BUTTON */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.7 }}
+          className="mt-20 relative z-10"
         >
-          <Coffee size={22} />
-          <span>WARM CUP</span>
-          <Zap size={20} />
-        </a>
-      </motion.div>
-    </motion.section>
+          <a
+            href="https://warmcup.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 px-8 py-4 text-sm font-semibold rounded-full bg-white text-black hover:bg-blue-50 transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:scale-[1.02] active:scale-95"
+          >
+            <Coffee size={18} className="text-black group-hover:text-blue-600 transition-colors" />
+            <span>Support via Warm Cup</span>
+            <Zap size={16} className="text-black group-hover:text-blue-600 transition-colors" />
+          </a>
+        </motion.div>
+
+      </div>
+    </section>
   );
-}
+};
 
 export default Journey;
