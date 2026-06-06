@@ -29,7 +29,7 @@ const Journey = () => {
       id="Journey"
       ref={parallaxRef}
       // z-0 ensures it stays behind the Projects modal!
-      className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-0 overflow-hidden bg-[#050505] font-sans selection:bg-blue-900/50 selection:text-white"
+      className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-0 overflow-hidden bg-transparent font-sans selection:bg-blue-900/50 selection:text-white"
     >
       {/* Ambient OLED Glows */}
       <motion.div 

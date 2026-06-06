@@ -73,12 +73,12 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-start md:items-center justify-center bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300 overflow-hidden py-5 pt-28 md:pt-5 pb-20 px-4">
+    <div className="relative min-h-screen flex items-start md:items-center justify-center bg-transparent text-white overflow-hidden py-5 pt-28 md:pt-5 pb-20 px-4">
 
       {/* Background decoration elements (Optional visual flair) */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[20%] w-72 h-72 bg-teal-500/10 rounded-full blur-[80px]" />
-        <div className="absolute bottom-[10%] right-[20%] w-72 h-72 bg-blue-600/10 rounded-full blur-[80px]" />
+        <div className="absolute top-[10%] left-[20%] w-72 h-72 bg-blue-600/[0.06] rounded-full blur-[80px]" />
+        <div className="absolute bottom-[10%] right-[20%] w-72 h-72 bg-indigo-600/[0.04] rounded-full blur-[80px]" />
       </div>
 
       {/* Close Button */}
@@ -89,11 +89,10 @@ const ContactPage = () => {
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/")}
         className="fixed top-6 right-6 z-50 p-3 rounded-full 
-                   bg-white/80 dark:bg-black/40 backdrop-blur-md 
-                   border border-gray-200 dark:border-white/10 shadow-lg 
-                   text-gray-600 dark:text-gray-300 
-                   hover:text-red-500 dark:hover:text-red-400 
-                   transition-colors duration-300"
+                   bg-white/[0.03] backdrop-blur-xl 
+                   border border-white/[0.08] shadow-lg 
+                   text-neutral-400 hover:text-white hover:bg-white/[0.1]
+                   transition-all duration-300"
         aria-label="Close Contact Form"
       >
         <FaTimes size={24} />
@@ -110,15 +109,15 @@ const ContactPage = () => {
 
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
-            CONT<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">ACT</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            CONT<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">ACT</span>
           </h2>
 
           <div className="flex justify-center mt-3">
-            <div className="w-24 h-1 rounded-full bg-gradient-to-r from-[#2351A8] via-[#4FB7B3] to-[#2CB67D]" />
+            <div className="w-24 h-1 rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400" />
           </div>
 
-          <p className="mt-4 text-gray-600 dark:text-gray-400 font-medium">
+          <p className="mt-4 text-neutral-400 font-medium">
             Feel free to get in touch — I’m eager to explore 🚀
           </p>
         </motion.div>
@@ -126,12 +125,12 @@ const ContactPage = () => {
         {/* Form Card */}
         <motion.div
           variants={itemVariants}
-          className="bg-white/80 dark:bg-[#0E1314]/80 backdrop-blur-xl
+          className="bg-gradient-to-br from-[#0a0f1a] to-black backdrop-blur-xl
                      rounded-3xl p-6 sm:p-8 md:p-10
-                     border border-gray-200 dark:border-teal-500/20
-                     shadow-2xl dark:shadow-[0_0_40px_-10px_rgba(20,184,166,0.1)]"
+                     border border-blue-500/[0.08]
+                     shadow-2xl shadow-blue-500/[0.02]"
         >
-          <h3 className="text-xl font-semibold text-center text-gray-800 dark:text-gray-100 mb-8">
+          <h3 className="text-xl font-semibold text-center text-white mb-8">
             Send me a message 📞
           </h3>
 
@@ -139,7 +138,7 @@ const ContactPage = () => {
             {/* Input Fields Loop */}
             {INPUT_FIELDS.map((field, i) => (
               <motion.div key={field.name} variants={itemVariants} className="relative group">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-teal-500 transition-colors duration-300">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-400 transition-colors duration-300">
                   {field.icon}
                 </div>
                 <input
@@ -149,10 +148,10 @@ const ContactPage = () => {
                   autoComplete={field.autoComplete}
                   required
                   className="w-full pl-12 pr-5 py-4 rounded-xl 
-                             bg-gray-50 dark:bg-[#131025]/60 
-                             text-gray-900 dark:text-gray-100 placeholder-gray-400
-                             border border-gray-200 dark:border-gray-700
-                             focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20
+                             bg-white/[0.02] 
+                             text-white placeholder-gray-400
+                             border border-white/[0.08]
+                             focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
                              transition-all duration-300"
                 />
               </motion.div>
@@ -160,7 +159,7 @@ const ContactPage = () => {
 
             {/* Message Textarea */}
             <motion.div variants={itemVariants} className="relative group">
-              <div className="absolute left-4 top-5 text-gray-400 group-focus-within:text-teal-500 transition-colors duration-300">
+              <div className="absolute left-4 top-5 text-gray-400 group-focus-within:text-blue-400 transition-colors duration-300">
                 <FaCommentDots className="text-xl" />
               </div>
               <textarea
@@ -169,10 +168,10 @@ const ContactPage = () => {
                 rows={4}
                 required
                 className="w-full pl-12 pr-5 py-4 rounded-xl 
-                           bg-gray-50 dark:bg-[#131025]/60 
-                           text-gray-900 dark:text-gray-100 placeholder-gray-400
-                           border border-gray-200 dark:border-gray-700
-                           focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20
+                           bg-white/[0.02] 
+                           text-white placeholder-gray-400
+                           border border-white/[0.08]
+                           focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
                            transition-all duration-300 resize-none"
               />
             </motion.div>
@@ -183,8 +182,8 @@ const ContactPage = () => {
                 type="submit"
                 disabled={isSending}
                 className="w-full py-4 rounded-xl text-white font-bold text-lg tracking-wide
-                           bg-gradient-to-r from-[#4FB7B3] to-blue-900
-                           hover:shadow-lg hover:shadow-teal-500/30 hover:scale-[1.02]
+                           bg-gradient-to-r from-blue-500 to-indigo-700
+                           hover:shadow-lg hover:shadow-blue-500/20 hover:scale-[1.02]
                            disabled:opacity-70 disabled:cursor-not-allowed
                            transform transition-all duration-300 active:scale-[0.98]"
               >
@@ -208,7 +207,7 @@ const ContactPage = () => {
                 className="flex items-center justify-center gap-2
                            w-full py-4 rounded-xl text-white font-bold text-lg
                            bg-gradient-to-r from-emerald-500 to-green-700
-                           hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-[1.02]
+                           hover:shadow-lg hover:shadow-green-500/20 hover:scale-[1.02]
                            transform transition-all duration-300 active:scale-[0.98]"
               >
                 <FaIndianRupeeSign size={20} />

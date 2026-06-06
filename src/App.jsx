@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
@@ -13,7 +14,6 @@ import Journey from "./components/Journey/Journey";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
-import IntroLoader from "./components/IntroLoader/IntroLoader";
 import SectionDivider from "./components/SectionDivider";
 
 // Pages
@@ -22,23 +22,47 @@ import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
 
 const App = () => {
-  const [showIntro, setShowIntro] = useState(true);
-
   return (
     <>
-      {/* 1. Intro and global UI elements */}
-      {showIntro && <IntroLoader onComplete={() => setShowIntro(false)} />}
-      {!showIntro && (
-        <>
-          <CustomCursor />
-          <PatraAI />
-        </>
-      )}
+      {/* 1. Global UI elements */}
+      <CustomCursor />
+      <PatraAI />
 
-      {/* 2. Global container with OLED Black background */}
-      <div className="App selection:bg-blue-600/30 selection:text-white bg-black min-h-screen">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#020205]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#020205] via-[#050b1a] to-[#000000] opacity-90" />
+        
+        <motion.div 
+          animate={{
+            x: [0, 50, -30, 0],
+            y: [0, -40, 60, 0],
+            scale: [1, 1.1, 0.95, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-900/15 blur-[150px]"
+        />
+        <motion.div 
+          animate={{
+            x: [0, -60, 40, 0],
+            y: [0, 50, -40, 0],
+            scale: [1, 0.9, 1.1, 1],
+          }}
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-indigo-900/20 blur-[150px]"
+        />
+        <motion.div 
+          animate={{
+            x: [0, 40, -50, 0],
+            y: [0, 60, -30, 0],
+            scale: [1, 1.05, 0.9, 1],
+          }}
+          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[35%] left-[40%] w-[500px] h-[500px] rounded-full bg-blue-950/15 blur-[120px]"
+        />
+      </div>
+
+      <div className="App selection:bg-blue-600/30 selection:text-white bg-transparent min-h-screen relative z-10">
         <BrowserRouter>
-          <div className="bg-black text-white min-h-screen transition-colors duration-500">
+          <div className="bg-transparent text-white min-h-screen transition-colors duration-500">
             <StickyMiniNavbar />
             <MobileTopBar />
             
@@ -49,7 +73,7 @@ const App = () => {
                 <Route
                   path="/"
                   element={
-                    <main className="bg-black min-h-screen flex flex-col">
+                    <main className="bg-transparent min-h-screen flex flex-col">
                       <Navbar />
                       <Home />
                       <About />
@@ -66,7 +90,7 @@ const App = () => {
                 <Route
                   path="/experience"
                   element={
-                    <main className="bg-black min-h-screen flex flex-col">
+                    <main className="bg-transparent min-h-screen flex flex-col">
                       <ExperiencePage />
                       <Footer />
                     </main>
@@ -77,7 +101,7 @@ const App = () => {
                 <Route
                   path="/education"
                   element={
-                    <main className="bg-black min-h-screen flex flex-col">
+                    <main className="bg-transparent min-h-screen flex flex-col">
                       <EducationPage />
                       <Footer />
                     </main>
@@ -88,7 +112,7 @@ const App = () => {
                 <Route
                   path="/Contact"
                   element={
-                    <main className="bg-black min-h-screen flex flex-col">
+                    <main className="bg-transparent min-h-screen flex flex-col">
                       <ContactPage />
                       <Footer />
                     </main>

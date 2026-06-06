@@ -12,13 +12,13 @@ const ExperiencePage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen -mt-20 bg-[#F0F2F5] dark:bg-[#020617] transition-colors duration-300 overflow-x-hidden font-sans">
+    <div className="relative min-h-screen -mt-20 bg-transparent text-white overflow-x-hidden font-sans">
 
       {/* --- AMBIENT BACKGROUND ORBS --- */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-400/20 dark:bg-teal-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500/20 dark:bg-blue-600/10 rounded-full blur-[120px]" />
-        <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 dark:bg-purple-900/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.06] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[600px] h-[600px] bg-blue-900/[0.03] rounded-full blur-[120px]" />
       </div>
 
       {/* --- CLOSE BUTTON --- */}
@@ -29,10 +29,9 @@ const ExperiencePage = () => {
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/")}
         className="fixed top-6 right-6 z-50 p-3 rounded-full 
-                   bg-white/70 dark:bg-black/40 backdrop-blur-xl 
-                   border border-white/60 dark:border-white/10 shadow-lg
-                   text-gray-700 dark:text-gray-200 
-                   hover:text-red-500 dark:hover:text-red-400 
+                   bg-white/[0.03] backdrop-blur-xl 
+                   border border-white/[0.08] shadow-lg
+                   text-neutral-400 hover:text-white hover:bg-white/[0.1]
                    transition-all duration-300"
       >
         <FaTimes size={24} />
@@ -52,13 +51,13 @@ const ExperiencePage = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400 text-xs font-bold tracking-widest uppercase mb-4 border border-teal-500/20">
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-300 text-xs font-bold tracking-widest uppercase mb-4 border border-blue-500/20">
               Professional Journey
             </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-6">
-              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">Experience</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Experience</span>
             </h2>
-            <div className="w-20 h-1.5 mx-auto rounded-full bg-gradient-to-r from-teal-400 to-blue-600" />
+            <div className="w-20 h-1.5 mx-auto rounded-full bg-gradient-to-r from-blue-400 to-indigo-400" />
           </motion.div>
         </div>
 
@@ -75,16 +74,16 @@ const ExperiencePage = () => {
             >
               {/* FROSTED GLASS CARD */}
               <div className="group relative h-full overflow-hidden
-                              bg-white/60 dark:bg-[#111623]/60 
+                              bg-gradient-to-br from-[#0a0f1a] to-black
                               backdrop-blur-xl hover:backdrop-blur-2xl
-                              border border-white/60 dark:border-white/10
+                              border border-blue-500/[0.08]
                               rounded-2xl p-6 sm:p-8
-                              shadow-xl dark:shadow-2xl
-                              transition-all duration-300 hover:scale-[1.02] hover:shadow-teal-500/10 flex flex-col"
+                              shadow-xl
+                              transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] flex flex-col"
               >
 
                 {/* Inner Gradient Flash on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
 
                 <div className="flex flex-col gap-5 h-full">
 
@@ -94,10 +93,10 @@ const ExperiencePage = () => {
                       <img src={exp.img} alt={exp.company} className="w-full h-full object-contain rounded-lg" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                      <h3 className="text-xl font-bold text-white leading-tight">
                         {exp.role}
                       </h3>
-                      <p className="text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                      <p className="text-sm font-semibold text-blue-400 mt-1">
                         {exp.company}
                       </p>
                     </div>
@@ -109,15 +108,15 @@ const ExperiencePage = () => {
                     {/* Meta Badges */}
                     <div className="flex flex-wrap gap-2">
                       {/* Date */}
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-700/30">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-blue-500/[0.05] text-blue-300 border border-blue-500/[0.1]">
                         <FaCalendarAlt size={12} />
                         {exp.date}
                       </span>
                     </div>
 
                     {/* Project Description */}
-                    <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                      <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-1">
+                    <div className="text-sm text-neutral-400 leading-relaxed">
+                      <span className="font-semibold text-neutral-200 block mb-1">
                         Project:
                       </span>
                       {exp.project}
@@ -126,7 +125,7 @@ const ExperiencePage = () => {
                     {/* Skills Tags */}
                     <div className="flex flex-wrap gap-2 mt-2">
                       {exp.skills.map((skill, idx) => (
-                        <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-[10px] font-medium bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 border border-teal-100 dark:border-teal-800/30">
+                        <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-[10px] font-medium bg-blue-500/[0.05] text-blue-300/80 border border-blue-500/[0.1]">
                           {skill}
                         </span>
                       ))}
@@ -143,10 +142,10 @@ const ExperiencePage = () => {
                             rel="noopener noreferrer"
                           >
                             <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg
-                                                  bg-gray-100 dark:bg-white/5 
-                                                  hover:bg-teal-50 dark:hover:bg-teal-500/10
-                                                  border border-transparent hover:border-teal-500/30
-                                                  text-xs font-semibold text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400
+                                                  bg-white/[0.03] 
+                                                  hover:bg-blue-500/[0.1]
+                                                  border border-white/[0.08] hover:border-blue-500/30
+                                                  text-xs font-semibold text-neutral-400 hover:text-blue-300
                                                   transition-all duration-300 group/btn"
                             >
                               {cert.label}
@@ -163,10 +162,10 @@ const ExperiencePage = () => {
                         className="mt-2"
                       >
                         <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg
-                                              bg-gray-100 dark:bg-white/5 
-                                              hover:bg-teal-50 dark:hover:bg-teal-500/10
-                                              border border-transparent hover:border-teal-500/30
-                                              text-xs font-semibold text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400
+                                              bg-white/[0.03] 
+                                              hover:bg-blue-500/[0.1]
+                                              border border-white/[0.08] hover:border-blue-500/30
+                                              text-xs font-semibold text-neutral-400 hover:text-blue-300
                                               transition-all duration-300 group/btn"
                         >
                           View Certificate

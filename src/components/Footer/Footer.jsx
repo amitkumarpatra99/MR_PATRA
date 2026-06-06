@@ -63,7 +63,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-black text-white pt-24 pb-8 px-6 overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white">
+    <footer className="relative bg-transparent text-white pt-24 pb-8 px-6 overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white">
 
       {/* 🌟 Top Subtle Divider 🌟 */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
@@ -74,7 +74,7 @@ const Footer = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
         
         {/* Deep mesh gradient fade at the bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/80 via-[#020205]/40 to-transparent" />
       </div>
 
       {/* 🌟 MAIN CONTENT 🌟 */}

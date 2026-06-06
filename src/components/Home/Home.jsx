@@ -7,15 +7,15 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen lg:h-screen w-full flex flex-col justify-center overflow-x-hidden lg:overflow-hidden font-sans bg-[#000000] selection:bg-blue-600/40 selection:text-white"
+      className="relative min-h-screen lg:h-screen w-full flex flex-col justify-center overflow-x-hidden lg:overflow-hidden font-sans bg-transparent selection:bg-blue-600/40 selection:text-white"
     >
       {/* 🌟 ANIMATED MESH BACKGROUND 🌟 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Layer 1: Base Dark */}
-        <div className="absolute inset-0 bg-black" />
-        
+        <div className="absolute inset-0 bg-transparent" />
+
         {/* Layer 2: Animated Glows */}
-        <motion.div 
+        <motion.div
           animate={{
             background: [
               "radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15), transparent 50%)",
@@ -26,29 +26,34 @@ const Home = () => {
           transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
           className="absolute inset-0 animate-mesh blur-[100px]"
         />
-        
+
         {/* Layer 3: Subtle floating light */}
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse" />
       </div>
 
       {/* 🧠 MAIN CONTENT CONTAINER */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between h-full pt-28 pb-16 lg:pt-16 lg:pb-16">
-        
+
         {/* LEFT COLUMN: Clean, Minimalist Text */}
-        <div className="w-full lg:w-[55%] flex flex-col items-start text-left z-20">
-          
-          {/* Status Pill */}
+        <div className="w-full lg:w-[55%] flex flex-col items-start text-left z-20 ">
+
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.05] mb-4 backdrop-blur-md"
+            transition={{ duration: 0.7 }}
+            className=" inline-flex items-center gap-3 px-7 py-3 mb-5 rounded-full border border-blue-500/20 bg-gradient-to-b from-[#07111f] to-[#04070d] backdrop-blur-xl shadow-[0_0_30px_rgba(37,99,235,0.15)] relative overflow-hidden"
           >
+            {/* Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5" />
+
+            {/* Dot */}
             <div className="relative flex items-center justify-center">
-              <span className="absolute w-3.5 h-3.5 rounded-full bg-blue-500 blur-[4px] opacity-80" />
-              <span className="relative w-1.5 h-1.5 rounded-full bg-blue-400" />
+              <span className="absolute w-4 h-4 rounded-full bg-white blur-md opacity-40" />
+              <span className="relative w-2.5 h-2.5 rounded-full bg-white" />
             </div>
-            <span className="text-neutral-300 text-[10px] md:text-xs font-medium tracking-wide">
+
+            {/* Text */}
+            <span className="text-white text-base md:text-[17px] font-medium tracking-tight">
               Hi, I am Amit Kumar Patra
             </span>
           </motion.div>

@@ -99,8 +99,8 @@ export const generateLocalResponse = (query) => {
           text: `🚀 <b>Project Highlight: ${project.title}</b><br/><br/>
           ${project.description}<br/><br/>
           <b>🛠️ Tech Stack:</b> ${project.tags.join(" • ")}<br/><br/>
-          ${project.github ? `📁 <b>GitHub Repo:</b> <a href="${project.github}" target="_blank" style="color:#14b8a6; font-weight:bold; text-decoration:underline;">View Source Code</a><br/>` : ""}
-          ${project.live ? `🌐 <b>Live Website:</b> <a href="${project.live}" target="_blank" style="color:#14b8a6; font-weight:bold; text-decoration:underline;">Launch Application ↗</a>` : ""}`,
+          ${project.github ? `📁 <b>GitHub Repo:</b> <a href="${project.github}" target="_blank" style="color:#60a5fa; font-weight:bold; text-decoration:underline;">View Source Code</a><br/>` : ""}
+          ${project.live ? `🌐 <b>Live Website:</b> <a href="${project.live}" target="_blank" style="color:#60a5fa; font-weight:bold; text-decoration:underline;">Launch Application ↗</a>` : ""}`,
           chips: [
             { label: "Other Projects 💻", val: "Tell me about other projects" },
             { label: "Skills 🚀", val: "What are your skills?" },
@@ -121,7 +121,7 @@ export const generateLocalResponse = (query) => {
       <br/><br/>
       This certificate validates Amit's training in AI, Machine Learning, NLP, and Computer Vision, where he built projects like Face Detection and Netflix Dashboards.
       <br/><br/>
-      👉 <a href="/src/assets/certificate/AIML.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#14b8a6; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
+      👉 <a href="/src/assets/certificate/AIML.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#2563eb; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
       chips: [
         { label: "Data Analytics Cert 📊", val: "Show Data Analytics Certificate" },
         { label: "Python Cert 🐍", val: "Show Python Certificate" },
@@ -139,7 +139,7 @@ export const generateLocalResponse = (query) => {
       <br/><br/>
       This certificate validates Amit's training in Data Analytics, Excel, Tableau, PowerBI, and SQL, where he worked with complex datasets and dashboard designs.
       <br/><br/>
-      👉 <a href="/src/assets/certificate/Data Analytics.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#14b8a6; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
+      👉 <a href="/src/assets/certificate/Data Analytics.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#2563eb; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
       chips: [
         { label: "AIML Cert 🤖", val: "Show AIML Certificate" },
         { label: "Python Cert 🐍", val: "Show Python Certificate" },
@@ -155,7 +155,7 @@ export const generateLocalResponse = (query) => {
       <br/><br/>
       This certificate validates Amit's training in Python Programming, SQL databases, and web design, where he built a full Wedding Planner application.
       <br/><br/>
-      👉 <a href="/src/assets/certificate/Python.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#14b8a6; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
+      👉 <a href="/src/assets/certificate/Python.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#2563eb; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
       chips: [
         { label: "Java Cert ☕", val: "Show Java Certificate" },
         { label: "AIML Cert 🤖", val: "Show AIML Certificate" },
@@ -171,7 +171,7 @@ export const generateLocalResponse = (query) => {
       <br/><br/>
       This certificate validates Amit's expertise in Core Java, Advanced Java, databases, and UI construction, where he built a Hospital Management System.
       <br/><br/>
-      👉 <a href="/src/assets/certificate/JAVA CERTIFICATE.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#14b8a6; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
+      👉 <a href="/src/assets/certificate/JAVA CERTIFICATE.pdf" target="_blank" style="display:inline-block; padding:8px 16px; background:#2563eb; color:#fff; border-radius:30px; font-weight:bold; font-size:12px; transition:all 0.2s;">Open Certificate PDF ↗</a>`,
       chips: [
         { label: "Python Cert 🐍", val: "Show Python Certificate" },
         { label: "AIML Cert 🤖", val: "Show AIML Certificate" },
@@ -255,10 +255,10 @@ export const generateLocalResponse = (query) => {
       response: {
         text: `📜 <b>Professional Certifications</b><br/>
         Amit has earned official certifications from his internships:<br/><br/>
-        • 🤖 <b>AI & ML Certificate</b> (CTTC) - <a href="/src/assets/certificate/AIML.pdf" target="_blank" style="color:#14b8a6; text-decoration:underline;">View PDF</a><br/>
-        • 📊 <b>Data Analytics Certificate</b> (CTTC) - <a href="/src/assets/certificate/Data Analytics.pdf" target="_blank" style="color:#14b8a6; text-decoration:underline;">View PDF</a><br/>
-        • 🐍 <b>Python programming Certificate</b> (Abacus) - <a href="/src/assets/certificate/Python.pdf" target="_blank" style="color:#14b8a6; text-decoration:underline;">View PDF</a><br/>
-        • ☕ <b>Java programming Certificate</b> (Java Tecnocart) - <a href="/src/assets/certificate/JAVA CERTIFICATE.pdf" target="_blank" style="color:#14b8a6; text-decoration:underline;">View PDF</a>`,
+        • 🤖 <b>AI & ML Certificate</b> (CTTC) - <a href="/src/assets/certificate/AIML.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">View PDF</a><br/>
+        • 📊 <b>Data Analytics Certificate</b> (CTTC) - <a href="/src/assets/certificate/Data Analytics.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">View PDF</a><br/>
+        • 🐍 <b>Python programming Certificate</b> (Abacus) - <a href="/src/assets/certificate/Python.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">View PDF</a><br/>
+        • ☕ <b>Java programming Certificate</b> (Java Tecnocart) - <a href="/src/assets/certificate/JAVA CERTIFICATE.pdf" target="_blank" style="color:#60a5fa; text-decoration:underline;">View PDF</a>`,
         chips: [
           { label: "AIML Cert 🤖", val: "Tell me about your AIML certificate" },
           { label: "Data Analytics Cert 📊", val: "Tell me about your Data Analytics certificate" },
@@ -272,12 +272,12 @@ export const generateLocalResponse = (query) => {
       response: {
         text: `📞 <b>Get in Touch with Amit</b><br/>
         Amit is open to software development positions, internships, and collaborative opportunities.<br/><br/>
-        📧 <b>Email:</b> <a href="mailto:${contactDetails.email}" style="color:#14b8a6; text-decoration:underline; font-weight:bold;">${contactDetails.email}</a><br/>
-        📞 <b>Phone:</b> <a href="tel:${contactDetails.phone}" style="color:#14b8a6; text-decoration:underline; font-weight:bold;">${contactDetails.phone}</a><br/>
-        🔗 <b>LinkedIn:</b> <a href="${contactDetails.linkedin}" target="_blank" style="color:#14b8a6; text-decoration:underline;">linkedin.com/in/amitkumarpatra99</a><br/>
-        📁 <b>GitHub:</b> <a href="${contactDetails.github}" target="_blank" style="color:#14b8a6; text-decoration:underline;">github.com/amitkumarpatra99</a><br/>
-        📸 <b>Instagram:</b> <a href="${contactDetails.instagram}" target="_blank" style="color:#14b8a6; text-decoration:underline;">@mr_patraa_</a><br/>
-        🐦 <b>Twitter / X:</b> <a href="${contactDetails.twitter}" target="_blank" style="color:#14b8a6; text-decoration:underline;">@mr_patra_</a>`,
+        📧 <b>Email:</b> <a href="mailto:${contactDetails.email}" style="color:#60a5fa; text-decoration:underline; font-weight:bold;">${contactDetails.email}</a><br/>
+        📞 <b>Phone:</b> <a href="tel:${contactDetails.phone}" style="color:#60a5fa; text-decoration:underline; font-weight:bold;">${contactDetails.phone}</a><br/>
+        🔗 <b>LinkedIn:</b> <a href="${contactDetails.linkedin}" target="_blank" style="color:#60a5fa; text-decoration:underline;">linkedin.com/in/amitkumarpatra99</a><br/>
+        📁 <b>GitHub:</b> <a href="${contactDetails.github}" target="_blank" style="color:#60a5fa; text-decoration:underline;">github.com/amitkumarpatra99</a><br/>
+        📸 <b>Instagram:</b> <a href="${contactDetails.instagram}" target="_blank" style="color:#60a5fa; text-decoration:underline;">@mr_patraa_</a><br/>
+        🐦 <b>Twitter / X:</b> <a href="${contactDetails.twitter}" target="_blank" style="color:#60a5fa; text-decoration:underline;">@mr_patra_</a>`,
         chips: [
           { label: "Projects 💻", val: "Show me your projects" },
           { label: "Skills 🚀", val: "What are your skills?" }
