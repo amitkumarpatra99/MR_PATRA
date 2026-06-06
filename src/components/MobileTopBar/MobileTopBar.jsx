@@ -4,7 +4,7 @@ import { FaCode } from "react-icons/fa";
 
 const MobileTopBar = () => {
     return (
-        <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none">
+        <div className="fixed top-6 left-0 right-0 z-50 flex md:hidden justify-center pointer-events-none">
             <motion.div
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

@@ -210,7 +210,7 @@ const ProjectsPage = () => {
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative w-full max-w-4xl rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#0a0f1a] to-black border border-blue-500/[0.15] shadow-[0_0_80px_rgba(59,130,246,0.1)] flex flex-col md:flex-row max-h-[85vh]"
+                className="relative w-full max-w-4xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#0a0f1a] to-black border border-blue-500/[0.15] shadow-[0_0_80px_rgba(59,130,246,0.1)] flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh] overflow-y-auto md:overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Close Button */}
@@ -222,7 +222,7 @@ const ProjectsPage = () => {
                 </button>
 
                 {/* Modal Image Side */}
-                <div className="w-full md:w-[45%] relative bg-[#050914] flex items-center justify-center p-6 md:p-8 min-h-[250px] border-b md:border-b-0 md:border-r border-white/[0.05]">
+                <div className="w-full md:w-[45%] relative bg-[#050914] flex items-center justify-center p-6 md:p-8 min-h-0 md:min-h-[250px] h-48 md:h-auto border-b md:border-b-0 md:border-r border-white/[0.05] shrink-0">
                   <div className="absolute inset-0 bg-blue-500/[0.02] pointer-events-none" />
                   <img
                     src={selectedProject.image}
@@ -232,7 +232,7 @@ const ProjectsPage = () => {
                 </div>
 
                 {/* Modal Content Side */}
-                <div className="w-full md:w-[55%] p-6 md:p-10 flex flex-col overflow-y-auto custom-scrollbar">
+                <div className="w-full md:w-[55%] p-6 md:p-10 flex flex-col md:overflow-y-auto custom-scrollbar">
                   <div className="mb-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-500/[0.1] border border-blue-500/[0.2] text-blue-300 text-[10px] font-bold uppercase tracking-widest w-fit">
                     Project Overview
                   </div>

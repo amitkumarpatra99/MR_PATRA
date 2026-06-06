@@ -175,7 +175,7 @@ const Projects = () => {
                   
                   {/* Hero Section */}
                   <div className="flex flex-col items-center text-center pt-20 pb-12 px-6">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
                       {selectedProject.title}
                     </h2>
                     <p className="text-neutral-400 text-sm md:text-base max-w-2xl">
@@ -183,7 +183,7 @@ const Projects = () => {
                     </p>
                     
                     {/* Hero Image */}
-                    <div className="mt-12 w-full max-w-3xl h-[250px] md:h-[400px] relative rounded-t-3xl overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-l border-r border-white/10 bg-[#111]">
+                    <div className="mt-12 w-full max-w-3xl h-[180px] sm:h-[250px] md:h-[400px] relative rounded-t-3xl overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-l border-r border-white/10 bg-[#111]">
                        <img 
                           src={selectedProject.image} 
                           alt="Hero" 
@@ -197,7 +197,7 @@ const Projects = () => {
                   <div className="px-6 md:px-12 max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
                     
                     {/* Left Sticky Sidebar */}
-                    <div className="w-full lg:w-[30%] flex flex-col gap-4">
+                    <div className="w-full lg:w-[30%] flex flex-col gap-4 order-2 lg:order-1">
                       
                       {/* Action Links Block */}
                       <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col gap-3">
@@ -244,7 +244,7 @@ const Projects = () => {
                     </div>
 
                     {/* Right Main Content */}
-                    <div className="w-full lg:w-[70%] flex flex-col gap-10 pb-10">
+                    <div className="w-full lg:w-[70%] flex flex-col gap-10 pb-10 order-1 lg:order-2">
                       
                       {/* Overview */}
                       <section>

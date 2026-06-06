@@ -1,137 +1,132 @@
-import React from 'react'
-import ReactTypingEffect from 'react-typing-effect'
-import { ArrowRight } from "lucide-react"
-import { FaCode, FaHandPeace } from 'react-icons/fa6'
-import { Link } from "react-scroll"
-// import ScrollButtons from '../ScrollButtons'
-
-const ACCENT_COLOR = "#4FB7B3"
+import React from 'react';
+import { Link } from "react-scroll";
+import { motion } from "framer-motion";
+import ReactTypingEffect from 'react-typing-effect';
 
 const Home = () => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center text-center 
-      px-6 sm:px-10 md:px-[10vw] lg:px-[18vw] overflow-hidden font-sans bg-transparent"
+      className="relative min-h-screen lg:h-screen w-full flex flex-col justify-center overflow-x-hidden lg:overflow-hidden font-sans bg-[#000000] selection:bg-blue-600/40 selection:text-white"
     >
-
-      {/* � Light Mode Subtle Pattern (Dot Grid) */}
-      <div className="absolute inset-0 z-0 pointer-events-none dark:hidden opacity-40"
-        style={{
-          backgroundImage: "radial-gradient(#4FB7B3 1px, transparent 1px)",
-          backgroundSize: "32px 32px"
-        }}>
+      {/* 🌟 ANIMATED MESH BACKGROUND 🌟 */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Layer 1: Base Dark */}
+        <div className="absolute inset-0 bg-black" />
+        
+        {/* Layer 2: Animated Glows */}
+        <motion.div 
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15), transparent 50%)",
+              "radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15), transparent 50%)",
+              "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1), transparent 50%)",
+            ]
+          }}
+          transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute inset-0 animate-mesh blur-[100px]"
+        />
+        
+        {/* Layer 3: Subtle floating light */}
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse" />
       </div>
 
-      {/* �🌌 Animated Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(79,183,179,0.15),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(3,255,200,0.12),transparent_70%)] 
-      animate-pulse-slow pointer-events-none"></div>
+      {/* 🧠 MAIN CONTENT CONTAINER */}
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between h-full pt-28 pb-16 lg:pt-16 lg:pb-16">
+        
+        {/* LEFT COLUMN: Clean, Minimalist Text */}
+        <div className="w-full lg:w-[55%] flex flex-col items-start text-left z-20">
+          
+          {/* Status Pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.05] mb-4 backdrop-blur-md"
+          >
+            <div className="relative flex items-center justify-center">
+              <span className="absolute w-3.5 h-3.5 rounded-full bg-blue-500 blur-[4px] opacity-80" />
+              <span className="relative w-1.5 h-1.5 rounded-full bg-blue-400" />
+            </div>
+            <span className="text-neutral-300 text-[10px] md:text-xs font-medium tracking-wide">
+              Hi, I am Amit Kumar Patra
+            </span>
+          </motion.div>
 
-      {/* ✨ Floating Accent Glow Blob */}
-      <div className="absolute w-[85vmin] h-[85vmin] md:w-[60vmin] md:h-[60vmin] 
-      left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px] opacity-60 dark:opacity-70
-      animate-moveGlow pointer-events-none"
-        style={{ background: `${ACCENT_COLOR}25` }}
-      ></div>
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.15] mb-5"
+          >
+            I like crafting <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 block min-h-[2.3em] pb-1">
+              <ReactTypingEffect
+                text={['Smart Solutions to\nSmart People.', 'Cutting Edge\nTechnology.', 'Modern UI/UX\nDesign.']}
+                speed={50}
+                eraseSpeed={30}
+                typingDelay={500}
+                eraseDelay={2500}
+                cursorRenderer={(cursor) => <span className="text-blue-500 font-light">{cursor}</span>}
+                displayTextRenderer={(text) => <span style={{ whiteSpace: 'pre-line', lineHeight: '1.15' }}>{text}</span>}
+              />
+            </span>
+          </motion.h1>
 
-      {/* 🌠 Soft Floating Particles */}
-      {!reduceMotion && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          {[...Array(35)].map((_, i) => (
-            <span
-              key={i}
-              className="absolute bg-[#4FB7B3] rounded-full animate-particle dark:opacity-[0.8] opacity-60"
-              style={{
-                width: Math.random() * 4 + "px",
-                height: Math.random() * 4 + "px",
-                left: Math.random() * 100 + "%",
-                top: Math.random() * 100 + "%",
-                animationDelay: Math.random() * 6 + "s",
-                animationDuration: 5 + Math.random() * 5 + "s",
-              }}
-            ></span>
-          ))}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-neutral-400 text-sm md:text-base font-medium tracking-tight max-w-md mb-8 leading-relaxed"
+          >
+            If I cannot do great things, I can do small things in a great way.
+          </motion.p>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            className="flex flex-wrap items-center gap-3 md:gap-4"
+          >
+            <a
+              href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-white text-black hover:bg-neutral-200 hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+            >
+              Download CV
+            </a>
+            <Link
+              to="contact"
+              smooth={true}
+              duration={800}
+              className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-[#111] border border-white/10 text-white hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer"
+            >
+              ChatGPT Me
+            </Link>
+          </motion.div>
         </div>
-      )}
 
-      {/* 🧠 MAIN TEXT CONTENT */}
-      <div className="z-20 flex flex-col items-center space-y-3 animate-fadeInUp
-      -mt-24 sm:-mt-20 md:-mt-28 lg:-mt-32">
-
-        {/* 💻 Icon */}
-        <div className="mb-3 flex items-center justify-center">
-          <FaCode
-            className="animate-bounce-slow drop-shadow-[0_0_10px_rgba(79,183,179,0.8)]"
-            style={{
-              color: ACCENT_COLOR,
-              width: "36px",
-              height: "36px"
-            }}
-          />
-        </div>
-
-        <h1 className="text-sm sm:text-base md:text-lg font-medium text-gray-600 dark:text-gray-400 uppercase tracking-[0.25em] flex items-center gap-2">
-          Hello World <FaHandPeace className="text-teal-500 hover:rotate-12 transition-transform duration-300" />, My name is
-        </h1>
-
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-tight drop-shadow-[0_0_12px_rgba(79,183,179,0.25)]">
-          AMIT KUMAR PATRA
-        </h2>
-
-        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight"
-          style={{ color: ACCENT_COLOR }}>
-          <span className="text-gray-600 dark:text-gray-300">I am a </span>
-          <ReactTypingEffect
-            text={['Student', 'Coder', 'Fullstack Developer']}
-            speed={100}
-            eraseSpeed={50}
-            typingDelay={400}
-            eraseDelay={1800}
-            cursorRenderer={(cursor) => <span style={{ color: ACCENT_COLOR }}>{cursor}</span>}
-          />
-        </h3>
-
-        <p className="text-gray-600 dark:text-gray-400 text-[0.95rem] sm:text-base leading-relaxed px-4 max-w-xl uppercase tracking-tight mt-3">
-          Building fast, elegant, and immersive digital experiences with precision and passion.
-        </p>
-
-        {/* 🚀 Classy “Know More” Button */}
-        <Link
-          to="about"
-          smooth={true}
-          duration={600}
-          offset={-80}
-          className="relative cursor-pointer mt-8 inline-flex items-center gap-3 
-          px-8 py-3.5 rounded-full text-base sm:text-lg font-bold tracking-wide
-          transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]
-          
-          /* Light Mode Styles */
-          text-teal-800 bg-white border border-teal-200 shadow-[0_10px_30px_-10px_rgba(79,183,179,0.4)]
-          hover:shadow-[0_20px_40px_-10px_rgba(79,183,179,0.6)] hover:border-teal-400 hover:bg-teal-50
-          
-          /* Dark Mode Styles */
-          dark:text-white dark:bg-teal-500/10 dark:border-teal-500/50 dark:shadow-[0_0_20px_#4FB7B340]
-          dark:hover:bg-teal-500/20 dark:hover:border-teal-400 dark:hover:shadow-[0_0_35px_#4FB7B360]
-          
-          group overflow-hidden"
+        {/* RIGHT COLUMN: Minimalist Text Architecture */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          className="w-full lg:w-[45%] hidden lg:flex flex-col items-end justify-center relative z-10 select-none pointer-events-none"
         >
-          <span className="relative z-10 flex items-center gap-2">
-            Know More About Me
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
-          </span>
-
-          {/* Ripple/Sheen Effect on Hover */}
-          <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent z-0 pointer-events-none"></div>
-        </Link>
+          <div className="flex flex-col items-end text-right">
+            {['CODE', 'BUILD', 'SCALE'].map((text, i) => (
+              <h2 key={i} className="text-[70px] xl:text-[90px] font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-white/[0.07] to-transparent">
+                {text}
+              </h2>
+            ))}
+          </div>
+        </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      {/* <ScrollButtons next="about" /> */}
-
     </section>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
