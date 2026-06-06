@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import {
   Mail,
@@ -9,48 +9,48 @@ import {
   ArrowUp,
   Twitter,
   CreditCard,
-  Eye,
 } from "lucide-react";
-import { FaLinkedin, FaHome, FaUser, FaTools, FaBriefcase, FaCompass, FaReact, FaMagic, FaMobileAlt, FaGithubAlt, FaRegEye } from "react-icons/fa";
-
+import { 
+  FaLinkedin, 
+  FaHome, 
+  FaUser, 
+  FaTools, 
+  FaBriefcase, 
+  FaCompass, 
+  FaRegEye 
+} from "react-icons/fa";
 
 const Footer = () => {
-
   const icons = [
     {
       id: 1,
       icon: <Github size={18} />,
       link: "https://github.com/amitkumarpatra99",
-      color:
-        "hover:text-gray-600 dark:hover:text-gray-400 hover:border-gray-600 dark:hover:border-gray-400 hover:shadow-gray-600/30 dark:hover:shadow-gray-400/30",
+      color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]",
     },
     {
       id: 2,
       icon: <FaLinkedin size={18} />,
       link: "https://www.linkedin.com/in/amitkumarpatra99",
-      color:
-        "hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-600 dark:hover:border-blue-500 hover:shadow-blue-600/30 dark:hover:shadow-blue-500/30",
+      color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
     },
     {
       id: 3,
       icon: <Instagram size={18} />,
       link: "https://www.instagram.com/mr_patraa_",
-      color:
-        "hover:text-pink-600 dark:hover:text-pink-500 hover:border-pink-600 dark:hover:border-pink-500 hover:shadow-pink-600/30 dark:hover:shadow-pink-500/30",
+      color: "hover:text-pink-500 hover:border-pink-500 hover:bg-pink-500/5 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]",
     },
     {
       id: 4,
       icon: <Twitter size={18} />,
       link: "https://x.com/mr_patra_",
-      color:
-        "hover:text-blue-400 dark:hover:text-blue-300 hover:border-blue-400 dark:hover:border-blue-300 hover:shadow-blue-400/30 dark:hover:shadow-blue-300/30",
+      color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]",
     },
     {
       id: 5,
       icon: <CreditCard size={18} />,
       link: "https://rzp.io/rzp/amitpatra",
-      color:
-        "hover:text-amber-600 dark:hover:text-amber-500 hover:border-amber-600 dark:hover:border-amber-500 hover:shadow-amber-600/30 dark:hover:shadow-amber-500/30",
+      color: "hover:text-indigo-400 hover:border-indigo-400 hover:bg-indigo-400/5 hover:shadow-[0_0_15px_rgba(129,140,248,0.3)]",
     },
   ];
 
@@ -58,83 +58,67 @@ const Footer = () => {
     { name: "Home", to: "home", icon: <FaHome size={14} /> },
     { name: "About", to: "about", icon: <FaUser size={14} /> },
     { name: "Skill Set", to: "skills", icon: <FaTools size={14} /> },
-    { name: "Project Hub", to: "work", icon: <FaBriefcase size={14} /> },
+    { name: "Project Hub", to: "projects", icon: <FaBriefcase size={14} /> },
     { name: "My Journey", to: "Journey", icon: <FaCompass size={14} /> },
   ];
 
   return (
-    <footer className="relative bg-[#f9fafb] dark:bg-[#0a0f1c] text-gray-700 dark:text-gray-300 py-16 px-6 overflow-hidden border-t border-black/10 dark:border-white/10">
+    <footer className="relative bg-black text-white pt-24 pb-8 px-6 overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white">
 
-      {/* 🌟 ANIMATED BACKGROUND LIGHT + DARK 🌟 */}
+      {/* 🌟 Top Subtle Divider 🌟 */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
+
+      {/* 🌟 Ambient OLED Background Glows 🌟 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 
-          bg-blue-400/20 dark:bg-blue-500/20 
-          rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
-
-        <div className="absolute top-[-10%] right-[-10%] w-96 h-96 
-          bg-teal-400/20 dark:bg-teal-600/20 
-          rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-screen"></div>
-
-        <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 
-          bg-blue-300/20 dark:bg-blue-600/20 
-          rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-screen"></div>
-
-        {/* Grid Lines */}
-        <div className="absolute inset-0 
-          bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] 
-          dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)]
-          bg-[size:40px_40px] opacity-30"></div>
-
-        {/* Top gradient fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f9fafb] dark:from-[#0a0f1c] via-transparent to-transparent"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.04] rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
+        
+        {/* Deep mesh gradient fade at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
       </div>
 
       {/* 🌟 MAIN CONTENT 🌟 */}
-      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+      <div className="relative z-10 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
 
-        {/* ABOUT & PROFILE */}
+        {/* 1. ABOUT & PROFILE */}
         <div className="space-y-6">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative p-[2px] rounded-full bg-gradient-to-r from-teal-500 to-blue-500 transition-transform duration-500 group-hover:scale-105">
+          <div className="flex items-center gap-4 group cursor-pointer w-fit">
+            <div className="relative p-[2px] rounded-full bg-gradient-to-br from-blue-500/50 to-indigo-500/50 transition-transform duration-700 group-hover:scale-105 group-hover:rotate-6">
+              <div className="absolute inset-0 bg-blue-500/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <img
                 src="DP.jpg"
                 alt="Logo"
-                className="h-10 w-10 object-contain rounded-full border-2 border-white dark:border-[#0a0f1c] transition-transform duration-500 group-hover:rotate-12"
+                className="relative h-12 w-12 object-cover rounded-full border-2 border-black"
+                onError={(e) => { e.target.style.display = 'none'; }}
               />
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-black dark:text-white tracking-wide transition-colors duration-300 group-hover:text-teal-500">
-                AMIT KUMAR{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-emerald-500">
-                  PATRA
+              <h2 className="text-xl font-bold text-white tracking-tight">
+                Amit Kumar{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                  Patra
                 </span>
               </h2>
-              <span className="text-xs text-gray-500 dark:text-gray-400 tracking-wider">
-                WEB DEVELOPER
+              <span className="text-xs font-semibold text-blue-100/40 tracking-widest uppercase">
+                Web Developer
               </span>
             </div>
           </div>
 
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-            A passionate web developer building interactive and aesthetic digital experiences.
+          <p className="text-sm text-neutral-400 leading-relaxed max-w-xs">
+            A passionate developer bridging the gap between sophisticated engineering and intuitive digital experiences.
           </p>
 
           {/* SOCIAL ICONS */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 pt-2">
             {icons.map((social) => (
               <a
                 key={social.id}
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-10 h-10 flex items-center justify-center rounded-full 
-                  bg-black/5 dark:bg-white/5 
-                  border border-black/10 dark:border-white/10 
-                  text-gray-600 dark:text-gray-400 
-                  transition-all duration-300 
-                  hover:-translate-y-1 hover:scale-110 hover:shadow-lg backdrop-blur-md 
-                  hover:bg-black/10 dark:hover:bg-white/10 ${social.color}`}
+                className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 transition-all duration-300 hover:-translate-y-1 ${social.color}`}
               >
                 {social.icon}
               </a>
@@ -142,129 +126,100 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* QUICK LINKS */}
-        <div className="lg:ml-10">
-          <h3 className="text-lg font-semibold text-black dark:text-white">Quick Links</h3>
-          <div className="w-16 h-1 rounded-full mb-6 mt-2 bg-gradient-to-r from-blue-600 via-teal-500 to-green-500" />
-
-          <ul className="space-y-3 text-sm">
+        {/* 2. QUICK LINKS */}
+        <div className="lg:pl-8">
+          <h3 className="text-lg font-semibold text-white mb-6 tracking-tight">Navigation</h3>
+          <ul className="space-y-3.5 text-sm">
             {links.map((link, index) => (
               <li key={index}>
                 <ScrollLink
                   to={link.to}
                   smooth={true}
-                  duration={600}
+                  duration={800}
                   spy={true}
-                  className="flex items-center gap-2 group cursor-pointer text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-all duration-300 hover:translate-x-2"
+                  className="flex items-center gap-3 group cursor-pointer text-neutral-400 hover:text-white transition-all duration-300 w-fit"
                 >
-                  <span className="text-teal-500 group-hover:text-teal-600 transition-colors duration-300">
+                  <span className="text-blue-500/50 group-hover:text-blue-400 transition-colors duration-300 flex items-center justify-center w-5">
                     {link.icon}
                   </span>
-                  {link.name}
+                  <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    {link.name}
+                  </span>
                 </ScrollLink>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* HIGHLIGHTS */}
+        {/* 3. HIGHLIGHTS */}
         <div>
-          <h3 className="text-lg font-semibold text-black dark:text-white cursor-default">Highlights</h3>
-          <div className="w-16 h-1 rounded-full mb-6 mt-2 bg-gradient-to-r from-blue-600 via-teal-500 to-green-500" />
-
-          <ul className="space-y-2 text-sm">
+          <h3 className="text-lg font-semibold text-white mb-6 tracking-tight">Highlights</h3>
+          <ul className="space-y-3 text-sm">
             {[
               "🚀 MERN Stack Developer",
-              "🎨 Frontend Animations",
-              "⚡ Responsive Web Apps",
-              "💡 Open Source Enthusiast",
+              "🎨 Frontend Architecture",
+              "⚡ Performant Web Apps",
+              "💡 UI/UX Enthusiast",
             ].map((item, i) => (
               <li
                 key={i}
-                className="flex items-center p-2 rounded-lg text-gray-600 dark:text-gray-400 
-                hover:text-teal-600 dark:hover:text-teal-300 
-                hover:bg-teal-500/5 dark:hover:bg-teal-500/10
-                transition-all duration-300 cursor-default hover:pl-3"
+                className="flex items-center text-neutral-400 cursor-default group"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-500 mr-3 animate-pulse"></span>
-                {item}
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50 mr-3 group-hover:bg-blue-400 group-hover:shadow-[0_0_8px_rgba(96,165,250,0.8)] transition-all duration-300" />
+                <span className="group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+                  {item}
+                </span>
               </li>
             ))}
 
-            {/* 🌟 REAL WEBSITE VISITS 🌟 */}
-            <li className="flex items-center p-2 rounded-lg text-gray-600 dark:text-gray-400 
-              hover:text-teal-600 dark:hover:text-teal-300 
-              hover:bg-teal-500/5 dark:hover:bg-teal-500/10
-              transition-all duration-300 cursor-default hover:pl-3"
-            >
-              <FaRegEye size={16} className="mr-3 text-teal-500" />
-              <span className="font-medium">5985+ <span className="font-normal opacity-80">Visits</span>
+            {/* REAL WEBSITE VISITS */}
+            <li className="flex items-center pt-2 text-neutral-400 cursor-default group">
+              <FaRegEye size={16} className="mr-3 text-blue-500/60 group-hover:text-blue-400 transition-colors" />
+              <span className="font-medium group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+                5985+ <span className="font-normal opacity-60">Total Visits</span>
               </span>
             </li>
           </ul>
         </div>
 
-        {/* CONTACT */}
+        {/* 4. CONTACT */}
         <div>
-          <h3 className="text-lg font-semibold text-black dark:text-white">Contact</h3>
-          <div className="w-16 h-1 rounded-full mb-6 mt-2 bg-gradient-to-r from-blue-600 via-teal-500 to-green-500" />
-
-          <ul className="space-y-4 text-sm">
+          <h3 className="text-lg font-semibold text-white mb-6 tracking-tight">Get in Touch</h3>
+          <ul className="space-y-3 text-sm">
             {/* Email */}
-            <li className="flex items-center gap-3 group p-3 -ml-3 rounded-xl border border-transparent hover:border-black/5 dark:hover:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full 
-                bg-black/5 dark:bg-white/5 
-                border border-black/10 dark:border-white/10 
-                group-hover:bg-teal-500/20 
-                group-hover:border-teal-500 
-                text-gray-600 dark:text-gray-400 group-hover:text-teal-500 
-                transition-all duration-300 group-hover:scale-110">
-                <Mail size={18} />
+            <li className="flex items-center gap-4 group p-2 -ml-2 rounded-xl hover:bg-white/[0.02] transition-colors duration-300">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] group-hover:text-blue-400 transition-all duration-300">
+                <Mail size={16} />
               </div>
-
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 dark:text-gray-400 font-bold mb-1 group-hover:text-teal-500 transition-colors">EMAIL</span>
-                <a className="text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors cursor-pointer">
+                <span className="text-[10px] text-neutral-500 font-bold tracking-widest uppercase mb-0.5">Email</span>
+                <a href="mailto:mrpatra.web@gmail.com" className="text-neutral-300 hover:text-white transition-colors">
                   mrpatra.web@gmail.com
                 </a>
               </div>
             </li>
 
             {/* Phone */}
-            <li className="flex items-center gap-3 group p-3 -ml-3 rounded-xl border border-transparent hover:border-black/5 dark:hover:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full 
-                bg-black/5 dark:bg-white/5 
-                border border-black/10 dark:border-white/10 
-                group-hover:bg-teal-500/20 
-                group-hover:border-teal-500 
-                text-gray-600 dark:text-gray-400 group-hover:text-teal-500 
-                transition-all duration-300 group-hover:scale-110">
-                <Phone size={18} />
+            <li className="flex items-center gap-4 group p-2 -ml-2 rounded-xl hover:bg-white/[0.02] transition-colors duration-300">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] group-hover:text-blue-400 transition-all duration-300">
+                <Phone size={16} />
               </div>
-
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 dark:text-gray-400 font-bold mb-1 group-hover:text-teal-500 transition-colors">PHONE</span>
-                <a className="text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors cursor-pointer">
-                  +91 8144129955
+                <span className="text-[10px] text-neutral-500 font-bold tracking-widest uppercase mb-0.5">Phone</span>
+                <a href="tel:+918144129955" className="text-neutral-300 hover:text-white transition-colors">
+                  +91 81441 29955
                 </a>
               </div>
             </li>
 
             {/* Location */}
-            <li className="flex items-center gap-3 group p-3 -ml-3 rounded-xl border border-transparent hover:border-black/5 dark:hover:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full 
-                bg-black/5 dark:bg-white/5 
-                border border-black/10 dark:border-white/10 
-                group-hover:bg-teal-500/20 
-                group-hover:border-teal-500 
-                text-gray-600 dark:text-gray-400 group-hover:text-teal-500 
-                transition-all duration-300 group-hover:scale-110">
-                <MapPin size={18} />
+            <li className="flex items-center gap-4 group p-2 -ml-2 rounded-xl hover:bg-white/[0.02] transition-colors duration-300">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] group-hover:text-blue-400 transition-all duration-300">
+                <MapPin size={16} />
               </div>
-
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 dark:text-gray-400 font-bold mb-1 group-hover:text-teal-500 transition-colors">LOCATION</span>
-                <span className="text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors cursor-default">
+                <span className="text-[10px] text-neutral-500 font-bold tracking-widest uppercase mb-0.5">Location</span>
+                <span className="text-neutral-300">
                   Bhubaneswar, Odisha
                 </span>
               </div>
@@ -273,44 +228,26 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* BOTTOM BAR */}
-      <div className="relative z-10 max-w-7xl mx-auto mt-16 pt-8 border-t border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-gray-600 dark:text-gray-500">
+      {/* 🌟 BOTTOM BAR 🌟 */}
+      <div className="relative z-10 max-w-[1200px] mx-auto mt-20 pt-8 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
+        <p className="text-sm text-neutral-500 font-medium">
           © {new Date().getFullYear()}{" "}
-          <span className="text-teal-600 dark:text-teal-500 font-medium uppercase">Mr Patra</span>.
-          All Rights Reserved.
+          <span className="text-white">Mr Patra</span>. All Rights Reserved.
         </p>
 
         <button
-          onClick={() => scroll.scrollToTop({ duration: 600, smooth: "easeInOutQuart" })}
-          className="group flex items-center gap-2 px-4 py-2 rounded-full  
-            bg-black/5 dark:bg-white/5 
-            hover:bg-teal-500/20 
-            border border-black/10 dark:border-white/10 
-            hover:border-teal-500/50 
-            transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-teal-500/20"
+          onClick={() => scroll.scrollToTop({ duration: 800, smooth: "easeInOutQuart" })}
+          className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 active:scale-95"
         >
-          <span className="text-sm  text-gray-600 dark:text-gray-400 group-hover:text-teal-600 dark:group-hover:text-teal-400 font-medium transition-colors">
+          <span className="text-xs font-semibold text-neutral-400 group-hover:text-white tracking-wider uppercase transition-colors">
             Back to top
           </span>
           <ArrowUp
-            size={16}
-            className="text-teal-500 group-hover:-translate-y-1 transition-transform duration-300"
+            size={14}
+            className="text-neutral-500 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
           />
         </button>
       </div>
-
-      <style>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-      `}</style>
     </footer>
   );
 };

@@ -53,6 +53,7 @@ const App = () => {
                       <Skills />
                       <SectionDivider/>
                       <Projects />
+                
                       <Journey />
                       <Footer />
                     </div>
