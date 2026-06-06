@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Components
 import Navbar from "./components/Navbar/Navbar";
 import PatraAI from "./components/PatraAI/PatraAI";
 import Home from "./components/Home/Home";
@@ -13,50 +16,49 @@ import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
 import IntroLoader from "./components/IntroLoader/IntroLoader";
 import SectionDivider from "./components/SectionDivider";
 
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Pages
 import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
-
-
-import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
 
   return (
-    <ThemeProvider>
+    <>
+      {/* 1. Intro and global UI elements */}
       {showIntro && <IntroLoader onComplete={() => setShowIntro(false)} />}
-      {!showIntro && <CustomCursor />}
-      {!showIntro && <PatraAI />}
+      {!showIntro && (
+        <>
+          <CustomCursor />
+          <PatraAI />
+        </>
+      )}
 
-      <div className="App">
+      {/* 2. Global container with OLED Black background */}
+      <div className="App selection:bg-blue-600/30 selection:text-white bg-black min-h-screen">
         <BrowserRouter>
-          <div className="bg-gray-100 dark:bg-[#010c1e] transition-colors duration-300">
-
+          <div className="bg-black text-white min-h-screen transition-colors duration-500">
             <StickyMiniNavbar />
             <MobileTopBar />
-            <div className="relative pt-20">
-
-              {/* Routing logic */}
+            
+            <div className="relative">
               <Routes>
-
+                
+                {/* HOME PAGE */}
                 <Route
                   path="/"
                   element={
-                    <div className="bg-gray-100 dark:bg-[#010c1e] min-h-screen transition-colors duration-300">
+                    <main className="bg-black min-h-screen flex flex-col">
                       <Navbar />
                       <Home />
                       <About />
                       <SectionDivider />
                       <Skills />
-                      <SectionDivider/>
                       <Projects />
-                
                       <Journey />
                       <Footer />
-                    </div>
+                    </main>
                   }
                 />
 
@@ -64,10 +66,10 @@ const App = () => {
                 <Route
                   path="/experience"
                   element={
-                    <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
+                    <main className="bg-black min-h-screen flex flex-col">
                       <ExperiencePage />
                       <Footer />
-                    </div>
+                    </main>
                   }
                 />
 
@@ -75,32 +77,32 @@ const App = () => {
                 <Route
                   path="/education"
                   element={
-                    <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
+                    <main className="bg-black min-h-screen flex flex-col">
                       <EducationPage />
                       <Footer />
-                    </div>
+                    </main>
                   }
                 />
 
-
-                {/* contact page  */}
+                {/* CONTACT PAGE */}
                 <Route
                   path="/Contact"
                   element={
-                    <div className="bg-gray-100 dark:bg-[#011028] min-h-screen transition-colors duration-300">
+                    <main className="bg-black min-h-screen flex flex-col">
                       <ContactPage />
                       <Footer />
-                    </div>
+                    </main>
                   }
                 />
+                
                 <Route path="/navigation" element={<Journey />} />
 
               </Routes>
             </div>
           </div>
-        </BrowserRouter >
-      </div >
-    </ThemeProvider>
+        </BrowserRouter>
+      </div>
+    </>
   );
 };
 

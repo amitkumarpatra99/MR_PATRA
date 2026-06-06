@@ -20,6 +20,15 @@
   }
 }
 
+@keyframes moveMesh {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.2) translate(-50px, -50px); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+.animate-mesh {
+  animation: moveMesh 20s ease-in-out infinite alternate;
+}
 
 .custom-cursor,
 .custom-cursor-dot {
