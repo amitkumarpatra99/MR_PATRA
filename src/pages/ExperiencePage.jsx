@@ -73,14 +73,7 @@ const ExperiencePage = () => {
               className="w-full h-full"
             >
               {/* FROSTED GLASS CARD */}
-              <div className="group relative h-full overflow-hidden
-                              bg-gradient-to-br from-[#0a0f1a] to-black
-                              backdrop-blur-xl hover:backdrop-blur-2xl
-                              border border-blue-500/[0.08]
-                              rounded-2xl p-6 sm:p-8
-                              shadow-xl
-                              transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] flex flex-col"
-              >
+              <div className="glass-card group relative h-full overflow-hidden rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 flex flex-col">
 
                 {/* Inner Gradient Flash on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />

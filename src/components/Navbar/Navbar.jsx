@@ -5,7 +5,6 @@ import {
   FiUser,
   FiCpu,
   FiLayers,
-  FiCompass,
   FiMoreVertical,
   FiArrowUp,
   FiX
@@ -118,12 +117,7 @@ export default function NavbarPremium() {
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 180, damping: 20 }}
-          className="
-            group pointer-events-auto relative py-3 px-7 rounded-full backdrop-blur-2xl
-            bg-[#04050b]/90 border border-white/10
-            shadow-[0_30px_90px_rgba(0,0,0,0.18)] flex items-center justify-between
-            overflow-hidden transition-colors duration-300
-          "
+          className="group pointer-events-auto relative py-3 px-7 rounded-full glass-panel flex items-center justify-between overflow-hidden transition-colors duration-300"
         >
           <motion.div className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.12), transparent 75%)` }} />
@@ -135,7 +129,7 @@ export default function NavbarPremium() {
           </div>
 
           <ul className="flex items-center gap-1 bg-white/5 rounded-full px-2 py-[6px] border border-white/10 relative z-20 transition-colors duration-300">
-            {[...NAV_ITEMS, { id: "Journey", label: "Journey" }].map((item) => (
+            {NAV_ITEMS.map((item) => (
               <li key={item.id} className="relative">
                 <Link
                   to={item.id}
@@ -201,33 +195,13 @@ export default function NavbarPremium() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="
-                absolute bottom-16 right-12 p-3 flex flex-col gap-2
-                bg-[#04050b]/95 backdrop-blur-2xl
-                border border-white/10
-                rounded-2xl shadow-2xl z-50 min-w-[170px]
-                origin-bottom-right
-              "
+              className="absolute bottom-16 right-12 p-3 flex flex-col gap-2 glass-panel-soft rounded-2xl shadow-2xl z-50 min-w-[170px] origin-bottom-right"
             >
               <div className="px-2 pb-1">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                   Menu
                 </span>
               </div>
-
-              <Link
-                to="Journey"
-                spy={true}
-                smooth={true}
-                offset={-85}
-                duration={600}
-                onSetActive={() => setActiveTab("Journey")}
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 text-slate-200 cursor-pointer transition-colors"
-              >
-                <FiCompass className="text-lg text-blue-500" />
-                <span className="text-sm font-medium">My Journey</span>
-              </Link>
 
               <button onClick={scrollToTop} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 text-slate-200 transition-colors">
                 <FiArrowUp className="text-lg text-green-400" />

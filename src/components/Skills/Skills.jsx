@@ -1,4 +1,6 @@
 import React from "react";
+import { GitHubCalendar } from "react-github-calendar";
+import { FaGithub } from "react-icons/fa6";
 import { SkillsInfo } from "../../constants";
 import personalMemoji from "../../assets/Profile.png";
 import warmCupImg from "../../assets/Project Photo/Warm Cup.png";
@@ -6,7 +8,7 @@ import connectXImg from "../../assets/Project Photo/ConnectX.png";
 
 // Compacted Memoji component
 const MemojiAvatar = ({ src, alt, className = "", zIndex }) => (
-  <div 
+  <div
     className={`w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-neutral-900 shrink-0 shadow-[inset_0_2px_10px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.5)] ${className}`}
     style={{ zIndex }}
   >
@@ -26,12 +28,27 @@ const Skills = () => {
   const row1Skills = allSkills.slice(0, midPoint);
   const row2Skills = allSkills.slice(midPoint);
 
-  const contributionCells = Array.from({ length: 84 }).map(() => Math.random());
+  const githubTheme = {
+    light: [
+      "rgba(255, 255, 255, 0.03)",
+      "#115e59",
+      "#0d9488",
+      "#2dd4bf",
+      "#99f6e4"
+    ],
+    dark: [
+      "rgba(255, 255, 255, 0.03)",
+      "#115e59",
+      "#0d9488",
+      "#2dd4bf",
+      "#99f6e4"
+    ]
+  };
 
   return (
     // Reduced vertical padding (py-16 md:py-20)
     <section id="skills" className="py-16 md:py-20 bg-black relative overflow-hidden font-sans selection:bg-neutral-700 selection:text-white min-h-screen flex items-center">
-      
+
       <style>
         {`
           @keyframes marquee-left {
@@ -53,7 +70,7 @@ const Skills = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/[0.03] rounded-[100%] blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 relative z-10 w-full">
-        
+
         {/* Header Section - Tighter margins and slightly smaller text */}
         <div className="mb-10 flex flex-col items-center justify-center text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tighter mb-3">
@@ -68,31 +85,31 @@ const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-3 md:gap-4 auto-rows-[minmax(220px,auto)]">
 
           {/* CARD 1: Engineering with Empathy */}
-          <div className="col-span-1 md:col-span-3 lg:col-span-4 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default">
+          <div className="col-span-1 md:col-span-3 lg:col-span-4 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default">
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
             <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight mb-4 tracking-tight z-10">
               Engineering with <br />
               <span className="text-neutral-500">Empathy.</span>
             </h3>
-            
+
             {/* Reduced Memoji Size */}
             <div className="mt-auto relative z-10 w-32 h-32 transform transition-transform duration-700 ease-out group-hover:-translate-y-2">
-              <img 
-                src={personalMemoji} 
-                alt="Engineering with Empathy" 
+              <img
+                src={personalMemoji}
+                alt="Engineering with Empathy"
                 className="w-full h-full object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.8)]"
                 onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
               />
               <div className="hidden w-full h-full bg-neutral-900/50 backdrop-blur-sm rounded-full items-center justify-center text-neutral-600 border border-white/5 text-sm">Image</div>
             </div>
-            
+
             <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent pointer-events-none" />
           </div>
 
           {/* CARD 2: Tech Architecture (Infinite Marquee) */}
-          <div className="col-span-1 md:col-span-3 lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group-marquee">
-            
+          <div className="col-span-1 md:col-span-3 lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group-marquee">
+
             <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />
             <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-20 pointer-events-none" />
 
@@ -124,54 +141,77 @@ const Skills = () => {
           </div>
 
           {/* CARD 3: Community / Leadership */}
-          <div className="col-span-1 md:col-span-6 lg:col-span-3 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default">
-            
+          <div className="col-span-1 md:col-span-6 lg:col-span-3 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default">
+
             <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight mb-8 tracking-tight z-10">
               Led <span className="text-neutral-500">120+ member</span> <br />
               developer <br />
               community.
             </h3>
-            
+
             {/* Tighter overlap for smaller avatars */}
             <div className="flex items-center mt-auto relative z-10 h-14 w-full justify-start pl-2 group-hover:pl-4 transition-all duration-500">
-               <MemojiAvatar src={communityMemojis[0]} alt="Member 1" className="absolute left-0 -rotate-12 transition-transform duration-500 group-hover:-rotate-6" zIndex={10} />
-               <MemojiAvatar src={communityMemojis[1]} alt="Member 2" className="absolute left-7 w-14 h-14 -top-1 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-110" zIndex={20} />
-               <MemojiAvatar src={communityMemojis[2]} alt="Member 3" className="absolute left-14 rotate-12 transition-transform duration-500 group-hover:rotate-6 group-hover:left-16" zIndex={10} />
+              <MemojiAvatar src={communityMemojis[0]} alt="Member 1" className="absolute left-0 -rotate-12 transition-transform duration-500 group-hover:-rotate-6" zIndex={10} />
+              <MemojiAvatar src={communityMemojis[1]} alt="Member 2" className="absolute left-7 w-14 h-14 -top-1 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-110" zIndex={20} />
+              <MemojiAvatar src={communityMemojis[2]} alt="Member 3" className="absolute left-14 rotate-12 transition-transform duration-500 group-hover:rotate-6 group-hover:left-16" zIndex={10} />
             </div>
           </div>
 
           {/* CARD 4: Consistent Builder (GitHub Grid Style) */}
-          <div className="col-span-1 md:col-span-3 lg:col-span-7 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default">
-            
+          <div className="col-span-1 md:col-span-3 lg:col-span-7 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default">
+
             <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-            <div className="mb-8 relative z-10">
-              <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight tracking-tight mb-1">
-                Consistent <span className="text-neutral-500">Builder.</span>
-              </h3>
-              <p className="text-neutral-400 text-sm font-medium">Turning coffee into production-ready code.</p>
+            <div className="mb-8 relative z-10 flex justify-between items-start">
+              <div>
+                <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight tracking-tight mb-1">
+                  Consistent <span className="text-neutral-500">Builder.</span>
+                </h3>
+                <p className="text-neutral-400 text-sm font-medium flex flex-wrap items-center gap-1.5">
+                  <span>Turning coffee into production-ready code.</span>
+                  <span className="text-neutral-700 hidden sm:inline">|</span>
+                  <a
+                    href="https://github.com/amitkumarpatra99"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-400/85 hover:text-teal-400 transition-colors font-semibold"
+                  >
+                    @amitkumarpatra99
+                  </a>
+                </p>
+              </div>
+              <a
+                href="https://github.com/amitkumarpatra99"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110 shrink-0"
+                title="View GitHub Profile"
+              >
+                <FaGithub size={20} />
+              </a>
             </div>
 
-            {/* Smaller GitHub cells */}
+            {/* Real GitHub contribution calendar */}
             <div className="mt-auto w-full overflow-x-auto cyber-scrollbar pb-2">
-              <div className="grid grid-rows-4 grid-flow-col gap-1 md:gap-1.5 min-w-[340px] opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                {contributionCells.map((val, i) => (
-                  <div 
-                    key={i} 
-                    className={`w-3 h-3 md:w-4 md:h-4 rounded-sm transition-all duration-500
-                      ${val > 0.8 ? 'bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.5)]' : 
-                        val > 0.5 ? 'bg-teal-600/80' : 
-                        val > 0.2 ? 'bg-teal-800/50' : 
-                        'bg-white/[0.03] border border-white/[0.05]'}`}
-                  />
-                ))}
+              <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-500 min-w-[600px] text-white">
+                <GitHubCalendar
+                  username="amitkumarpatra99"
+                  colorScheme="dark"
+                  theme={githubTheme}
+                  blockSize={11}
+                  blockMargin={3}
+                  blockRadius={2}
+                  showTotalCount={true}
+                  showColorLegend={true}
+                  showWeekdayLabels={true}
+                />
               </div>
             </div>
           </div>
 
           {/* CARD 5: Obsessive Details (UI Panes) */}
-          <div className="col-span-1 md:col-span-3 lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default">
-            
+          <div className="col-span-1 md:col-span-3 lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default">
+
             {/* Smaller Floating Glass Panes */}
             <div className="relative h-28 w-full flex items-center justify-center mb-6 z-10">
               {/* Left rotated pane showing Warm Cup project screenshot */}
@@ -183,7 +223,7 @@ const Skills = () => {
               <div className="absolute w-28 h-20 border border-white/20 rounded-xl shadow-2xl z-10 backdrop-blur-md transform group-hover:scale-105 transition-all duration-700 ease-out overflow-hidden bg-neutral-800/80 flex flex-col justify-between p-2.5">
                 <img src={connectXImg} alt="ConnectX UI" className="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-90 transition-opacity duration-500 z-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                
+
                 {/* Floating UI design lines overlaid on screenshot */}
                 <div className="relative z-20 flex flex-col gap-1 w-full mt-auto">
                   <div className="w-1/2 h-1 bg-white/50 rounded-full shadow-sm" />

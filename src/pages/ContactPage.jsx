@@ -125,10 +125,7 @@ const ContactPage = () => {
         {/* Form Card */}
         <motion.div
           variants={itemVariants}
-          className="bg-gradient-to-br from-[#0a0f1a] to-black backdrop-blur-xl
-                     rounded-3xl p-6 sm:p-8 md:p-10
-                     border border-blue-500/[0.08]
-                     shadow-2xl shadow-blue-500/[0.02]"
+          className="glass-card rounded-3xl p-6 sm:p-8 md:p-10"
         >
           <h3 className="text-xl font-semibold text-center text-white mb-8">
             Send me a message 📞

@@ -117,7 +117,7 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 onClick={() => handleOpenModal(project)}
-                className="snap-center shrink-0 w-[280px] md:w-[340px] h-[420px] rounded-[2rem] glass-panel border border-white/10 flex flex-col relative overflow-hidden cursor-pointer hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-2 transition-all duration-500 group"
+                className="snap-center shrink-0 w-[280px] md:w-[340px] h-[420px] rounded-[2rem] glass-card border border-white/10 flex flex-col relative overflow-hidden cursor-pointer hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-2 transition-all duration-500 group"
               >
                 {/* Card Text Content */}
                 <div className="p-8 z-10">
@@ -158,7 +158,7 @@ const Projects = () => {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "100%", opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="relative w-full max-w-[1100px] h-[90vh] rounded-[2rem] bg-[#0a0a0a] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                className="glass-card relative w-full max-w-[1100px] h-[90vh] rounded-[2rem] flex flex-col overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Close Button */}
@@ -200,7 +200,7 @@ const Projects = () => {
                     <div className="w-full lg:w-[30%] flex flex-col gap-4 order-2 lg:order-1">
 
                       {/* Duration Block */}
-                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center">
+                      <div className="glass-card rounded-2xl p-6 flex flex-col items-center text-center">
                         <Clock className="text-blue-500 mb-2" size={20} />
                         <h4 className="text-white font-bold mb-1 text-sm">Duration</h4>
                         <span className="text-neutral-400 text-xs font-medium">
@@ -209,7 +209,7 @@ const Projects = () => {
                       </div>
 
                       {/* Action Links Block (Live Preview) */}
-                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full">
+                      <div className="glass-card rounded-2xl p-6 flex flex-col items-center text-center w-full">
                         <Globe className="text-blue-500 mb-2" size={20} />
                         <h4 className="text-white font-bold mb-3 text-sm">Live Preview</h4>
                         <div className="flex flex-col gap-2.5 w-full">
