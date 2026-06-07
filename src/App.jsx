@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Lenis from "lenis";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
@@ -38,6 +40,20 @@ const PageContainer = ({ children }) => (
     {children}
   </motion.main>
 );
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
+  return null;
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -104,6 +120,32 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    window.lenis = lenis;
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+      window.lenis = null;
+    };
+  }, []);
+
   return (
     <>
       {/* 1. Global UI elements */}
@@ -144,6 +186,7 @@ const App = () => {
 
       <div className="App selection:bg-blue-600/30 selection:text-white bg-transparent min-h-screen relative z-10">
         <BrowserRouter>
+          <ScrollToTop />
           <div className="bg-transparent text-white min-h-screen transition-colors duration-500">
             <StickyMiniNavbar />
             <MobileTopBar />

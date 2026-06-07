@@ -1,17 +1,30 @@
 import { ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Link } from "react-scroll";
 
 const ScrollDownButton = ({ next = "about" }) => {
   const prefersReduced = useReducedMotion();
 
+  const handleScroll = (e) => {
+    e.preventDefault();
+    const target = document.getElementById(next);
+    if (target) {
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -85, duration: 1.2 });
+      } else {
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - 85;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
   return (
     <div className="absolute bottom-10 md:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-auto">
-      <Link
-        to={next}
-        smooth={true}
-        duration={600}
-        offset={-85}
+      <a
+        href={`#${next}`}
+        onClick={handleScroll}
         className="cursor-pointer"
       >
         <motion.button
@@ -27,7 +40,7 @@ const ScrollDownButton = ({ next = "about" }) => {
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-400/10 to-cyan-300/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           <ChevronDown className="relative text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" size={20} />
         </motion.button>
-      </Link>
+      </a>
     </div>
   );
 };
