@@ -1,17 +1,16 @@
 import { projects, SkillsInfo, experiences, education, contactDetails, aboutMe } from "../../constants";
-import { getSystemPrompt } from "./aiData";
 
 // Helper to calculate keyword overlap score
 const getScore = (query, keywords) => {
   let pts = 0;
   keywords.forEach(kw => {
-    if (query.includes(kw)) {
-      pts += 1;
-      // Extra point for exact word match boundaries
-      const regex = new RegExp(`\\b${kw}\\b`, 'i');
-      if (regex.test(query)) {
-        pts += 1.5;
-      }
+    const escapedKw = kw.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    // Boundary check matching start/end of string or non-alphanumeric surrounds
+    const regex = new RegExp(`(?:^|[^a-zA-Z0-9_])${escapedKw}(?:$|[^a-zA-Z0-9_])`, 'i');
+    if (regex.test(query)) {
+      pts += 2.5;
+    } else if (kw.length > 3 && query.includes(kw)) {
+      pts += 1.0;
     }
   });
   return pts;
@@ -112,6 +111,27 @@ export const generateLocalResponse = (query) => {
     }
   }
 
+  // Dynamic project title matching fallback
+  const matchedProject = projects.find(p => {
+    const title = p.title.toLowerCase().trim();
+    return q.includes(title) || (title.length > 3 && title.split(/\s+/).every(word => q.includes(word)));
+  });
+  if (matchedProject) {
+    return {
+      text: `🚀 <b>Project Highlight: ${matchedProject.title}</b><br/><br/>
+      ${matchedProject.description}<br/><br/>
+      <b>🛠️ Tech Stack:</b> ${matchedProject.tags.join(" • ")}<br/><br/>
+      ${matchedProject.github ? `📁 <b>GitHub Repo:</b> <a href="${matchedProject.github}" target="_blank" style="color:#60a5fa; font-weight:bold; text-decoration:underline;">View Source Code</a><br/>` : ""}
+      ${matchedProject.live ? `🌐 <b>Live Website:</b> <a href="${matchedProject.live}" target="_blank" style="color:#60a5fa; font-weight:bold; text-decoration:underline;">Launch Application ↗</a>` : ""}`,
+      chips: [
+        { label: "Other Projects 💻", val: "Tell me about other projects" },
+        { label: "Skills 🚀", val: "What are your skills?" },
+        { label: "Contact 📞", val: "How can I contact you?" },
+        { label: "Main Menu 🏠", val: "Main Menu" }
+      ]
+    };
+  }
+
   // B. Check for specific certificates matches
   if (q.includes("aiml certificate") || q.includes("ai/ml certificate") || q.includes("ai ml certificate")) {
     const cert = experiences[0]?.certificates?.find(c => c.label.includes("AIML"));
@@ -197,7 +217,7 @@ export const generateLocalResponse = (query) => {
     },
     {
       id: "skills",
-      keywords: ["skill", "stack", "tech", "language", "frontend", "backend", "tool", "framework", "database", "libraries", "mongodb", "react", "node", "python", "java", "css", "html", "javascript", "typescript", "c++", "angular", "redux", "gsap", "nextjs", "mysql", "sql", "git", "github", "tailwind"],
+      keywords: ["skills", "skill", "stack", "tech", "language", "frontend", "backend", "tool", "framework", "database", "libraries", "mongodb", "react", "node", "python", "java", "css", "html", "javascript", "typescript", "c++", "angular", "redux", "gsap", "nextjs", "mysql", "sql", "git", "github", "tailwind", "what are your skills?"],
       response: {
         text: `🚀 <b>Amit's Skills & Tech Stack</b><br/><br/>
         • <b>Languages:</b> ${SkillsInfo.find(s => s.title === 'Languages')?.skills.map(x => x.name).join(", ") || "Java, Python, C, JavaScript, TypeScript, Matlab"}<br/>
@@ -205,7 +225,7 @@ export const generateLocalResponse = (query) => {
         • <b>Backend:</b> ${SkillsInfo.find(s => s.title === 'Backend')?.skills.map(x => x.name).join(", ") || "Node.js, Express, MongoDB, Mongoose, MySQL, SQL"}<br/>
         • <b>Tools & Utilities:</b> ${SkillsInfo.find(s => s.title === 'Tools')?.skills.map(x => x.name).join(", ") || "VS Code, Git, GitHub, Postman, Anaconda, Jupyter, Tableau, PowerBI, Vercel"}`,
         chips: [
-          { label: "Projects 💻", val: "Show projects built with these skills" },
+          { label: "Projects 💻", val: "Show me your projects" },
           { label: "Certifications 📜", val: "Show technical certifications" },
           { label: "Experience 💼", val: "Tell me about your experience" }
         ]
@@ -213,7 +233,7 @@ export const generateLocalResponse = (query) => {
     },
     {
       id: "experience",
-      keywords: ["experience", "job", "internship", "work history", "where did you work", "career", "employment", "company", "cttc", "abacus", "java tecnocart", "technocart"],
+      keywords: ["experience", "job", "internship", "internships", "work history", "where did you work", "career", "employment", "company", "cttc", "abacus", "java tecnocart", "technocart", "tell me about your experience"],
       response: {
         text: `💼 <b>Amit's Internship Experience</b><br/><br/>
         1. 🤖 <b>AIML and Data Analytics Intern</b> at Central Tool and Training Center (CTTC)<br/>
@@ -234,7 +254,7 @@ export const generateLocalResponse = (query) => {
     },
     {
       id: "education",
-      keywords: ["education", "study", "degree", "college", "school", "btech", "university", "academic", "intermediate", "raajdhani", "omm shanti", "vivekananda", "gpa", "grade", "hsc", "10th", "12th"],
+      keywords: ["education", "study", "degree", "college", "school", "btech", "university", "academic", "intermediate", "raajdhani", "omm shanti", "vivekananda", "gpa", "grade", "hsc", "10th", "12th", "tell me about your education"],
       response: {
         text: `🎓 <b>Academic Background</b><br/><br/>
         • <b>Raajdhani Engineering College, Bhubaneswar</b><br/>
@@ -268,7 +288,7 @@ export const generateLocalResponse = (query) => {
     },
     {
       id: "contact",
-      keywords: ["contact", "mail", "email", "phone", "number", "hire", "linkedin", "github", "social", "instagram", "twitter", "reach out", "connect", "call"],
+      keywords: ["contact", "mail", "email", "phone", "number", "hire", "linkedin", "github", "social", "instagram", "twitter", "reach out", "connect", "call", "how can i contact you?"],
       response: {
         text: `📞 <b>Get in Touch with Amit</b><br/>
         Amit is open to software development positions, internships, and collaborative opportunities.<br/><br/>
@@ -301,7 +321,7 @@ export const generateLocalResponse = (query) => {
     },
     {
       id: "projects",
-      keywords: ["project", "work", "built", "portfolio", "development"],
+      keywords: ["project", "projects", "work", "built", "portfolio", "development", "show me your projects", "show all projects", "all projects"],
       response: {
         text: `💻 <b>Which project do you want to explore?</b><br/><br/>Amit has built 20+ web applications. Select a highlighted project below or click <b>All Projects 📁</b> to see more:`,
         chips: [
@@ -310,6 +330,18 @@ export const generateLocalResponse = (query) => {
           { label: "MindForge 🧠", val: "Tell me about MindForge" },
           { label: "Remover AI 🖼️", val: "Tell me about Remover AI" },
           { label: "All Projects 📁", val: "Show all projects" },
+          { label: "Main Menu 🏠", val: "Main Menu" }
+        ]
+      }
+    },
+    {
+      id: "location",
+      keywords: ["location", "live", "address", "city", "where are you", "where is", "stay", "resident", "bhubaneswar", "puri", "odisha", "india", "hometown", "place", "from"],
+      response: {
+        text: `📍 <b>Amit's Location</b><br/><br/>Amit Kumar Patra is located in <b>Bhubaneswar / Puri, Odisha, India</b>.<br/><br/>• <b>Hometown:</b> Delang / Pipili, Puri District, Odisha, India.<br/>• <b>Current Location:</b> Bhubaneswar, Odisha, India (where he is pursuing his B.Tech studies at Raajdhani Engineering College).`,
+        chips: [
+          { label: "Contact Details 📞", val: "How can I contact you?" },
+          { label: "Education 🎓", val: "Tell me about your education" },
           { label: "Main Menu 🏠", val: "Main Menu" }
         ]
       }
@@ -335,14 +367,13 @@ export const generateLocalResponse = (query) => {
 
   // Fallback response
   return {
-    text: `🤖 <b>Patra AI (Local Engine)</b>: I couldn't find a direct match for that query in my local database.<br/><br/>
+    text: `🤖 <b>Patra AI (Local Assistant)</b>: I couldn't find a direct match for that query in my local database.<br/><br/>
     Try asking about:
     <br/>• 💻 <b>Projects</b> (e.g. "Warm Cup", "Remover AI", "ConnectX")
     <br/>• 🚀 <b>Skills & Tech Stack</b> (e.g. "languages", "frontend skills")
     <br/>• 📜 <b>Certifications</b> (e.g. "Python certificate", "AIML")
     <br/>• 📞 <b>Contact details</b>
-    <br/><br/>
-    💡 <i>Tip: Click the <b>Gear Icon</b> in the header to configure the <b>Gemini AI Engine</b> for human-like conversational answers!</i>`,
+    <br/>• 📍 <b>Location</b> (e.g. "where do you live?")`,
     chips: [
       { label: "Projects 💻", val: "Show me your projects" },
       { label: "Skills 🚀", val: "What are your skills?" },
@@ -352,79 +383,3 @@ export const generateLocalResponse = (query) => {
   };
 };
 
-// 2. Direct Gemini API caller (using fetch)
-export const generateGeminiResponse = async (query, apiKey, history = []) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
-  // Filter history to comply with alternate user/model roles required by the Gemini API
-  const contents = [];
-  
-  history.forEach(msg => {
-    // Check if message content is not empty
-    if (!msg.text) return;
-
-    // Filter out our system notices/clear notifications from historical content
-    if (msg.text.includes("Chat cleared!")) return;
-
-    const role = msg.sender === "user" ? "user" : "model";
-    
-    // Clean html tags out of text for Gemini's processing
-    const cleanText = msg.text
-      .replace(/<br\s*\/?>/gi, "\n")
-      .replace(/<\/?[^>]+(>|$)/g, "")
-      .trim();
-
-    if (cleanText) {
-      contents.push({
-        role: role,
-        parts: [{ text: cleanText }]
-      });
-    }
-  });
-
-  // Append current user message
-  contents.push({
-    role: "user",
-    parts: [{ text: query }]
-  });
-
-  const systemInstruction = getSystemPrompt();
-
-  const payload = {
-    contents: contents,
-    systemInstruction: {
-      parts: [{ text: systemInstruction }]
-    },
-    generationConfig: {
-      temperature: 0.6,
-      maxOutputTokens: 800
-    }
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      console.error("Gemini API Request Failed:", errData);
-      throw new Error(errData?.error?.message || `HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const responseText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!responseText) {
-      throw new Error("Invalid format received from Gemini API");
-    }
-
-    return responseText;
-  } catch (error) {
-    console.error("Error in generateGeminiResponse:", error);
-    throw error;
-  }
-};

@@ -1,4 +1,3 @@
-import React from "react";
 import { Briefcase, Code, Coffee, Database, ExternalLink, User } from "lucide-react";
 import { motion } from "framer-motion";
 import profileImage from '../../assets/A.jpg';
@@ -27,9 +26,9 @@ const About = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/[0.03] rounded-[100%] blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 relative z-10 w-full">
-        
+
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -45,7 +44,7 @@ const About = () => {
         </motion.div>
 
         {/* Bento Grid Layout */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -54,13 +53,13 @@ const About = () => {
         >
 
           {/* CARD 1: Profile Image (Spans 4 columns, 2 rows on large screens) */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[2rem] bg-[#0e0e0e] border border-white/[0.08] relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group min-h-[300px] lg:min-h-full"
+            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[2rem] glass-panel overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group min-h-[300px] lg:min-h-full"
           >
             {/* Inner Sheen */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
-            
+
             {/* Image */}
             <img
               src={profileImage}
@@ -68,10 +67,10 @@ const About = () => {
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[15%] group-hover:grayscale-0"
             />
-            
+
             {/* Bottom Gradient Overlay for Text Visibility */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 z-10" />
-            
+
             <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-20">
               <h3 className="text-2xl font-semibold text-white tracking-tight mb-1">Amit Kumar Patra</h3>
               <p className="text-neutral-400 font-medium text-sm">Full Stack Developer</p>
@@ -79,9 +78,9 @@ const About = () => {
           </motion.div>
 
           {/* CARD 2: Bio & Action Area (Spans 8 columns) */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-8 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default"
+            className="col-span-1 md:col-span-6 lg:col-span-8 rounded-[2rem] glass-panel p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
@@ -96,7 +95,7 @@ const About = () => {
 
             {/* Action Area: CV & Socials */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 relative z-10">
-              
+
               {/* Primary CV Button (OLED Style) */}
               <a
                 href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
@@ -104,7 +103,7 @@ const About = () => {
                 rel="noopener noreferrer"
                 className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-full text-sm text-black bg-white hover:bg-neutral-200 transition-all duration-300 w-full sm:w-auto shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-95"
               >
-                View My CV 
+                View My CV
                 <ExternalLink size={16} className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
               </a>
 
@@ -140,7 +139,7 @@ const About = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="col-span-1 sm:col-span-3 lg:col-span-2 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-5 md:p-6 flex flex-col relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] group cursor-default"
+              className="col-span-1 sm:col-span-3 lg:col-span-2 rounded-[2rem] glass-panel p-5 md:p-6 flex flex-col relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
             >
               {/* Frosted Icon Wrapper */}
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-[1rem] bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-neutral-300 mb-4 group-hover:bg-white/[0.08] group-hover:scale-110 transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">

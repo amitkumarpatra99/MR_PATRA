@@ -3,14 +3,13 @@ import {
   FaTimes,
   FaVolumeUp,
   FaVolumeMute,
-  FaCog,
   FaPaperPlane,
   FaTrash
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { generateLocalResponse, generateGeminiResponse } from "./aiEngine";
+import { generateLocalResponse } from "./aiEngine";
 import mrpatra from "/DP.jpg";
 
 const sendSound = new Audio(
@@ -27,8 +26,6 @@ const PatraAI = () => {
   const [showButton, setShowButton] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [inputText, setInputText] = useState("");
-  const [showSettings, setShowSettings] = useState(false);
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem("patra_ai_gemini_key") || "");
 
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -145,28 +142,18 @@ const PatraAI = () => {
     }
 
     // Small delay to simulate thinking feel
-    setTimeout(async () => {
+    setTimeout(() => {
       try {
-        if (apiKey) {
-          // Gemini API response
-          const geminiText = await generateGeminiResponse(text, apiKey, messages);
-          setMessages((p) => [
-            ...p,
-            { id: Date.now() + 1, text: geminiText, sender: "bot", isMarkdown: true }
-          ]);
-          playSound("receive");
-        } else {
-          // Local engine response
-          const localResult = generateLocalResponse(text);
-          setMessages((p) => [
-            ...p,
-            { id: Date.now() + 1, text: localResult.text, sender: "bot", isMarkdown: false }
-          ]);
-          playSound("receive");
-          
-          if (localResult.chips) {
-            setActiveSuggestions(localResult.chips);
-          }
+        // Local engine response
+        const localResult = generateLocalResponse(text);
+        setMessages((p) => [
+          ...p,
+          { id: Date.now() + 1, text: localResult.text, sender: "bot", isMarkdown: false }
+        ]);
+        playSound("receive");
+        
+        if (localResult.chips) {
+          setActiveSuggestions(localResult.chips);
         }
       } catch (err) {
         console.error("Chat Error:", err);
@@ -174,7 +161,7 @@ const PatraAI = () => {
           ...p,
           { 
             id: Date.now() + 1, 
-            text: `⚠️ **Error generating response.** ${err.message || "Please check your Gemini API key in settings or try again."}`, 
+            text: `⚠️ **Error generating response.** ${err.message || "Please try again."}`, 
             sender: "bot", 
             isMarkdown: true 
           }
@@ -284,27 +271,20 @@ const PatraAI = () => {
                 <div className="flex items-center gap-3">
                   <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 p-[2px]">
                     <img src={mrpatra} alt="Patra AI" className="w-full h-full object-cover rounded-full" />
-                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#050b1a] rounded-full animate-pulse"></span>
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-blue-400 border-2 border-[#050b1a] rounded-full animate-pulse"></span>
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-sm font-bold text-white tracking-wide">
                       Patra AI
                     </h3>
-                    <span className="text-[10px] text-emerald-400 font-bold tracking-wider uppercase flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> 
-                      Online
+                    <span className="text-[10px] text-blue-400 font-bold tracking-wider uppercase flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span> 
+                      Local Assistant
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <button 
-                    onClick={() => setShowSettings(!showSettings)} 
-                    className={`p-2 rounded-full hover:bg-white/5 transition-colors ${showSettings ? "text-blue-400" : "text-white/40 hover:text-white"}`}
-                    title="Gemini AI Settings"
-                  >
-                    <FaCog size={14} />
-                  </button>
                   <button onClick={() => setSoundEnabled(!soundEnabled)} className="p-2 rounded-full hover:bg-white/5 text-white/40 hover:text-white transition-colors">
                     {soundEnabled ? <FaVolumeUp size={14} /> : <FaVolumeMute size={14} />}
                   </button>
@@ -318,73 +298,6 @@ const PatraAI = () => {
                   </button>
                 </div>
               </div>
-
-              {/* --- SETTINGS PANEL --- */}
-              <AnimatePresence>
-                {showSettings && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="absolute inset-x-0 top-[69px] bottom-0 z-40 bg-[#050b1a]/98 backdrop-blur-md p-6 flex flex-col justify-between"
-                  >
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                        <FaCog className="text-blue-400" />
-                        Gemini AI Configuration
-                      </h4>
-                      <p className="text-[11px] text-neutral-400 leading-relaxed">
-                        To enable human-like conversational answers, save a Gemini API Key below. The key is stored locally in your browser.
-                      </p>
-                      
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">
-                          Gemini API Key
-                        </label>
-                        <input
-                          type="password"
-                          value={apiKey}
-                          onChange={(e) => {
-                            const val = e.target.value.trim();
-                            setApiKey(val);
-                            if (val) {
-                              localStorage.setItem("patra_ai_gemini_key", val);
-                            } else {
-                              localStorage.removeItem("patra_ai_gemini_key");
-                            }
-                          }}
-                          placeholder="AIzaSy..."
-                          className="w-full bg-white/[0.03] text-white placeholder-white/20 text-xs px-4 py-3 rounded-xl border border-white/[0.08] focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
-                        />
-                      </div>
-                      
-                      <p className="text-[10px] text-neutral-500 leading-normal">
-                        💡 Don't have a key? You can get a free key from the <a href="https://aistudio.google.com/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">Google AI Studio ↗</a>.
-                      </p>
-                    </div>
-
-                    <div className="space-y-2 pt-4 border-t border-white/[0.05]">
-                      <button
-                        onClick={() => {
-                          setShowSettings(false);
-                        }}
-                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors active:scale-98"
-                      >
-                        Close & Save Settings
-                      </button>
-                      <button
-                        onClick={() => {
-                          setApiKey("");
-                          localStorage.removeItem("patra_ai_gemini_key");
-                        }}
-                        className="w-full py-2.5 bg-white/[0.03] hover:bg-red-500/10 text-neutral-400 hover:text-red-400 border border-white/[0.05] hover:border-red-500/30 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2"
-                      >
-                        <FaTrash size={10} /> Delete Saved Key
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
 
               {/* --- MESSAGES --- */}
               <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-transparent">
@@ -506,7 +419,7 @@ const PatraAI = () => {
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    placeholder={apiKey ? "Ask Gemini AI anything..." : "Ask Patra AI or type 'clear'..."}
+                    placeholder="Ask Patra AI or type 'clear'..."
                     className="flex-1 bg-white/[0.03] text-white placeholder-white/30 text-xs px-4 py-2.5 rounded-full border border-white/[0.08] focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
                   />
                   <button

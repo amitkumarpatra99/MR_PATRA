@@ -1,6 +1,5 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { motion } from "framer-motion";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
@@ -21,6 +20,82 @@ import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
 
+const pageMotion = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  exit: { opacity: 0, y: -12, transition: { duration: 0.35, ease: "easeIn" } },
+};
+
+/* eslint-disable react/prop-types */
+const PageContainer = ({ children }) => (
+  <motion.main
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    variants={pageMotion}
+    className="bg-transparent min-h-screen flex flex-col"
+  >
+    {children}
+  </motion.main>
+);
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageContainer>
+              <Navbar />
+              <Home />
+              <About />
+              <SectionDivider />
+              <Skills />
+              <Projects />
+              <Journey />
+              <Footer />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/experience"
+          element={
+            <PageContainer>
+              <ExperiencePage />
+              <Footer />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/education"
+          element={
+            <PageContainer>
+              <EducationPage />
+              <Footer />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/Contact"
+          element={
+            <PageContainer>
+              <ContactPage />
+              <Footer />
+            </PageContainer>
+          }
+        />
+
+        <Route path="/navigation" element={<PageContainer><Journey /></PageContainer>} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const App = () => {
   return (
     <>
@@ -38,7 +113,7 @@ const App = () => {
             scale: [1, 1.1, 0.95, 1],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-900/15 blur-[150px]"
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-900/15 blur-[150px] will-change-transform"
         />
         <motion.div 
           animate={{
@@ -47,7 +122,7 @@ const App = () => {
             scale: [1, 0.9, 1.1, 1],
           }}
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-indigo-900/20 blur-[150px]"
+          className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-indigo-900/20 blur-[150px] will-change-transform"
         />
         <motion.div 
           animate={{
@@ -56,7 +131,7 @@ const App = () => {
             scale: [1, 1.05, 0.9, 1],
           }}
           transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[35%] left-[40%] w-[500px] h-[500px] rounded-full bg-blue-950/15 blur-[120px]"
+          className="absolute top-[35%] left-[40%] w-[500px] h-[500px] rounded-full bg-blue-950/15 blur-[120px] will-change-transform"
         />
       </div>
 
@@ -67,61 +142,7 @@ const App = () => {
             <MobileTopBar />
             
             <div className="relative">
-              <Routes>
-                
-                {/* HOME PAGE */}
-                <Route
-                  path="/"
-                  element={
-                    <main className="bg-transparent min-h-screen flex flex-col">
-                      <Navbar />
-                      <Home />
-                      <About />
-                      <SectionDivider />
-                      <Skills />
-                      <Projects />
-                      <Journey />
-                      <Footer />
-                    </main>
-                  }
-                />
-
-                {/* EXPERIENCE PAGE */}
-                <Route
-                  path="/experience"
-                  element={
-                    <main className="bg-transparent min-h-screen flex flex-col">
-                      <ExperiencePage />
-                      <Footer />
-                    </main>
-                  }
-                />
-
-                {/* EDUCATION PAGE */}
-                <Route
-                  path="/education"
-                  element={
-                    <main className="bg-transparent min-h-screen flex flex-col">
-                      <EducationPage />
-                      <Footer />
-                    </main>
-                  }
-                />
-
-                {/* CONTACT PAGE */}
-                <Route
-                  path="/Contact"
-                  element={
-                    <main className="bg-transparent min-h-screen flex flex-col">
-                      <ContactPage />
-                      <Footer />
-                    </main>
-                  }
-                />
-                
-                <Route path="/navigation" element={<Journey />} />
-
-              </Routes>
+              <AnimatedRoutes />
             </div>
           </div>
         </BrowserRouter>

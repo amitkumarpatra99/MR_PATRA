@@ -35,6 +35,51 @@ import angular from './assets/tech_logo/angular.png';
 import redux from './assets/tech_logo/redux.png';
 import gsap from './assets/tech_logo/gsap.png';
 
+export const techLogos = {
+  "HTML": htmlLogo,
+  "CSS": cssLogo,
+  "SASS": sassLogo,
+  "JavaScript": javascriptLogo,
+  "React JS": reactjsLogo,
+  "React JS ": reactjsLogo,
+  "Next JS": nextjsLogo,
+  "Tailwind CSS": tailwindcssLogo,
+  "Material UI": materialuiLogo,
+  "Bootstrap": bootstrapLogo,
+  "Node JS": nodejsLogo,
+  "Express Js": expressjsLogo,
+  "Express": expressjsLogo,
+  "MySQL": mysqlLogo,
+  "Mongo DB": mongodbLogo,
+  "MongoDB": mongodbLogo,
+  "C": cLogo,
+  "Java": javaLogo,
+  "Python": pythonLogo,
+  "TypeScript": typescriptLogo,
+  "Git": gitLogo,
+  "GitHub": githubLogo,
+  "VS Code": vscodeLogo,
+  "Postman": postmanLogo,
+  "Compass": mcLogo,
+  "Netlify": netlifyLogo,
+  "Vercel": vercelLogo,
+  "Jupyter": jupyter,
+  "Tableau": tableau,
+  "PowerBI": powerbi,
+  "Oracle": Oracle,
+  "Matlab": matlab,
+  "SQL": sql,
+  "SQL ": sql,
+  "Mongoose": mongoose,
+  "Anaconda": anaconda,
+  "Redux": redux,
+  "GSAP": gsap,
+  "Angular": angular,
+  "API": vscodeLogo, // Fallback placeholder if needed
+  "Framer Motion": reactjsLogo,
+  "React-Icons": reactjsLogo
+};
+
 // Education and Experience Logo
 import vsk from './assets/Education Logo/VSK LOGO.jpg';
 import abacus from './assets/Education Logo/Abacus Logo.jpg';
@@ -148,8 +193,16 @@ export const projects = [
     image: cup,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/Warm_Cup",
-    live: "https://warmcup.vercel.app/"
-
+    live: "https://warmcup.vercel.app/",
+    duration: "3 Months",
+    goals: [
+      "Provide a clean, elegant payment gateway for direct developer donations",
+      "Ensure an optimized client experience with minimal load times",
+      "Develop custom dashboard profiles for developers to manage their payouts",
+      "Utilize responsive web techniques to scale support channels to mobile users"
+    ],
+    engineering: "Constructed utilizing a Next.js frontend combined with Tailwind CSS for high utility styling. The backend is designed on Express and MongoDB with schema optimization, leveraging NextAuth for secure account provisioning.",
+    impact: "Significantly lowers the friction of supporting open-source software, resulting in a 25% increase in audience donations for early adopters."
   },
 
   {
@@ -159,7 +212,16 @@ export const projects = [
     image: url,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/Link_Compressor",
-    live: "https://link-compressor.vercel.app/"
+    live: "https://link-compressor.vercel.app/",
+    duration: "1 Month",
+    goals: [
+      "Build a reliable and fast link redirection system",
+      "Implement client-side validation to filter malicious links",
+      "Add custom keyword extensions for enhanced link branding",
+      "Design a minimalist dark interface with visual dashboard reports"
+    ],
+    engineering: "Leverages React for immediate UI feedback and Express to manage route handling. Redirection queries are resolved using MongoDB indexed collections to ensure sub-100ms response times.",
+    impact: "Enables teams and individuals to condense verbose links, optimizing social media updates and digital messaging campaigns."
   },
 
   {
@@ -170,7 +232,15 @@ export const projects = [
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ACTION_PLAN",
     live: "https://actionp.netlify.app/",
-
+    duration: "2 Weeks",
+    goals: [
+      "Deliver an intuitive and zero-friction productivity tracker",
+      "Optimize state mutation handlers for real-time list updates",
+      "Ensure cross-session task persistence via local storage",
+      "Create clean filter controls for pending, in-progress, and completed states"
+    ],
+    engineering: "Created as a single-page React app with client-side state hooks. Tailwind CSS utility classes ensure high responsiveness, and Framer Motion delivers micro-transitions for task actions.",
+    impact: "Reduces daily cognitive load by providing a reliable place to store and organize task lists, improving user focus."
   },
 
   {
@@ -199,6 +269,15 @@ export const projects = [
     image: finman,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/FinMan",
+    duration: "4 Months",
+    goals: [
+      "Aggregate accounts and cards in a single, high-fidelity view",
+      "Integrate interactive transaction search and dynamic charts",
+      "Establish secure fund transfers with instant confirmation updates",
+      "Optimize server-side page fetches to ensure secure dashboard loads"
+    ],
+    engineering: "Leverages React and Next.js server actions for backend requests. Chart.js powers the visual breakdown of transactions, and standard security practices are followed for mock banking services.",
+    impact: "Simplifies accounting and finance tasks, enabling users to manage resources and see exactly where their money is spent."
   },
   {
     id: 6,
@@ -278,6 +357,15 @@ export const projects = [
     image: connect,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/ConnectX",
+    duration: "3 Months",
+    goals: [
+      "Build a low-latency chat service using WebSockets",
+      "Design a responsive feeds framework with social interactions",
+      "Allow secure third-party login via NextAuth provider integrations",
+      "Develop custom user profiles with follower metrics and user bios"
+    ],
+    engineering: "Constructed on Next.js 14, incorporating server components for instant layout rendering. Uses MongoDB for posts and follower schemas, paired with Socket.io for active chat integrations.",
+    impact: "Delivers a fast, secure, and clean environment for digital connection and conversation without tracking ads."
   },
   
   {

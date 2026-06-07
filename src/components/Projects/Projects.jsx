@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { projects } from "../../constants";
+import { projects, techLogos } from "../../constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Github, ExternalLink } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Github, ExternalLink, Clock, Target, Cpu, Zap, HelpCircle, Code2, Globe } from "lucide-react";
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -33,7 +34,7 @@ const Projects = () => {
     setSelectedProject(project);
     lockBodyScroll();
   };
-  
+
   const handleCloseModal = () => {
     setSelectedProject(null);
     unlockBodyScroll();
@@ -64,16 +65,15 @@ const Projects = () => {
     <section
       id="projects"
       // 🔥 FIX: Added a dynamic z-index here. When a project is selected, the ENTIRE section jumps above the navbar.
-      className={`relative min-h-screen py-24 bg-[#050505] text-white font-sans overflow-hidden flex flex-col items-center ${
-        selectedProject ? "z-[99999]" : "z-10"
-      }`}
+      className={`relative min-h-screen py-24 bg-[#050505] text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
+        }`}
     >
-  
+
       {/* Background Ambient Gradient */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/20 via-[#050505] to-[#050505]" />
 
       <div className="relative z-10 w-full max-w-[1400px] px-6 lg:px-12">
-        
+
         {/* Header Section */}
         <div className="mb-12 flex flex-col items-start">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#111] border border-white/10 mb-6">
@@ -92,23 +92,23 @@ const Projects = () => {
 
         {/* Horizontal Scrolling Cards Layout */}
         <div className="relative group/slider w-full">
-          
+
           {/* Navigation Arrows (Visible on Hover/Desktop) */}
-          <button 
-            onClick={() => scroll('left')} 
+          <button
+            onClick={() => scroll('left')}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
           >
             <ChevronLeft size={24} />
           </button>
-          <button 
-            onClick={() => scroll('right')} 
+          <button
+            onClick={() => scroll('right')}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
           >
             <ChevronRight size={24} />
           </button>
 
           {/* Slider Track */}
-          <div 
+          <div
             ref={sliderRef}
             className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -117,7 +117,7 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 onClick={() => handleOpenModal(project)}
-                className="snap-center shrink-0 w-[280px] md:w-[340px] h-[420px] rounded-[2rem] bg-[#111111] border border-white/5 flex flex-col relative overflow-hidden cursor-pointer hover:bg-[#161616] transition-colors group"
+                className="snap-center shrink-0 w-[280px] md:w-[340px] h-[420px] rounded-[2rem] glass-panel border border-white/10 flex flex-col relative overflow-hidden cursor-pointer hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-2 transition-all duration-500 group"
               >
                 {/* Card Text Content */}
                 <div className="p-8 z-10">
@@ -143,7 +143,7 @@ const Projects = () => {
         </div>
 
         {/* Detailed Project Modal */}
-       <AnimatePresence>
+        <AnimatePresence>
           {selectedProject && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -172,7 +172,7 @@ const Projects = () => {
 
                 {/* Scrollable Content Area */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar pb-20">
-                  
+
                   {/* Hero Section */}
                   <div className="flex flex-col items-center text-center pt-20 pb-12 px-6">
                     <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
@@ -181,89 +181,149 @@ const Projects = () => {
                     <p className="text-neutral-400 text-sm md:text-base max-w-2xl">
                       {selectedProject.description}
                     </p>
-                    
+
                     {/* Hero Image */}
                     <div className="mt-12 w-full max-w-3xl h-[180px] sm:h-[250px] md:h-[400px] relative rounded-t-3xl overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-l border-r border-white/10 bg-[#111]">
-                       <img 
-                          src={selectedProject.image} 
-                          alt="Hero" 
-                          className="w-full h-full object-cover object-top"
-                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
+                      <img
+                        src={selectedProject.image}
+                        alt="Hero"
+                        className="w-full h-full object-cover object-top"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
                     </div>
                   </div>
 
                   {/* Two Column Details Section */}
                   <div className="px-6 md:px-12 max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
-                    
+
                     {/* Left Sticky Sidebar */}
                     <div className="w-full lg:w-[30%] flex flex-col gap-4 order-2 lg:order-1">
-                      
-                      {/* Action Links Block */}
-                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col gap-3">
-                         <h4 className="text-white font-bold mb-2 text-center">Project Links</h4>
-                         
-                         {selectedProject.live && (
-                           <a 
-                             href={selectedProject.live} 
-                             target="_blank" 
-                             rel="noreferrer"
-                             className="w-full py-3 rounded-full bg-[#007AFF] text-white font-semibold text-sm hover:bg-[#0066d6] transition-colors flex items-center justify-center gap-2"
-                           >
-                             <ExternalLink size={16} /> Live Preview
-                           </a>
-                         )}
 
-                         {selectedProject.github && (
-                           <a 
-                             href={selectedProject.github} 
-                             target="_blank" 
-                             rel="noreferrer"
-                             className="w-full py-3 rounded-full bg-[#1a1a1a] text-white font-semibold text-sm hover:bg-[#2a2a2a] border border-white/10 transition-colors flex items-center justify-center gap-2"
-                           >
-                             <Github size={16} /> Source Code
-                           </a>
-                         )}
+                      {/* Duration Block */}
+                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center">
+                        <Clock className="text-blue-500 mb-2" size={20} />
+                        <h4 className="text-white font-bold mb-1 text-sm">Duration</h4>
+                        <span className="text-neutral-400 text-xs font-medium">
+                          {selectedProject.duration || "4 Months"}
+                        </span>
+                      </div>
+
+                      {/* Action Links Block (Live Preview) */}
+                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full">
+                        <Globe className="text-blue-500 mb-2" size={20} />
+                        <h4 className="text-white font-bold mb-3 text-sm">Live Preview</h4>
+                        <div className="flex flex-col gap-2.5 w-full">
+                          {selectedProject.live && (
+                            <a
+                              href={selectedProject.live}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="w-full py-2.5 rounded-full bg-[#007AFF] text-white font-semibold text-xs hover:bg-[#0066d6] transition-colors flex items-center justify-center gap-1.5"
+                            >
+                              <ExternalLink size={14} /> View Project
+                            </a>
+                          )}
+
+                          {selectedProject.github && (
+                            <a
+                              href={selectedProject.github}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="w-full py-2.5 rounded-full bg-[#1a1a1a] text-white font-semibold text-xs hover:bg-[#2a2a2a] border border-white/10 transition-colors flex items-center justify-center gap-1.5"
+                            >
+                              <Github size={14} /> Source Code
+                            </a>
+                          )}
+                        </div>
                       </div>
 
                       {/* Tech Stack Block */}
-                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col">
-                         <h4 className="text-white font-bold mb-4">Tech Stack</h4>
-                         <div className="flex flex-wrap gap-2">
-                            {selectedProject.tags?.map((tag, index) => (
-                               <span 
-                                 key={index} 
-                                 className="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-white/5 text-xs font-medium text-neutral-300"
-                               >
-                                  {tag}
-                               </span>
-                            ))}
-                         </div>
+                      <div className="bg-[#111111] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center">
+                        <Code2 className="text-blue-500 mb-2" size={20} />
+                        <h4 className="text-white font-bold mb-4 text-sm">Tech Stack</h4>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {selectedProject.tags?.map((tag, index) => {
+                            const logo = techLogos[tag.trim()];
+                            if (logo) {
+                              return (
+                                <div 
+                                  key={index} 
+                                  className="w-10 h-10 rounded-lg bg-white/[0.02] border border-white/[0.05] flex items-center justify-center p-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:bg-white/[0.08] hover:scale-105 transition-all duration-300"
+                                  title={tag}
+                                >
+                                  <img src={logo} alt={tag} className="w-full h-full object-contain" />
+                                </div>
+                              );
+                            }
+                            return (
+                              <span
+                                key={index}
+                                className="px-2.5 py-1.5 rounded-lg bg-[#1a1a1a] border border-white/5 text-[10px] font-medium text-neutral-300"
+                              >
+                                {tag}
+                              </span>
+                            );
+                          })}
+                        </div>
                       </div>
 
                     </div>
 
                     {/* Right Main Content */}
                     <div className="w-full lg:w-[70%] flex flex-col gap-10 pb-10 order-1 lg:order-2">
-                      
-                      {/* Overview */}
+
+                      {/* Overview (The Problem) */}
                       <section>
-                        <h3 className="text-2xl font-bold text-white mb-4">Overview</h3>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                          <HelpCircle className="text-blue-500" size={24} />
+                          The Problem
+                        </h3>
                         <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
                           {selectedProject.description}
                         </p>
                       </section>
 
-                      {/* Gallery (Using main image as fallback if gallery doesn't exist in data) */}
+                      {/* Goals */}
                       <section>
-                        <h3 className="text-2xl font-bold text-white mb-4">Gallery</h3>
-                        <div className="flex flex-col gap-6">
-                          {(selectedProject.gallery || [selectedProject.image]).map((imgSrc, i) => (
-                            <div key={i} className="w-full rounded-2xl overflow-hidden border border-white/10 bg-[#111]">
-                              <img src={imgSrc} alt={`Gallery ${i}`} className="w-full h-auto object-cover" />
-                            </div>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                          <Target className="text-blue-500" size={24} />
+                          Goals
+                        </h3>
+                        <ul className="space-y-3">
+                          {(selectedProject.goals || [
+                            "Deliver a premium user experience with responsive controls",
+                            "Optimize asset preloading and frontend caching states",
+                            "Adhere to strict clean code standards and SEO guidelines",
+                            "Improve user conversion and navigation speed by 30%"
+                          ]).map((goal, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-neutral-400 text-sm md:text-base leading-relaxed">
+                              <span className="text-blue-500 mt-1.5 shrink-0 text-[10px]">●</span>
+                              <span>{goal}</span>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
+                      </section>
+
+                      {/* Engineering */}
+                      <section>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                          <Cpu className="text-blue-500" size={24} />
+                          Engineering
+                        </h3>
+                        <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
+                          {selectedProject.engineering || "Developed utilizing a modern tech stack focused on modularity and separation of concerns. Optimized client bundle size, assets loading paths, and database query executions to deliver lightning-fast latency."}
+                        </p>
+                      </section>
+
+                      {/* Impact */}
+                      <section>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                          <Zap className="text-blue-500" size={24} />
+                          Impact
+                        </h3>
+                        <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
+                          {selectedProject.impact || "Elevates user productivity and provides a robust, fail-safe environment. Drastically reduces manual workflows by introducing smart, automated operations."}
+                        </p>
                       </section>
 
                     </div>
@@ -276,7 +336,8 @@ const Projects = () => {
       </div>
 
       {/* Internal CSS for scrollbar hiding/styling */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         /* Hide scrollbar for slider track */
         ::-webkit-scrollbar {
             display: none;
