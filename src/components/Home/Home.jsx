@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import ReactTypingEffect from 'react-typing-effect';
@@ -41,7 +40,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className=" inline-flex items-center gap-3 px-7 py-3 mb-5 rounded-full border border-blue-500/20 bg-gradient-to-b from-[#07111f] to-[#04070d] backdrop-blur-xl shadow-[0_0_30px_rgba(37,99,235,0.15)] relative overflow-hidden"
+            className="inline-flex items-center gap-3 px-7 py-3 mb-5 rounded-full glass-panel border border-blue-500/20 relative overflow-hidden"
           >
             {/* Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5" />
@@ -99,17 +98,17 @@ const Home = () => {
               href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-white text-black hover:bg-neutral-200 hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+              className="glass-button px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full text-black hover:scale-[1.02]"
             >
               Download CV
             </a>
             <Link
-              to="contact"
+              to="projects"
               smooth={true}
               duration={800}
               className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-[#111] border border-white/10 text-white hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer"
             >
-              ChatGPT Me
+              View My Work
             </Link>
           </motion.div>
         </div>

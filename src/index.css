@@ -358,6 +358,20 @@ body {
   transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.22);
+}
+
 .glass-panel-soft {
   background: rgba(10, 15, 24, 0.58);
   border: 1px solid rgba(255, 255, 255, 0.1);

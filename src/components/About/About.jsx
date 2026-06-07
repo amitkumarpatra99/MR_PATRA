@@ -1,5 +1,6 @@
 import { Briefcase, Code, Coffee, Database, ExternalLink, User } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import profileImage from '../../assets/A.jpg';
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 
@@ -17,6 +18,19 @@ const itemVariants = {
 };
 
 const About = () => {
+  const pageLinks = [
+    {
+      title: "Experience",
+      desc: "See my roles, projects, and professional timeline.",
+      path: "/experience",
+    },
+    {
+      title: "Education",
+      desc: "Explore my academic background and certifications.",
+      path: "/education",
+    },
+  ];
+
   return (
     <section
       id="about"
@@ -55,7 +69,7 @@ const About = () => {
           {/* CARD 1: Profile Image (Spans 4 columns, 2 rows on large screens) */}
           <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[2rem] glass-panel overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group min-h-[300px] lg:min-h-full"
+            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[2rem] glass-card overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group min-h-[300px] lg:min-h-full"
           >
             {/* Inner Sheen */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
@@ -80,7 +94,7 @@ const About = () => {
           {/* CARD 2: Bio & Action Area (Spans 8 columns) */}
           <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-8 rounded-[2rem] glass-panel p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
+            className="col-span-1 md:col-span-6 lg:col-span-8 rounded-[2rem] glass-card p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
@@ -106,6 +120,13 @@ const About = () => {
                 View My CV
                 <ExternalLink size={16} className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
               </a>
+
+              <Link
+                to="/contact"
+                className="glass-button inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-full text-sm text-black hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto"
+              >
+                Contact Me
+              </Link>
 
               {/* Minimalist Social Icons */}
               <div className="flex items-center justify-center gap-3 w-full sm:w-auto">
@@ -139,7 +160,7 @@ const About = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="col-span-1 sm:col-span-3 lg:col-span-2 rounded-[2rem] glass-panel p-5 md:p-6 flex flex-col relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
+              className="col-span-1 sm:col-span-3 lg:col-span-2 rounded-[2rem] glass-card p-5 md:p-6 flex flex-col relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default"
             >
               {/* Frosted Icon Wrapper */}
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-[1rem] bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-neutral-300 mb-4 group-hover:bg-white/[0.08] group-hover:scale-110 transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
@@ -153,6 +174,24 @@ const About = () => {
           ))}
 
         </motion.div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {pageLinks.map((page) => (
+            <Link
+              key={page.title}
+              to={page.path}
+              className="glass-card flex flex-col justify-between rounded-[2rem] p-6 transition-all duration-500 hover:-translate-y-2 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold text-white mb-3">{page.title}</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">{page.desc}</p>
+              </div>
+              <span className="mt-6 inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/15">
+                Go to {page.title}
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

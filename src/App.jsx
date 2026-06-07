@@ -9,7 +9,6 @@ import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
 import About from './components/About/About';
-import Journey from "./components/Journey/Journey";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
@@ -19,6 +18,7 @@ import SectionDivider from "./components/SectionDivider";
 import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
+import NavigationPage from "./pages/NavigationPage";
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -54,7 +54,6 @@ const AnimatedRoutes = () => {
               <SectionDivider />
               <Skills />
               <Projects />
-              <Journey />
               <Footer />
             </PageContainer>
           }
@@ -81,7 +80,7 @@ const AnimatedRoutes = () => {
         />
 
         <Route
-          path="/Contact"
+          path="/contact"
           element={
             <PageContainer>
               <ContactPage />
@@ -90,7 +89,15 @@ const AnimatedRoutes = () => {
           }
         />
 
-        <Route path="/navigation" element={<PageContainer><Journey /></PageContainer>} />
+        <Route
+          path="/navigation"
+          element={
+            <PageContainer>
+              <NavigationPage />
+              <Footer />
+            </PageContainer>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
