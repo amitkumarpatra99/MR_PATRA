@@ -28,7 +28,6 @@ const NavigationPage = () => {
 
   return (
     <section className="relative min-h-screen bg-transparent text-white overflow-hidden font-sans">
-      <div className="absolute inset-0 bg-[#020205]" />
       <div className="absolute top-[-10%] left-[-10%] w-[520px] h-[520px] rounded-full bg-blue-600/[0.08] blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[520px] h-[520px] rounded-full bg-indigo-600/[0.06] blur-[120px] pointer-events-none" />
 
@@ -37,16 +36,18 @@ const NavigationPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-center mb-14"
+          className="mb-14 flex flex-col items-start"
         >
-          <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-widest text-blue-300/80 mb-4 mx-auto">
-            <span className="w-2 h-2 rounded-full bg-blue-300/60" />
-            Navigation Hub
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <div className="premium-header-badge mb-6">
+            <span className="premium-header-badge-dot animate-pulse" />
+            <span className="text-neutral-300 text-[10px] sm:text-xs font-semibold tracking-widest uppercase">
+              NAVIGATION
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
             Choose the next page
           </h1>
-          <p className="mt-4 text-sm md:text-base text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-neutral-400 text-sm md:text-base">
             Jump directly to the page you need: experience, education, or contact.
           </p>
         </motion.div>

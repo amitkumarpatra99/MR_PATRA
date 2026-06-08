@@ -10,24 +10,30 @@ const Projects = () => {
   const sliderRef = useRef(null);
 
   const lockBodyScroll = () => {
-    const scrollY = window.scrollY;
-    setScrollPosition(scrollY);
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.overflow = "hidden";
-    document.body.style.width = "100%";
+    window.lenis?.stop();
+    if (!window.lenis) {
+      const scrollY = window.scrollY;
+      setScrollPosition(scrollY);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.overflow = "hidden";
+      document.body.style.width = "100%";
+    }
   };
 
   const unlockBodyScroll = () => {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.overflow = "auto";
-    document.body.style.width = "";
-    window.scrollTo(0, scrollPosition);
+    window.lenis?.start();
+    if (!window.lenis) {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.overflow = "auto";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollPosition);
+    }
   };
 
   const handleOpenModal = (project) => {
@@ -42,15 +48,15 @@ const Projects = () => {
 
   useEffect(() => {
     return () => {
+      window.lenis?.start();
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.overflow = "auto";
       document.body.style.width = "";
-      window.scrollTo(0, scrollPosition);
     };
-  }, [scrollPosition]);
+  }, []);
 
   // Horizontal Scroll Function
   const scroll = (direction) => {
@@ -65,19 +71,19 @@ const Projects = () => {
     <section
       id="projects"
       // 🔥 FIX: Added a dynamic z-index here. When a project is selected, the ENTIRE section jumps above the navbar.
-      className={`relative min-h-screen py-24 bg-[#050505] text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
+      className={`relative min-h-screen py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
         }`}
     >
 
       {/* Background Ambient Gradient */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/20 via-[#050505] to-[#050505]" />
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/10 via-transparent to-transparent" />
 
       <div className="relative z-10 w-full max-w-[1400px] px-6 lg:px-12">
 
         {/* Header Section */}
         <div className="mb-12 flex flex-col items-start">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#111] border border-white/10 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <div className="premium-header-badge mb-6">
+            <span className="premium-header-badge-dot animate-pulse" />
             <span className="text-neutral-300 text-[10px] sm:text-xs font-semibold tracking-widest uppercase">
               WORK
             </span>
@@ -112,6 +118,7 @@ const Projects = () => {
             ref={sliderRef}
             className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            data-lenis-prevent
           >
             {projects.map((project) => (
               <motion.div
@@ -171,7 +178,7 @@ const Projects = () => {
                 </button>
 
                 {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-y-auto custom-scrollbar pb-20">
+                <div className="flex-1 overflow-y-auto custom-scrollbar pb-20" data-lenis-prevent>
 
                   {/* Hero Section */}
                   <div className="flex flex-col items-center text-center pt-20 pb-12 px-6">

@@ -8,7 +8,11 @@ const ExperiencePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0 });
+    }
   }, []);
 
   return (
@@ -45,19 +49,25 @@ const ExperiencePage = () => {
       >
 
         {/* HEADER */}
-        <div className="text-center mb-16 relative">
+        <div className="mb-12 relative">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-start"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-300 text-xs font-bold tracking-widest uppercase mb-4 border border-blue-500/20">
-              Professional Journey
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
-              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Experience</span>
+            <div className="premium-header-badge mb-6">
+              <span className="premium-header-badge-dot animate-pulse" />
+              <span className="text-neutral-300 text-[10px] sm:text-xs font-semibold tracking-widest uppercase">
+                EXPERIENCE
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
+              Professional Experience
             </h2>
-            <div className="w-20 h-1.5 mx-auto rounded-full bg-gradient-to-r from-blue-400 to-indigo-400" />
+            <p className="text-neutral-400 text-sm md:text-base">
+              A timeline of my professional roles and contributions.
+            </p>
           </motion.div>
         </div>
 

@@ -1,4 +1,3 @@
-import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import ReactTypingEffect from 'react-typing-effect';
 
@@ -11,7 +10,7 @@ const Home = () => {
       {/* 🌟 ANIMATED MESH BACKGROUND 🌟 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Layer 1: Base Dark */}
-        <div className="absolute inset-0 bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#020205] via-[#050b1a] to-[#000000]" />
 
         {/* Layer 2: Animated Glows */}
         <motion.div
@@ -40,19 +39,10 @@ const Home = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="inline-flex items-center gap-3 px-7 py-3 mb-5 rounded-full glass-panel border border-blue-500/20 relative overflow-hidden"
+            className="premium-header-badge mb-5"
           >
-            {/* Glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5" />
-
-            {/* Dot */}
-            <div className="relative flex items-center justify-center">
-              <span className="absolute w-4 h-4 rounded-full bg-white blur-md opacity-40" />
-              <span className="relative w-2.5 h-2.5 rounded-full bg-white" />
-            </div>
-
-            {/* Text */}
-            <span className="text-white text-base md:text-[17px] font-medium tracking-tight">
+            <span className="premium-header-badge-dot animate-pulse" />
+            <span className="text-white text-sm md:text-base font-medium tracking-tight">
               Hi, I am Amit Kumar Patra
             </span>
           </motion.div>
@@ -102,14 +92,22 @@ const Home = () => {
             >
               Download CV
             </a>
-            <Link
-              to="projects"
-              smooth={true}
-              duration={800}
+            <button
+              onClick={() => {
+                const target = document.getElementById("projects");
+                if (target) {
+                  if (window.lenis) {
+                    window.lenis.scrollTo(target, { offset: -85, duration: 1.2 });
+                  } else {
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 85;
+                    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+                  }
+                }
+              }}
               className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-[#111] border border-white/10 text-white hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer"
             >
               View My Work
-            </Link>
+            </button>
           </motion.div>
         </div>
 
@@ -121,8 +119,9 @@ const Home = () => {
           className="w-full lg:w-[45%] hidden lg:flex flex-col items-end justify-center relative z-10 select-none pointer-events-none"
         >
           <div className="flex flex-col items-end text-right">
-            {['CODE', 'BUILD', 'SCALE'].map((text, i) => (
-              <h2 key={i} className="text-[70px] xl:text-[90px] font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-white/[0.07] to-transparent">
+            {/* TEXT UPDATED HERE TO MATCH YOUR SKILLSET */}
+            {['DESIGN', 'ENGINEER', 'INNOVATE'].map((text, i) => (
+              <h2 key={i} className="text-[65px] xl:text-[85px] font-bold tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-white/[0.07] to-transparent">
                 {text}
               </h2>
             ))}

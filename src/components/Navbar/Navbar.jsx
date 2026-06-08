@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Link, scroller, animateScroll as scroll } from "react-scroll";
 import {
   FiHome,
   FiUser,
@@ -84,23 +83,60 @@ export default function NavbarPremium() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]); // Re-run effect if menu state changes
 
-  // Smooth scroll using react-scroll
+  // Intersection Observer for scroll-spying active tabs
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveTab(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    NAV_ITEMS.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Smooth scroll using Lenis / Native scroll
   const scrollToSection = useCallback((id) => {
     setIsMenuOpen(false);
-    scroller.scrollTo(id, {
-      duration: 600,
-      delay: 0,
-      smooth: "easeInOutQuart",
-      offset: -85,
-    });
+    setActiveTab(id);
+    const target = document.getElementById(id);
+    if (target) {
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -85, duration: 1.2 });
+      } else {
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - 85;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
   }, []);
 
   const scrollToTop = () => {
     setIsMenuOpen(false);
-    scroll.scrollToTop({
-      duration: 600,
-      smooth: "easeInOutQuart",
-    });
+    setActiveTab("home");
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
   };
 
   const toggleMenu = (e) => {
@@ -131,13 +167,8 @@ export default function NavbarPremium() {
           <ul className="flex items-center gap-1 bg-white/5 rounded-full px-2 py-[6px] border border-white/10 relative z-20 transition-colors duration-300">
             {NAV_ITEMS.map((item) => (
               <li key={item.id} className="relative">
-                <Link
-                  to={item.id}
-                  spy={true}
-                  smooth={true}
-                  offset={-85}
-                  duration={600}
-                  onSetActive={() => setActiveTab(item.id)}
+                <button
+                  onClick={() => scrollToSection(item.id)}
                   className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all block cursor-pointer relative z-20 ${activeTab === item.id ? "text-white" : "text-slate-300 hover:text-white"}`}
                 >
                   {activeTab === item.id && (
@@ -148,7 +179,7 @@ export default function NavbarPremium() {
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
@@ -244,14 +275,9 @@ export default function NavbarPremium() {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
-              <Link
+              <button
                 key={item.id}
-                to={item.id}
-                spy={true}
-                smooth={true}
-                offset={-85}
-                duration={600}
-                onSetActive={() => setActiveTab(item.id)}
+                onClick={() => scrollToSection(item.id)}
                 className="relative flex flex-col items-center justify-center h-12 w-12 rounded-full cursor-pointer"
               >
                 {isActive && (
@@ -260,7 +286,7 @@ export default function NavbarPremium() {
                   <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-white scale-110" : "text-slate-400"}`}>
                   <Icon />
                 </span>
-              </Link>
+              </button>
             );
           })}
 

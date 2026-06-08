@@ -300,7 +300,7 @@ const PatraAI = () => {
               </div>
 
               {/* --- MESSAGES --- */}
-              <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-transparent">
+              <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-transparent" data-lenis-prevent>
                 {messages.map((m) => (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -385,7 +385,7 @@ const PatraAI = () => {
                     <div className="text-[10px] font-bold text-white/30 uppercase tracking-wider mb-2 text-center select-none">
                       Select a topic to explore
                     </div>
-                    <div className="flex flex-wrap gap-2 justify-center max-h-[140px] overflow-y-auto cyber-scrollbar p-1">
+                    <div className="flex flex-wrap gap-2 justify-center max-h-[140px] overflow-y-auto cyber-scrollbar p-1" data-lenis-prevent>
                       {contentOptions.map((s, i) => (
                         <button
                           key={i}

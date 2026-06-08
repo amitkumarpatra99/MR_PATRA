@@ -74,8 +74,9 @@ const CustomCursor = () => {
           background: rgba(255, 255, 255, 0.85);
           border: 1px solid rgba(255, 255, 255, 0.75);
           box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
-          transform: translate3d(-50%, -50%, 0);
-          transition: width 180ms ease, height 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+          margin-top: -7px;
+          margin-left: -7px;
+          transition: width 180ms ease, height 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, margin-top 180ms ease, margin-left 180ms ease;
           z-index: 999999;
           mix-blend-mode: screen;
           will-change: transform;
@@ -85,6 +86,8 @@ const CustomCursor = () => {
         .magic-cursor-hover {
           width: 36px;
           height: 36px;
+          margin-top: -18px;
+          margin-left: -18px;
           background: rgba(255, 255, 255, 0.12);
           border-color: rgba(255, 255, 255, 0.95);
           box-shadow: 0 0 28px rgba(255, 255, 255, 0.28);

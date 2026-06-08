@@ -1,5 +1,4 @@
 import React from "react";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import {
   Mail,
   Phone,
@@ -10,14 +9,14 @@ import {
   Twitter,
   CreditCard,
 } from "lucide-react";
-import { 
-  FaLinkedin, 
-  FaHome, 
-  FaUser, 
-  FaTools, 
-  FaBriefcase, 
-  FaCompass, 
-  FaRegEye 
+import {
+  FaLinkedin,
+  FaHome,
+  FaUser,
+  FaTools,
+  FaBriefcase,
+  FaCompass,
+  FaRegEye
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -62,8 +61,34 @@ const Footer = () => {
     { name: "My Journey", to: "Journey", icon: <FaCompass size={14} /> },
   ];
 
+  const handleScroll = (to) => {
+    const target = document.getElementById(to);
+    if (target) {
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -85, duration: 1.2 });
+      } else {
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - 85;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
+  const handleScrollTop = () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <footer className="relative bg-transparent text-white pt-24 pb-8 px-6 overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white">
+    <footer className="relative bg-gradient-to-br from-[#020205] via-[#020205] to-[#000000] text-white pt-24 pb-8 px-6 overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white">
 
       {/* 🌟 Top Subtle Divider 🌟 */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
@@ -72,7 +97,7 @@ const Footer = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.04] rounded-full blur-[120px] mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
-        
+
         {/* Deep mesh gradient fade at the bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#020205]/80 via-[#020205]/40 to-transparent" />
       </div>
@@ -132,12 +157,9 @@ const Footer = () => {
           <ul className="space-y-3.5 text-sm">
             {links.map((link, index) => (
               <li key={index}>
-                <ScrollLink
-                  to={link.to}
-                  smooth={true}
-                  duration={800}
-                  spy={true}
-                  className="flex items-center gap-3 group cursor-pointer text-neutral-400 hover:text-white transition-all duration-300 w-fit"
+                <button
+                  onClick={() => handleScroll(link.to)}
+                  className="flex items-center gap-3 group cursor-pointer text-neutral-400 hover:text-white transition-all duration-300 w-fit text-left"
                 >
                   <span className="text-blue-500/50 group-hover:text-blue-400 transition-colors duration-300 flex items-center justify-center w-5">
                     {link.icon}
@@ -145,7 +167,7 @@ const Footer = () => {
                   <span className="group-hover:translate-x-1 transition-transform duration-300">
                     {link.name}
                   </span>
-                </ScrollLink>
+                </button>
               </li>
             ))}
           </ul>
@@ -236,7 +258,7 @@ const Footer = () => {
         </p>
 
         <button
-          onClick={() => scroll.scrollToTop({ duration: 800, smooth: "easeInOutQuart" })}
+          onClick={handleScrollTop}
           className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 active:scale-95"
         >
           <span className="text-xs font-semibold text-neutral-400 group-hover:text-white tracking-wider uppercase transition-colors">

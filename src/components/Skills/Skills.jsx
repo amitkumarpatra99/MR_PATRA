@@ -47,7 +47,7 @@ const Skills = () => {
 
   return (
     // Reduced vertical padding (py-16 md:py-20)
-    <section id="skills" className="py-16 md:py-20 bg-black relative overflow-hidden font-sans selection:bg-neutral-700 selection:text-white min-h-screen flex items-center">
+    <section id="skills" className="py-16 md:py-20 bg-transparent relative overflow-hidden font-sans selection:bg-neutral-700 selection:text-white min-h-screen flex items-center">
 
       <style>
         {`
@@ -63,6 +63,16 @@ const Skills = () => {
           .animate-marquee-right { animation: marquee-right 30s linear infinite; }
           .group-marquee:hover .animate-marquee-left,
           .group-marquee:hover .animate-marquee-right { animation-play-state: paused; }
+          
+          /* Make GitHub contribution calendar responsive without horizontal scrolling */
+          .react-activity-calendar {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .react-activity-calendar svg {
+            width: 100% !important;
+            height: auto !important;
+          }
         `}
       </style>
 
@@ -71,12 +81,18 @@ const Skills = () => {
 
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 relative z-10 w-full">
 
-        {/* Header Section - Tighter margins and slightly smaller text */}
-        <div className="mb-10 flex flex-col items-center justify-center text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tighter mb-3">
+        {/* Header Section */}
+        <div className="mb-12 flex flex-col items-start">
+          <div className="premium-header-badge mb-6">
+            <span className="premium-header-badge-dot animate-pulse" />
+            <span className="text-neutral-300 text-[10px] sm:text-xs font-semibold tracking-widest uppercase">
+              SKILLS
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
             Why Work With Me?
           </h2>
-          <p className="text-neutral-400 text-base md:text-lg font-medium tracking-tight max-w-lg">
+          <p className="text-neutral-400 text-sm md:text-base">
             Backed by experience, driven by purpose.
           </p>
         </div>
@@ -192,8 +208,8 @@ const Skills = () => {
             </div>
 
             {/* Real GitHub contribution calendar */}
-            <div className="mt-auto w-full overflow-x-auto cyber-scrollbar pb-2">
-              <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-500 min-w-[600px] text-white">
+            <div className="mt-auto w-full overflow-hidden pb-2" data-lenis-prevent>
+              <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-full text-white">
                 <GitHubCalendar
                   username="amitkumarpatra99"
                   colorScheme="dark"
