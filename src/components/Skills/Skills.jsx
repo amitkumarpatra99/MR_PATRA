@@ -2,7 +2,7 @@ import React from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { FaGithub } from "react-icons/fa6";
 import { SkillsInfo } from "../../constants";
-import personalMemoji from "../../assets/Profile.png";
+import personalMemoji from "../../assets/avatar/Samsung.png";
 import warmCupImg from "../../assets/Project Photo/Warm Cup.png";
 import connectXImg from "../../assets/Project Photo/ConnectX.png";
 
@@ -17,11 +17,6 @@ const MemojiAvatar = ({ src, alt, className = "", zIndex }) => (
 );
 
 const Skills = () => {
-  const communityMemojis = [
-    "/DP.jpg",
-    "/DP.jpg",
-    "/DP.jpg",
-  ];
 
   const allSkills = SkillsInfo.flatMap(cat => cat.skills);
   const midPoint = Math.ceil(allSkills.length / 2);
@@ -110,7 +105,7 @@ const Skills = () => {
             </h3>
 
             {/* Reduced Memoji Size */}
-            <div className="mt-auto relative z-10 w-32 h-32 transform transition-transform duration-700 ease-out group-hover:-translate-y-2">
+            <div className="mt-auto relative z-10 w-70 h-70 transform transition-transform duration-700 ease-out group-hover:-translate-y-2">
               <img
                 src={personalMemoji}
                 alt="Engineering with Empathy"
@@ -156,20 +151,28 @@ const Skills = () => {
             </div>
           </div>
 
-          {/* CARD 3: Community / Leadership */}
+          {/* CARD 3: */}
           <div className="col-span-1 md:col-span-6 lg:col-span-3 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-black border border-white/[0.08] p-6 md:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:-translate-y-2 group cursor-default">
 
-            <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight mb-8 tracking-tight z-10">
-              Led <span className="text-neutral-500">120+ member</span> <br />
-              developer <br />
-              community.
-            </h3>
+            <div className="z-10 mb-5 ">
+              <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight mb-2 tracking-tight">
+                Relentless <br />
+                <span className="text-neutral-500">Builder.</span>
+              </h3>
+              <p className="text-neutral-400 text-sm font-medium leading-snug">
+                Maintained 30+ public GitHub repositories.
+              </p>
+            </div>
 
-            {/* Tighter overlap for smaller avatars */}
-            <div className="flex items-center mt-auto relative z-10 h-14 w-full justify-start pl-2 group-hover:pl-4 transition-all duration-500">
-              <MemojiAvatar src={communityMemojis[0]} alt="Member 1" className="absolute left-0 -rotate-12 transition-transform duration-500 group-hover:-rotate-6" zIndex={10} />
-              <MemojiAvatar src={communityMemojis[1]} alt="Member 2" className="absolute left-7 w-14 h-14 -top-1 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-110" zIndex={20} />
-              <MemojiAvatar src={communityMemojis[2]} alt="Member 3" className="absolute left-14 rotate-12 transition-transform duration-500 group-hover:rotate-6 group-hover:left-16" zIndex={10} />
+            <div className="mt-auto relative z-10 p-4 bg-white/5 border border-white/10 rounded-2xl w-full group-hover:bg-white/[0.07] transition-all duration-500 flex flex-col gap-2 shadow-inner">
+              <div className="flex items-center gap-3 text-neutral-300 ">
+                <FaGithub className="text-2xl" />
+                <span className="text-sm font-semibold tracking-wide">30+ Repos</span>
+              </div>
+              <div className="flex gap-2 mt-2">
+                <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-teal-500/10 text-teal-400 rounded-md border border-teal-500/20">MERN</span>
+                <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-purple-500/10 text-purple-400 rounded-md border border-purple-500/20">Next.js</span>
+              </div>
             </div>
           </div>
 

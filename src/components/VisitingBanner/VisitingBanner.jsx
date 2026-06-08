@@ -4,18 +4,18 @@ const VisitingBanner = () => {
   return (
     <div className="max-w-[1100px] mx-auto px-4 sm:px-6 my-16 md:my-24 relative z-10 w-full">
       {/* Container with dark blue gradient background */}
-      <div 
+      <div
         className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#00051a] via-[#000822] to-[#00020a] border border-blue-900/30 p-10 sm:p-14 md:p-16 flex flex-col items-start min-h-[300px] shadow-2xl justify-center group"
       >
         {/* ANIMATED BACKGROUND GLOWS */}
         {/* Glow Orb 1 - Floating and morphing on the left side */}
-        <div 
+        <div
           className="absolute -left-20 top-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(15,60,255,0.25),transparent_65%)] pointer-events-none z-0 mix-blend-screen"
           style={{ animation: "float-glow-1 12s ease-in-out infinite" }}
         />
-        
+
         {/* Glow Orb 2 - Counter-floating on the right side */}
-        <div 
+        <div
           className="absolute -right-20 -bottom-20 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(0,120,255,0.15),transparent_70%)] pointer-events-none z-0 mix-blend-screen"
           style={{ animation: "float-glow-2 16s ease-in-out infinite" }}
         />
@@ -27,8 +27,9 @@ const VisitingBanner = () => {
           <h2 className="text-[2.75rem] sm:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-10 font-sans">
             Thank you for Visiting.
           </h2>
-          
+
           <button
+
             onClick={() => {
               const target = document.getElementById("footer") || document.getElementById("contact");
               if (target) {
@@ -46,7 +47,7 @@ const VisitingBanner = () => {
           >
             Connect With Me
             <span className="inline-block transform transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 text-lg font-light">
-              
+
             </span>
           </button>
         </div>

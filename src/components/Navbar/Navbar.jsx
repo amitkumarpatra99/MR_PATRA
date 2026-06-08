@@ -262,7 +262,7 @@ export default function NavbarPremium() {
             opacity: isNavbarVisible ? 1 : 0
           }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="
+          className="
               flex items-center justify-evenly px-2 py-2
             bg-[#04050b]/85       
             backdrop-blur-xl
@@ -283,7 +283,7 @@ export default function NavbarPremium() {
                 {isActive && (
                   <motion.div layoutId="mobile-active-pill" className="absolute inset-0 bg-white/20 rounded-full border border-white/20 shadow-inner" transition={{ type: "spring", duration: 0.5 }} />
                 )}
-                  <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-white scale-110" : "text-slate-400"}`}>
+                <span className={`relative z-10 text-xl transition-all duration-300 ${isActive ? "text-white scale-110" : "text-slate-400"}`}>
                   <Icon />
                 </span>
               </button>
@@ -315,4 +315,4 @@ export default function NavbarPremium() {
       </div>
     </>
   );
-}
+} 
