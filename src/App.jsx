@@ -15,6 +15,8 @@ import CustomCursor from "./components/CustomCursor/CustomCursor";
 import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
 import SectionDivider from "./components/SectionDivider";
+import Testimonials from "./components/Testimonials/Testimonials";
+import VisitingBanner from "./components/VisitingBanner/VisitingBanner";
 
 // Pages
 import ExperiencePage from "./pages/ExperiencePage";
@@ -69,7 +71,12 @@ const AnimatedRoutes = () => {
               <About />
               <SectionDivider />
               <Skills />
+              <SectionDivider />
               <Projects />
+              <SectionDivider />
+              <Testimonials />
+              <SectionDivider />
+              <VisitingBanner />
               <Footer />
             </PageContainer>
           }
@@ -152,36 +159,9 @@ const App = () => {
       <CustomCursor />
       <PatraAI />
 
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#020205]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020205] via-[#050b1a] to-[#000000] opacity-90" />
-        
-        <motion.div 
-          animate={{
-            x: [0, 50, -30, 0],
-            y: [0, -40, 60, 0],
-            scale: [1, 1.1, 0.95, 1],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-900/15 blur-[150px] will-change-transform"
-        />
-        <motion.div 
-          animate={{
-            x: [0, -60, 40, 0],
-            y: [0, 50, -40, 0],
-            scale: [1, 0.9, 1.1, 1],
-          }}
-          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] rounded-full bg-indigo-900/20 blur-[150px] will-change-transform"
-        />
-        <motion.div 
-          animate={{
-            x: [0, 40, -50, 0],
-            y: [0, 60, -30, 0],
-            scale: [1, 1.05, 0.9, 1],
-          }}
-          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[35%] left-[40%] w-[500px] h-[500px] rounded-full bg-blue-950/15 blur-[120px] will-change-transform"
-        />
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-black">
+        <div className="glow-mesh" />
+        <div className="noise-overlay" />
       </div>
 
       <div className="App selection:bg-blue-600/30 selection:text-white bg-transparent min-h-screen relative z-10">
@@ -190,7 +170,7 @@ const App = () => {
           <div className="bg-transparent text-white min-h-screen transition-colors duration-500">
             <StickyMiniNavbar />
             <MobileTopBar />
-            
+
             <div className="relative">
               <AnimatedRoutes />
             </div>

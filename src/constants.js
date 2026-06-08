@@ -34,6 +34,9 @@ import anaconda from './assets/tech_logo/Anaconda.avif';
 import angular from './assets/tech_logo/angular.png';
 import redux from './assets/tech_logo/redux.png';
 import gsap from './assets/tech_logo/gsap.png';
+import framermotionLogo from './assets/tech_logo/framermotion.svg';
+import reacticonsLogo from './assets/tech_logo/reacticons.svg';
+import apiLogo from './assets/tech_logo/api.svg';
 
 export const techLogos = {
   "HTML": htmlLogo,
@@ -75,9 +78,9 @@ export const techLogos = {
   "Redux": redux,
   "GSAP": gsap,
   "Angular": angular,
-  "API": vscodeLogo, // Fallback placeholder if needed
-  "Framer Motion": reactjsLogo,
-  "React-Icons": reactjsLogo
+  "API": apiLogo,
+  "Framer Motion": framermotionLogo,
+  "React-Icons": reacticonsLogo
 };
 
 // Education and Experience Logo
