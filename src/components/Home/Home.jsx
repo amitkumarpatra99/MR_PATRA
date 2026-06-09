@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import ReactTypingEffect from 'react-typing-effect';
+import {  FaArrowRight } from "react-icons/fa6";
+import { ExternalLink } from "lucide-react";
 
 const Home = () => {
   return (
@@ -88,9 +90,10 @@ const Home = () => {
               href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-button px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full text-black hover:scale-[1.02]"
+              className="glass-button flex items-center gap-2 px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full text-black hover:scale-[1.02]"
             >
-              Download CV
+              <span>View My CV</span>
+              <ExternalLink size={12} />
             </a>
             <button
               onClick={() => {
@@ -104,9 +107,10 @@ const Home = () => {
                   }
                 }
               }}
-              className="px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-[#111] border border-white/10 text-white hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer"
+              className="group flex items-center gap-2 px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full bg-[#111] border border-white/10 text-white hover:bg-[#1a1a1a] transition-all duration-300 cursor-pointer"
             >
-              View My Work
+              <span>View My Work</span>
+              <FaArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </motion.div>
         </div>

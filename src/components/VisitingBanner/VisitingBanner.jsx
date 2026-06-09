@@ -1,4 +1,6 @@
 import React from "react";
+import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const VisitingBanner = () => {
   return (
@@ -28,28 +30,15 @@ const VisitingBanner = () => {
             Thank you for Visiting.
           </h2>
 
-          <button
-
-            onClick={() => {
-              const target = document.getElementById("footer") || document.getElementById("contact");
-              if (target) {
-                if (window.lenis) {
-                  window.lenis.scrollTo(target, { offset: -85, duration: 1.2 });
-                } else {
-                  const targetPosition = target.getBoundingClientRect().top + window.scrollY - 85;
-                  window.scrollTo({ top: targetPosition, behavior: "smooth" });
-                }
-              } else {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-              }
-            }}
+          <Link
+            to="/contact"
             className="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 active:scale-95 shadow-md group/btn"
           >
             Connect With Me
             <span className="inline-block transform transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 text-lg font-light">
-
+              <FaArrowRight size={14} className="ml-1" />
             </span>
-          </button>
+          </Link>
         </div>
       </div>
 
