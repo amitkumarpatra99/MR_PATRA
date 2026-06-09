@@ -1,7 +1,9 @@
-import { Briefcase, Code, Coffee, Database, ExternalLink, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { Briefcase, Code, Coffee, Database, ExternalLink, User, Camera } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import profileImage from '../../assets/A.jpg';
+import PhotoGalleryModal from "./PhotoGalleryModal";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 
 const containerVariants = {
@@ -18,6 +20,7 @@ const itemVariants = {
 };
 
 const About = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const pageLinks = [
     {
       title: "Experience",
@@ -105,9 +108,16 @@ const About = () => {
           {/* CARD 1: Profile Image */}
           <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group min-h-[200px] lg:min-h-[380px] relative"
+            onClick={() => setIsGalleryOpen(true)}
+            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group min-h-[200px] lg:min-h-[380px] relative cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+
+            {/* Gallery Hint Indicator */}
+            <div className="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-full bg-black/60 border border-white/5 backdrop-blur-md text-[9px] text-neutral-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
+              <Camera size={10} className="text-blue-400" />
+              <span>View Gallery</span>
+            </div>
 
             <img
               src={profileImage}
@@ -225,6 +235,15 @@ const About = () => {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {isGalleryOpen && (
+          <PhotoGalleryModal
+            isOpen={isGalleryOpen}
+            onClose={() => setIsGalleryOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
