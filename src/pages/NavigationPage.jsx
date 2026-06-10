@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Mail } from "lucide-react";
+import { Briefcase, GraduationCap, Mail, X } from "lucide-react";
 
 const navCards = [
   {
@@ -30,6 +30,22 @@ const NavigationPage = () => {
     <section className="relative min-h-screen bg-transparent text-white overflow-hidden font-sans">
       <div className="absolute top-[-10%] left-[-10%] w-[520px] h-[520px] rounded-full bg-blue-600/[0.08] blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[520px] h-[520px] rounded-full bg-indigo-600/[0.06] blur-[120px] pointer-events-none" />
+
+      {/* --- CLOSE BUTTON --- */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.1, rotate: 90 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => navigate("/")}
+        className="fixed top-6 right-6 z-50 p-3 rounded-full 
+                   bg-white/[0.03] backdrop-blur-xl 
+                   border border-white/[0.08] shadow-lg
+                   text-neutral-400 hover:text-white hover:bg-white/[0.1]
+                   transition-all duration-300"
+      >
+        <X size={24} />
+      </motion.button>
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-24">
         <motion.div

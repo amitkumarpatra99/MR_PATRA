@@ -211,8 +211,8 @@ const Skills = () => {
             </div>
 
             {/* Real GitHub contribution calendar */}
-            <div className="mt-auto w-full overflow-hidden pb-2" data-lenis-prevent>
-              <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-full text-white">
+            <div className="mt-auto w-full overflow-x-auto pb-2 scrollbar-thin" data-lenis-prevent>
+              <div className="opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-full min-w-[600px] md:min-w-0 text-white">
                 <GitHubCalendar
                   username="amitkumarpatra99"
                   colorScheme="dark"

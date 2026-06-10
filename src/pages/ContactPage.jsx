@@ -48,13 +48,21 @@ const ContactPage = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      {/* Minimalist Close Button */}
-      <button
+      {/* --- CLOSE BUTTON --- */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ scale: 1.1, rotate: 90 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/")}
-        className="fixed top-8 right-8 text-neutral-500 hover:text-white transition-colors z-20"
+        className="fixed top-6 right-6 z-50 p-3 rounded-full 
+                   bg-white/[0.03] backdrop-blur-xl 
+                   border border-white/[0.08] shadow-lg
+                   text-neutral-400 hover:text-white hover:bg-white/[0.1]
+                   transition-all duration-300"
       >
-        <FaTimes size={20} />
-      </button>
+        <FaTimes size={24} />
+      </motion.button>
 
       {/* Content Container */}
       <motion.div

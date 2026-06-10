@@ -116,7 +116,7 @@ const Projects = () => {
           {/* Slider Track */}
           <div
             ref={sliderRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4"
+            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4 hide-scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             data-lenis-prevent
           >
@@ -204,7 +204,7 @@ const Projects = () => {
                   <div className="px-6 md:px-12 max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
 
                     {/* Left Sticky Sidebar */}
-                    <div className="w-full lg:w-[30%] flex flex-col gap-4 order-2 lg:order-1">
+                    <div className="w-full lg:w-[30%] flex flex-col md:grid md:grid-cols-3 lg:flex lg:flex-col gap-4 order-2 lg:order-1">
 
                       {/* Duration Block */}
                       <div className="glass-card rounded-2xl p-6 flex flex-col items-center text-center">
@@ -346,7 +346,7 @@ const Projects = () => {
       <style dangerouslySetInnerHTML={{
         __html: `
         /* Hide scrollbar for slider track */
-        ::-webkit-scrollbar {
+        .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
         /* Custom scrollbar for the modal */
