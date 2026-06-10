@@ -139,7 +139,7 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
         transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
-        className="relative z-10 w-[95%] lg:w-[60vw] bg-[#09090e]/90 border border-white/[0.08] backdrop-blur-2xl rounded-[2.5rem] p-6 sm:p-8 flex flex-col shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-default overflow-hidden"
+        className="relative z-10 w-[95%] lg:w-[60vw] max-h-[95vh] sm:max-h-[90vh] bg-[#09090e]/90 border border-white/[0.08] backdrop-blur-2xl rounded-[2.5rem] p-6 sm:p-8 flex flex-col shadow-[0_30px_70px_rgba(0,0,0,0.85)] cursor-default overflow-y-auto"
       >
         {/* Ambient OLED Glows inside modal card */}
         <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
@@ -185,7 +185,7 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
             {scrollItems.map((photo, index) => (
               <div
                 key={`${photo.id}-${index}`}
-                className="flex-shrink-0 w-[200px] sm:w-[250px] aspect-[3/4] rounded-2xl overflow-hidden relative group border border-white/[0.05] hover:border-blue-500/30 hover:shadow-[0_10px_25px_rgba(59,130,246,0.1)] transition-all duration-500"
+                className="flex-shrink-0 w-[160px] sm:w-[220px] md:w-[250px] aspect-[3/4] rounded-2xl overflow-hidden relative group border border-white/[0.05] hover:border-blue-500/30 hover:shadow-[0_10px_25px_rgba(59,130,246,0.1)] transition-all duration-500"
               >
                 {/* Image Cover */}
                 <img

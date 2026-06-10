@@ -102,14 +102,14 @@ const About = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-3 auto-rows-auto"
+          className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 gap-3 auto-rows-auto"
         >
 
           {/* CARD 1: Profile Image */}
           <motion.div
             variants={itemVariants}
             onClick={() => setIsGalleryOpen(true)}
-            className="col-span-1 md:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group min-h-[200px] lg:min-h-[380px] relative cursor-pointer"
+            className="col-span-1 sm:col-span-6 lg:col-span-4 lg:row-span-2 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group h-[320px] sm:h-[400px] lg:h-auto lg:min-h-[380px] relative cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
 
@@ -137,7 +137,7 @@ const About = () => {
           {/* CARD 2: Bio & Action Area */}
           <motion.div
             variants={itemVariants}
-            className="col-span-1 md:col-span-6 lg:col-span-8 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] p-5 md:p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group cursor-default"
+            className="col-span-1 sm:col-span-6 lg:col-span-8 rounded-[1.5rem] bg-white/[0.02] border border-white/[0.05] p-5 md:p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group cursor-default"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 

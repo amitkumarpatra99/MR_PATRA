@@ -54,10 +54,10 @@ const Home = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.15] mb-5"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.15] mb-5"
           >
             I like crafting <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 block min-h-[2.3em] pb-1">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 block min-h-[3.8em] sm:min-h-[2.4em] pb-1">
               <ReactTypingEffect
                 text={['Smart Solutions to\nSmart People.', 'Cutting Edge\nTechnology.', 'Modern UI/UX\nDesign.']}
                 speed={50}
