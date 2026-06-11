@@ -85,7 +85,7 @@ const Skills = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-            Why Work With Me?
+            Why Work <span className="text-neutral-400">With Me ?</span>
           </h2>
           <p className="text-neutral-400 text-sm md:text-base">
             Backed by experience, driven by purpose.
