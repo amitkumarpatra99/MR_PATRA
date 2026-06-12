@@ -370,7 +370,7 @@ export const projects = [
     engineering: "Constructed on Next.js 14, incorporating server components for instant layout rendering. Uses MongoDB for posts and follower schemas, paired with Socket.io for active chat integrations.",
     impact: "Delivers a fast, secure, and clean environment for digital connection and conversation without tracking ads."
   },
-  
+
   {
     id: 23,
     title: "BDMS",
@@ -501,13 +501,31 @@ export const projects = [
 
 
 export const experiences = [
+
+  {
+    id: 0,
+    img: abacus,
+    role: "Web Developer Internship",
+    company: "Abacus System and Solution",
+    date: "Nov 2025 - May 2026",
+    project: "Blood Donation And Mannagement System",
+    skills: [
+      "Web Development",
+      "React JS",
+      "Node JS",
+      "MongoDB",
+      "Express JS",
+    ],
+  },
+
+
   {
     id: 0,
     img: cttc,
     role: "AIML and Data Analytics Internship",
     company: "Central Tool and Training Center ",
     date: "July 2025 - Sept 2025",
-    project: "Face Detection, Netflix Dashboard",
+    project: "Face Detection, Netflix Dashboard,Cricket Dashboard",
     certificates: [
       { label: "AIML Certificate", file: aiml },
       { label: "Data Analytics Certificate", file: data },
@@ -559,9 +577,9 @@ export const education = [
     id: 0,
     img: rec,
     school: "RAAJDHANI ENGINEERING COLLEGE ",
-    date: "July 2022 - July 2026",
+    date: "July 2022 - May 2026",
     // desc: "REC",
-    degree: "Bachelor of Tecnlogy",
+    degree: "Bachelor of Technology",
     add: "Bhubaneswar"
   },
   {
@@ -578,7 +596,7 @@ export const education = [
     img: vsk,
     school: "VIVEKANANDA SHIKSHA KENDRA",
     date: "Mar 2016 - Feb 2020",
-    grade: "",
+    // grade: "A+",
     // desc: "I have completed my class 10th Education in this School",
     degree: "HSC(10th)",
     add: "Delang,Puri"
