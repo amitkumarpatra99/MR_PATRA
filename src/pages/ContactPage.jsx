@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Mail, Phone, MapPin, Coffee, ExternalLink, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Coffee, ExternalLink, Send, CreditCard } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaWhatsapp, FaPaperPlane } from "react-icons/fa6";
 
 const ContactPage = () => {
@@ -72,7 +72,7 @@ const ContactPage = () => {
         className="w-full max-w-5xl px-4 py-12 md:py-20 relative z-10"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* Column 1: Info and Socials */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-10">
             <div>
@@ -131,6 +131,12 @@ const ContactPage = () => {
                     { icon: <FaInstagram size={18} />, link: "https://www.instagram.com/mr_patraa_", color: "hover:text-pink-500 hover:border-pink-500 hover:bg-pink-500/5 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]" },
                     { icon: <FaTwitter size={18} />, link: "https://x.com/mr_patra_", color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]" },
                     { icon: <FaWhatsapp size={18} />, link: "https://wa.me/8144129955", color: "hover:text-green-500 hover:border-green-500 hover:bg-green-500/5 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]" },
+                    {
+                      icon: <CreditCard size={18} />,
+                      link: "https://pages.razorpay.com/amitpatra",
+                      color: "hover:text-purple-500 hover:border-purple-500 hover:bg-purple-500/5 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+                    }
+
                   ].map((social, idx) => (
                     <a
                       key={idx}
@@ -153,7 +159,7 @@ const ContactPage = () => {
                 className="group relative flex items-center justify-between p-4 rounded-2xl bg-gradient-to-br from-amber-500/5 to-amber-600/[0.01] border border-amber-500/20 hover:border-amber-500/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.08)] transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all duration-500" />
-                
+
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 group-hover:bg-amber-500/20 transition-all duration-300 shrink-0">
                     <Coffee size={18} className="animate-bounce animate-duration-1000" style={{ animationDuration: '3s' }} />
@@ -172,13 +178,13 @@ const ContactPage = () => {
           {/* Column 2: Form */}
           <div className="lg:col-span-7 h-full flex flex-col justify-center">
             <div className="p-6 sm:p-10 rounded-[2rem] bg-white/[0.02] border border-white/[0.08] backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.3)] relative overflow-hidden group">
-              
+
               {/* Premium top edge highlight */}
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
-              
+
               {/* Refined inner gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] via-transparent to-indigo-500/[0.03] pointer-events-none" />
-              
+
               <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-8 flex items-center gap-2 relative z-10">
                 <FaPaperPlane size={20} className="text-blue-400" />
                 <span>Send a Message</span>
@@ -218,7 +224,7 @@ const ContactPage = () => {
                     className="w-full bg-white/[0.02] border border-white/[0.08] rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.04] focus:ring-1 focus:ring-blue-500/30 focus:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all placeholder:text-neutral-600 text-white"
                   />
                 </div>
-                
+
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-neutral-400 pl-1 uppercase tracking-wider">Message</label>
                   <textarea
