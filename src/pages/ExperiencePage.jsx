@@ -16,7 +16,7 @@ const ExperiencePage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen -mt-20 bg-transparent text-white overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-transparent text-white overflow-x-hidden font-sans">
 
       {/* --- AMBIENT BACKGROUND ORBS --- */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -32,13 +32,14 @@ const ExperiencePage = () => {
         whileHover={{ scale: 1.1, rotate: 90 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/")}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full 
-                   bg-white/[0.03] backdrop-blur-xl 
-                   border border-white/[0.08] shadow-lg
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-50 p-2 md:p-3 rounded-full 
+                   bg-black/40 backdrop-blur-md 
+                   border border-white/10 shadow-lg
                    text-neutral-400 hover:text-white hover:bg-white/[0.1]
                    transition-all duration-300"
       >
-        <FaTimes size={24} />
+        <FaTimes size={20} className="md:hidden" />
+        <FaTimes size={24} className="hidden md:block" />
       </motion.button>
 
       {/* --- CONTENT CONTAINER --- */}
@@ -83,7 +84,7 @@ const ExperiencePage = () => {
               className="w-full h-full"
             >
               {/* FROSTED GLASS CARD */}
-              <div className="glass-card group relative h-full overflow-hidden rounded-2xl p-6 sm:p-8 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 flex flex-col">
+              <div className="glass-card group relative h-full overflow-hidden rounded-2xl p-5 sm:p-8 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 flex flex-col">
 
                 {/* Inner Gradient Flash on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
@@ -91,7 +92,7 @@ const ExperiencePage = () => {
                 <div className="flex flex-col gap-5 h-full">
 
                   {/* Logo & Title Header */}
-                  <div className="flex items-start gap-4">
+                  <div className="flex flex-col sm:flex-row items-start gap-4">
                     <div className="w-14 h-14 rounded-xl bg-white p-1 shadow-md shrink-0 flex items-center justify-center overflow-hidden">
                       <img src={exp.img} alt={exp.company} className="w-full h-full object-contain rounded-lg" />
                     </div>
@@ -182,6 +183,16 @@ const ExperiencePage = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* --- BACK TO HOME BUTTON --- */}
+        <div className="mt-16 flex justify-center">
+          <button
+            onClick={() => navigate("/")}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 active:scale-95"
+          >
+            Back to Home
+          </button>
         </div>
 
       </motion.div>
