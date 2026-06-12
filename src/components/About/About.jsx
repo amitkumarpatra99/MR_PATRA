@@ -89,7 +89,7 @@ const About = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">
-            Get to Know Me
+            Get to <span className="text-neutral-400">Know Me</span>
           </h2>
           <p className="text-neutral-400 text-xs md:text-sm">
             Bridging the gap between design and engineering.
