@@ -89,7 +89,7 @@ const Projects = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-            Featured Work
+            Featured <span className="text-neutral-400">Work</span>
           </h2>
           <p className="text-neutral-400 text-sm md:text-base">
             My past projects showcasing my expertise.

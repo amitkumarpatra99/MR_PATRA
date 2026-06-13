@@ -96,9 +96,6 @@ const Testimonials = () => {
       if (!isPaused) {
         scrollContainer.scrollLeft += 1; // Adjust this number for speed (higher = faster)
 
-        // Seamless loop logic: 
-        // If we scroll past the first duplicated block, instantly reset scrollLeft 
-        // back by one block width. The user won't notice the jump.
         const scrollWidth = scrollContainer.scrollWidth;
         const clientWidth = scrollContainer.clientWidth;
         const maxScroll = scrollWidth / 3; 
@@ -134,7 +131,7 @@ const Testimonials = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-            Few kind words
+            Few Kind <span className="text-neutral-400">Words</span> 
           </h2>
           <p className="text-neutral-400 text-sm md:text-base">
             Read what my seniors have to say about me.
