@@ -9,12 +9,9 @@ const Home = () => {
       id="home"
       className="relative min-h-screen lg:h-screen w-full flex flex-col justify-center overflow-x-hidden lg:overflow-hidden font-sans bg-transparent selection:bg-blue-600/40 selection:text-white"
     >
-      {/* 🌟 ANIMATED MESH BACKGROUND 🌟 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Layer 1: Base Dark */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#020205] via-[#050b1a] to-[#000000]" />
 
-        {/* Layer 2: Animated Glows */}
         <motion.div
           animate={{
             background: [
@@ -27,14 +24,11 @@ const Home = () => {
           className="absolute inset-0 animate-mesh blur-[100px]"
         />
 
-        {/* Layer 3: Subtle floating light */}
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse" />
       </div>
 
-      {/* 🧠 MAIN CONTENT CONTAINER */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between h-full pt-28 pb-16 lg:pt-16 lg:pb-16">
 
-        {/* LEFT COLUMN: Clean, Minimalist Text */}
         <div className="w-full lg:w-[55%] flex flex-col items-start text-left z-20 ">
 
           <motion.div
@@ -49,7 +43,6 @@ const Home = () => {
             </span>
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

@@ -168,10 +168,8 @@ const About = () => {
               </p>
             </div>
 
-            {/* Action Area: CV & Socials */}
             <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 relative z-10">
 
-              {/* Primary CV Button */}
               <a
                 href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
                 target="_blank"
@@ -182,7 +180,6 @@ const About = () => {
                 <ExternalLink size={14} className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
               </a>
 
-              {/* Contact Button (Styled like Footer "Back to top") */}
               <Link
                 to="/contact"
                 className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300 active:scale-95 w-full sm:w-auto"
@@ -192,7 +189,6 @@ const About = () => {
                 </span>
               </Link>
 
-              {/* Minimalist Social Icons (Matching Footer) */}
               <div className="flex items-center justify-center gap-2 w-full sm:w-auto ml-auto">
                 {socialIcons.map((social) => (
                   <a
@@ -209,7 +205,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* CARDS 3-6: Focus Areas (Matching Footer Icons) */}
           {[
             { icon: <Code size={16} />, title: "Web Dev", desc: "React & Tailwind apps." },
             { icon: <User size={16} />, title: "UI / UX", desc: "Intuitive experiences." },
@@ -234,7 +229,6 @@ const About = () => {
 
         </motion.div>
 
-        {/* Bottom Page Links */}
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {pageLinks.map((page) => (
             <Link

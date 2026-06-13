@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { X, Camera } from "lucide-react";
-import profileImage1 from "../../assets/A.jpg";
-import profileImage2 from "../../assets/Profile.png";
+import profileImage1 from "../../assets/Profile/A.jpg";
+import profileImage2 from "../../assets/Profile/AMIT1.jpg";
+import profileImage3 from "../../assets/Profile/AMIT2.jpg";
+import profileImage4 from "../../assets/Profile/AMIT3.jpg";
+import profileImage5 from "../../assets/Profile/AMIT4.jpg";
+import profileImage6 from "../../assets/Profile/AMIT5.jpg";
 
-// Direct path to public image
-const publicImage = "/DP.jpg";
 
 const galleryPhotos = [
   {
@@ -17,53 +19,40 @@ const galleryPhotos = [
   },
   {
     id: 2,
-    url: publicImage,
-    title: "Casual Capture",
-    caption: "A relaxed, everyday look at my developer persona.",
-    isLocal: true,
-  },
-  {
-    id: 3,
     url: profileImage2,
     title: "Signature Portrait",
     caption: "Official portrait showcasing dedication and focus.",
     isLocal: true,
   },
   {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+    id: 3,
+    url: profileImage3,
     title: "Deep Work Environment",
     caption: "Where complex logic becomes elegant user solutions.",
-    isLocal: false,
+    isLocal: true,
   },
   {
-    id: 5,
-    url: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800",
+    id: 4,
+    url: profileImage4,
     title: "Interface Crafting",
     caption: "Iterating on modern UI designs and user experience flows.",
-    isLocal: false,
+    isLocal: true,
   },
+ 
   {
     id: 6,
-    url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800",
-    title: "Clean Code Philosophy",
-    caption: "Writing scalable, readable, and performant architectures.",
-    isLocal: false,
+    url: profileImage5,
+    title: "Signature Pose",
+    caption: "A confident pose showcasing my personality.",
+    isLocal: true,
   },
   {
     id: 7,
-    url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
-    title: "Continuous Learning",
-    caption: "Constantly expanding knowledge boundaries and stack limits.",
-    isLocal: false,
-  },
-  {
-    id: 8,
-    url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
-    title: "Logic & Execution",
-    caption: "From conceptual mockups to complete digital platforms.",
-    isLocal: false,
-  }
+    url: profileImage6,
+    title: "Signature Pose",
+    caption: "A confident pose showcasing my personality.",
+    isLocal: true,
+  },  
 ];
 
 const PhotoGalleryModal = ({ isOpen, onClose }) => {

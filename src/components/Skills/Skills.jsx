@@ -120,8 +120,7 @@ const Skills = () => {
 
             <div className="relative z-10 mt-auto p-5 lg:p-6 pt-3 lg:pt-4">
               <h3 className="text-lg lg:text-xl font-bold text-white leading-tight tracking-tight drop-shadow-md">
-                Skilled in <span className="text-neutral-400">modern</span> <br />
-                tech architecture.
+                Skilled with Modern Tech <span className="text-neutral-400 text-2xl space-x-10">Architectures. </span>
               </h3>
             </div>
           </div>
@@ -151,8 +150,8 @@ const Skills = () => {
                 <span className="text-xs lg:text-sm font-bold tracking-wide drop-shadow-sm">30+ Repos</span>
               </div>
               <div className="flex gap-2 mt-1">
-                <span className="px-2 py-0.5 text-[9px] lg:text-[10px] uppercase tracking-widest font-bold bg-white/10 text-white rounded border border-white/20 backdrop-blur-sm">MERN</span>
-                <span className="px-2 py-0.5 text-[9px] lg:text-[10px] uppercase tracking-widest font-bold bg-white/10 text-white rounded border border-white/20 backdrop-blur-sm">Next.js</span>
+                <span className="px-2 py-0.5 text-[9px] lg:text-[10px] uppercase tracking-widest font-bold bg-blue-600/10 text-blue-600 rounded border border-blue-600/20 backdrop-blur-sm">MERN</span>
+                <span className="px-2 py-0.5 text-[9px] lg:text-[10px] uppercase tracking-widest font-bold bg-blue-600/10 text-blue-600 rounded border border-blue-600/20 backdrop-blur-sm">Next.js</span>
               </div>
             </div>
           </div>
