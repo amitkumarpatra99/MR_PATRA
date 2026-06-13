@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
-import { Briefcase, Code, Coffee, Database, ExternalLink, User, Camera, ArrowRight } from "lucide-react";
+import { Briefcase, Coffee, Database, ExternalLink, User, Camera, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import profileImage from '../../assets/Profile/A.jpg';
 import PhotoGalleryModal from "./PhotoGalleryModal";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaWhatsapp, FaReact } from "react-icons/fa6";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -147,7 +147,7 @@ const About = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-[#020205] via-[#020205]/60 to-transparent opacity-90 z-10" />
 
             <div className="absolute bottom-0 left-0 w-full p-5 z-20">
-              <h3 className="text-xl font-bold text-white tracking-tight mb-0.5">Amit Kumar <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Patra</span></h3>
+              <h3 className="text-xl font-bold text-white tracking-tight uppercase">Amit Kumar <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 uppercase">Patra</span></h3>
               <span className="text-[10px] font-semibold text-blue-100/40 tracking-widest uppercase">Full Stack Developer</span>
             </div>
           </motion.div>
@@ -206,7 +206,7 @@ const About = () => {
           </motion.div>
 
           {[
-            { icon: <Code size={16} />, title: "Web Dev", desc: "React & Tailwind apps." },
+            { icon: <FaReact size={16} />, title: "Web Dev", desc: "React & Tailwind apps." },
             { icon: <User size={16} />, title: "UI / UX", desc: "Intuitive experiences." },
             { icon: <Database size={16} />, title: "Backend", desc: "Robust APIs & databases." },
             { icon: <Briefcase size={16} />, title: "Management", desc: "Agile project execution." },
@@ -216,7 +216,6 @@ const About = () => {
               variants={itemVariants}
               className="col-span-1 sm:col-span-3 lg:col-span-2 rounded-[1.25rem] bg-white/[0.02] border border-white/[0.05] p-3 md:p-4 flex flex-col relative overflow-hidden transition-all duration-500 hover:bg-white/[0.03] hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)] hover:-translate-y-1 group cursor-default min-h-[110px]"
             >
-              {/* Icon Wrapper (Matching Footer Contacts) */}
               <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] group-hover:text-blue-400 transition-all duration-300 mb-2">
                 {item.icon}
               </div>
@@ -240,8 +239,8 @@ const About = () => {
                 <h3 className="text-lg md:text-xl font-semibold text-white mb-1.5">{page.title}</h3>
                 <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">{page.desc}</p>
               </div>
-              <span className="mt-3 self-start inline-flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] group-hover:border-blue-500/[0.3] group-hover:bg-blue-500/[0.1] group-hover:text-blue-400 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400 transition-all duration-300">
-                Go to {page.title}
+              <span className="mt-3 self-start inline-flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] group-hover:border-blue-500/[0.3] group-hover:bg-blue-500/[0.1] group-hover:text-blue-400 px-4 py-2 text-[10px] font-bold tracking-wider text-neutral-300 transition-all duration-300">
+                View   {page.title}   <ArrowRight size={12} className="ml-1" />
               </span>
             </Link>
           ))}
