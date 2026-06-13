@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Briefcase, Code, Coffee, Database, ExternalLink, User, Camera } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { Briefcase, Code, Coffee, Database, ExternalLink, User, Camera, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import profileImage from '../../assets/A.jpg';
+import profileImage from '../../assets/Profile/A.jpg';
 import PhotoGalleryModal from "./PhotoGalleryModal";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 
@@ -21,6 +21,8 @@ const itemVariants = {
 
 const About = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.15 });
   const pageLinks = [
     {
       title: "Experience",
@@ -63,10 +65,10 @@ const About = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="about"
       className="relative py-8 lg:py-10 bg-transparent text-white overflow-hidden font-sans selection:bg-blue-900/50 selection:text-white min-h-screen flex items-center"
     >
-      {/* 🌟 Ambient OLED Background Glows (Matching Footer) 🌟 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.04] rounded-full blur-[120px] mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
@@ -75,7 +77,7 @@ const About = () => {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 relative z-10 w-full">
 
         {/* Header Section */}
-           <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -113,11 +115,27 @@ const About = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
 
-            {/* Gallery Hint Indicator */}
-            <div className="absolute top-4 right-4 z-20 px-2.5 py-1 rounded-full bg-black/60 border border-white/5 backdrop-blur-md text-[9px] text-neutral-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
-              <Camera size={10} className="text-blue-400" />
-              <span>View Gallery</span>
-            </div>
+            <motion.div
+              // Animation: Enhanced entrance with opacity, scale, y-offset, and blur reduction
+              initial={{ opacity: 0, scale: 0.9, y: 10, filter: "blur(5px)" }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+                  : { opacity: 0, scale: 0.9, y: 10, filter: "blur(5px)" }
+              }
+              // Transition: Custom cubic-bezier for a sophisticated 'spring-like' effect
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute top-4 right-4 z-20 flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 backdrop-blur-xl text-xs font-medium text-white tracking-wide shadow-lg cursor-pointer transition-all duration-300 ease-out group/gallery hover:bg-black/60 hover:scale-105 active:scale-95">
+
+              <Camera
+                size={14}
+                className="text-white/80 group-hover/gallery:text-white transition-colors" />
+              <span>View All Photos</span>
+
+              <ArrowRight
+                size={14}
+                className="text-white/80 transition-all duration-300 ease-out group-hover/gallery:translate-x-1 group-hover/gallery:text-white" />
+            </motion.div>
 
             <img
               src={profileImage}
