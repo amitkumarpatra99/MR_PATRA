@@ -22,12 +22,7 @@ const StickyMiniNavbar = () => {
   }, []);
 
   return (
-    /* 
-       Refined Styles:
-       - Height reduced to 1px for ultra-minimalism.
-       - Removed neon shadows and complex shimmers.
-       - Used a very subtle blue/indigo gradient to match the OLED theme.
-    */
+
     <div className="fixed top-0 left-0 w-full z-[10000] h-[1px] bg-transparent">
       <div
         className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400 transition-[width] duration-300 ease-out"
