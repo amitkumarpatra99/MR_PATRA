@@ -70,7 +70,6 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      // 🔥 FIX: Added a dynamic z-index here. When a project is selected, the ENTIRE section jumps above the navbar.
       className={`relative min-h-screen py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
         }`}
     >
