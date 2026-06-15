@@ -86,8 +86,7 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
-
-  // Handle horizontal auto-scrolling
+// HORIZONTAL SCROLLING WITH CONTAINER 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer || !isOpen) return;
