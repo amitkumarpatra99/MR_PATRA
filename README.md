@@ -3,10 +3,10 @@
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black&style=flat-square)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&style=flat-square)](https://vite.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&style=flat-square)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.2-FF69B4?logo=framer&style=flat-square)](https://www.framer.com/motion/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4-FF69B4?logo=framer&style=flat-square)](https://www.framer.com/motion/)
 [![Gemini](https://img.shields.io/badge/Gemini_AI-1.5_Flash-8E75C2?logo=google-gemini&style=flat-square)](https://aistudio.google.com/)
 
-A modern, high-performance, and interactive React portfolio website designed to feel like an **experience**, not just a static webpage. Powered by smooth scroll mechanisms, GPU-accelerated animations, glassmorphic UI components, and a dual-engine AI assistant chatbot.
+A premium, interactive, and high-performance React portfolio designed as an immersive digital experience. Powered by smooth scroll mechanisms, GPU-accelerated micro-animations, glassmorphic UI components, and a dual-engine AI assistant chatbot.
 
 > 🎨 *“Every animation, transition, and hover effect has a purpose — to make every scroll feel alive.”*
 
@@ -16,39 +16,58 @@ A modern, high-performance, and interactive React portfolio website designed to 
 
 ### 🤖 Patra AI Assistant (Dual Engine Chatbot)
 A highly sophisticated, custom-built virtual assistant representing Amit. Features include:
-*   **⚡ Local Engine Mode (Offline-friendly):** An instant, rules-based keyword matcher that scans predefined lists for immediate, zero-latency answers regarding projects, skills, education, internships, and certifications.
-*   **🧠 Gemini AI Engine Mode (Context-Aware):** Connects to the **Google Gemini 1.5 Flash API** using a key supplied by the user. It feeds the chatbot a comprehensive, dynamic system prompt of Amit's full profile to engage in natural, human-like dialogue.
-*   **📝 Markdown Rendering:** Features native rendering of Markdown output using `react-markdown` and `remark-gfm` with styled hyperlinks to projects and certificates.
-*   **⚙️ Settings Panel:** An integrated slide-up settings card where users can swap engines, toggling between local and Gemini, and paste/hide their secure Gemini API key (persisted in `localStorage`).
-*   **🎵 Interactive Sound cues:** Subtle audio feedback triggers on send/receive events.
-*   **📱 Scroll-Linked auto-hide:** Automatically hides the chatbot launcher icon while scrolling and brings it back gently when scroll stops.
+*   **⚡ Local Engine Mode (Offline-friendly):** An instant, rules-based keyword matcher (`aiEngine.js`) that scans predefined profiles for zero-latency answers regarding projects, skills, education, internships, and certifications.
+*   **🧠 Gemini AI Engine Mode (Context-Aware):** Connects directly to the **Google Gemini 1.5 Flash API** using a secure user-provided API key. It feeds the chatbot a comprehensive, dynamic system prompt of Amit's profile for natural, context-aware dialogues.
+*   **📝 Rich Markdown Rendering:** Features native rendering of Markdown output using `react-markdown` and `remark-gfm` with styled hyperlinks to projects and certificates.
+*   **⚙️ Settings Panel:** An integrated slide-up settings card where users can swap engines and paste/hide their secure Gemini API key (persisted in `localStorage`).
+*   **🎵 Interactive Sound Cues:** Subtle audio feedback triggers on message send/receive events.
+*   **📱 Scroll-Linked Auto-Hide:** Automatically hides the chatbot launcher icon while scrolling and brings it back gently when scroll stops.
 
-### 🌊 Advanced Motions & Animations
+### 🎠 Featured Work Slider & Detailed Modals
+*   **Interactive Snap Carousel:** Desktop/mobile-friendly horizontal swipe slider (`Projects.jsx`) built with custom navigation buttons, supporting snap-to-center alignments.
+*   **Immersive Project Showcase Modals:** Displays rich details including project overview, target problem, defined goals, engineering challenges, impact metrics, live links, and GitHub repositories.
+*   **Dynamic Tech Logos:** Displays clean, hoverable tech badge indicators for project stacks dynamically mapped from consolidated constants.
+
+### 🖼️ Interactive Gallery (About Section)
+*   **Deep-Dive Profile Bio:** Displays Amit's background, core competencies, and professional focus.
+*   **Lightbox Photo Gallery:** Integrated `PhotoGalleryModal.jsx` component that displays profile pictures, certificates, and work environments in a beautiful fullscreen preview.
+
+### 💬 Auto-Scrolling Testimonial Marquee
+*   **Senior Testimonials Reel:** Seamless, infinitely looping horizontal testimonials ribbon featuring feedback from clients and mentors (e.g. Senior AIML Engineers, web developers).
+*   **Hover-Sensitive Playback:** Automatically pauses marquee scrolls on desktop hover or mobile touch-hold to let readers focus, with micro-animations that float cards upward on mouse entry.
+
+### 🧭 Page Navigation Hub
+*   **Card-Based Navigation Portal:** `NavigationPage.jsx` provides a dedicated, clean directory using Lucide icons and Framer Motion transitions, helping users jump directly to Experience, Education, or Contact pages.
+
+### 📱 Responsive Headers & Sidebars
+*   **Animated Mobile Status Bar:** `MobileTopBar.jsx` features a modern header with animated burger toggles and real-time active status indicators.
+*   **Desktop Mini Sticky Navbar:** Right-aligned mini vertical navigation hub (`StickyMiniNavbar.jsx`) allowing quick access/scrolling shortcuts to home, about, skills, and project sections.
+*   **Glow Mesh Backdrop:** A fixed background dark-mesh gradient combined with a subtle noise overlay creates a high-end visual aesthetic.
+
+### 🌊 GPU-Accelerated Motions & Cursor
 *   **Lenis Smooth Scroll:** Delivers unified kinetic scrolling across all devices.
-*   **Framer Motion Page Transitions:** Fluid entries, exists, and custom staggered lists.
-*   **GSAP Reveals:** Scroll-triggered triggers that reveal components dynamically as you navigate.
-*   **Tilt Effects:** 3D hover response on cards using `react-parallax-tilt`.
-
-### 🎨 Visual & Theme Design
-*   **Glassmorphic UI Elements:** High-end glass blurs, subtle borders, and multi-layered shadows.
-*   **ThemeProvider:** Seamless transition between dark-first colors (`#010c1e`) and light mode colors.
-*   **Custom Interactive Cursor:** Mouse-linked follower cursor that scales up on hover elements.
-*   **Mobile-First Design:** A clean custom top-bar and navigation drawer optimized for small viewports.
+*   **Custom Interactive Cursor:** A mouse-linked follower cursor (`CustomCursor.jsx`) that scales up and tracks hover states on active links and buttons.
+*   **Framer Motion & GSAP Reveals:** Fluid entries, exits, and scroll-triggered reveals as components enter the viewport.
 
 ---
 
 ## 🧠 Tech Stack
 
-| Category | Technology | Usage in Portfolio |
-|---|---|---|
-| **Core** | React.js (v18.3) | Component-based UI Architecture |
-| **Styling** | TailwindCSS + PostCSS | Utility-first styling & styling configurations |
-| **Animations** | Framer Motion (v12.2) | Interface transitions & interactive micro-animations |
-| **Scrolling** | Lenis | Smooth kinetic scrolling wrapper |
-| **AI Integration** | Google Gemini API (1.5 Flash) | AI Chatbot backend through direct REST requests |
-| **Markdown** | React Markdown + Remark GFM | Native rendering of AI text formats |
-| **Forms** | EmailJS Browser | Client-side email dispatching for the contact form |
-| **Build & Dev** | Vite | Ultra-fast development server & asset bundler |
+| Category | Technology | Version | Usage in Portfolio |
+|---|---|---|---|
+| **Core** | React.js | `^18.3.1` | Component-based UI Architecture |
+| **Routing** | React Router DOM | `^7.9.5` | Dynamic page transitions and subpage routing |
+| **Styling** | TailwindCSS + PostCSS | `^3.4.17` | Utility-first styling & layout configuration |
+| **Animations** | Framer Motion | `^12.40.0` | Custom modal transitions & staggered listings |
+| **Animations** | GSAP | `^3.13.0` | Viewport reveals and complex scroll trigger effects |
+| **Scrolling** | Lenis | `^1.3.17` | Kinetic smooth scroll wrapper |
+| **AI Integration** | Google Gemini API | `1.5 Flash` | AI Chatbot backend through direct REST integrations |
+| **Markdown** | React Markdown + Remark GFM | `v10.1.0` / `v4.0.1` | Native rendering of AI text formats |
+| **Analytics** | Vercel Speed Insights | `^1.3.1` | Automated site speed audits and core web vitals |
+| **Forms** | EmailJS Browser | `^4.4.1` | Client-side email dispatching for the contact form |
+| **Toasts** | React Toastify | `^11.0.3` | Beautiful toast notifications for contact forms and API actions |
+| **Widgets** | React GitHub Calendar | `^5.0.6` | Visual contribution graph on subpages |
+| **Build & Dev** | Vite | `^6.0.5` | Ultra-fast development server & asset bundler |
 
 ---
 
@@ -59,31 +78,39 @@ The project has been structured logically with modular components, contexts, and
 ```bash
 src/
 ├── assets/                  # Public assets, project photos, PDFs, and certificates
+│   ├── Education Logo/      # University, school, and certification vendor logos
+│   ├── Profile/             # Profile pictures and personal portfolio imagery
 │   ├── Project Photo/       # Screenshot showcases for projects
-│   └── certificate/         # PDF copies of professional internship certificates
+│   ├── avatar/              # Avatars for client & mentor testimonial cards
+│   ├── certificate/         # PDF copies of professional internship certificates
+│   ├── tech_logo/           # Icons and SVG logos for the tech stack skills
+│   └── Favicon.png          # Site favicon asset
 ├── components/              # Reusable UI component modules
-│   ├── About/               # About section containing background and bio summary
+│   ├── About/               # Bio summary and PhotoGalleryModal.jsx
 │   ├── CustomCursor/        # Mouse tracker cursor with hover physics
 │   ├── Footer/              # Multi-tier footer components
-│   ├── Home/                # Hero banner with typewriter animations
+│   ├── Home/                # Hero banner with ReactTypingEffect animations
 │   ├── Journey/             # Integrated milestone chronological graph
-│   ├── MobileTopBar/        # Specialized mobile responsive navbar
-│   ├── Navbar/              # Main desktop glassmorphic nav bar
-│   ├── PatraAI/             # Dual-engine chatbot UI (PatraAI.jsx, aiEngine.js, aiData.js)
-│   ├── Projects/            # Showcase cards with tilt effect and GitHub/Live links
-│   ├── Skills/              # Categories of technical skills with animated percentages
-│   ├── StickyMiniNavbar/    # Right-side desktop fast-navigation hub
-│   └── ScrollButtons.jsx    # Quick floating scrolling shortcuts
+│   ├── MobileTopBar/        # Responsive header status and mobile burger menu
+│   ├── Navbar/              # Main desktop glassmorphic navigation bar
+│   ├── PatraAI/             # Dual-engine chatbot UI (PatraAI.jsx, aiEngine.js)
+│   ├── Projects/            # Projects.jsx snap slider and detailed modal views
+│   ├── Skills/              # Categorized skill metrics with progress bars
+│   ├── StickyMiniNavbar/    # Vertical sticky dot-navigation hub
+│   ├── Testimonials/        # Infinitely scrolling mentor feedback marquee
+│   ├── VisitingBanner/      # Call-to-action banner thanking visitors
+│   ├── ScrollButtons.jsx    # Quick floating scrolling shortcuts
+│   └── SectionDivider.jsx   # Sleek border divider line
 ├── context/                 # Context Providers for global state management
-│   └── ThemeContext.jsx     # Handles light & dark theme switches and local state
-├── pages/                   # Separate router pages
-│   ├── ContactPage.jsx      # Form inputs with EmailJS handler
-│   ├── EducationPage.jsx    # Education timeline component
-│   ├── ExperiencePage.jsx   # Professional work experience timeline
-│   └── ProjectsPage.jsx     # Full directory of all projects built
+│   └── ThemeContext.jsx     # Handles light & dark theme switches
+├── pages/                   # Separate router page components
+│   ├── ContactPage.jsx      # Form inputs with EmailJS and Toast notifications
+│   ├── EducationPage.jsx    # Academic credentials timeline
+│   ├── ExperiencePage.jsx   # Professional work history timeline
+│   └── NavigationPage.jsx   # Fullscreen portal directory cards
 ├── App.css                  # Core global application CSS overrides
 ├── App.jsx                  # Main router configuration & layout assembly
-├── constants.js             # Consolidated source of truth for projects, skills, education, and contact data
+├── constants.js             # Consolidated source of truth for all projects, skills, and data
 ├── index.css                # Tailwind import directives & custom root style configurations
 └── main.jsx                 # Vite application entry mount point
 ```
@@ -122,7 +149,7 @@ Create an optimized production build in the `dist` folder:
 npm run build
 ```
 
-### 5. Preview Production Build locally
+### 5. Preview Production Build Locally
 Run a local server to test the production build:
 ```bash
 npm run preview
