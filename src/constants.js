@@ -336,7 +336,7 @@ export const projects = [
 
 
   {
-    id: 6,
+    id: 25,
     title: "TIC TAC TOE GAME",
     description: "Tic Tac Toe Challenge – A simple yet engaging browser-based game where two players compete for victory. Designed with clean UI and smart game logic that instantly declares the winner or draw — perfect for testing your strategy skills!",
     image: tic,
@@ -383,7 +383,7 @@ export const projects = [
 
 
   {
-    id: 19,
+    id: 26,
     title: "AI PORTFOLIO ANALYTICS",
     description: "AI Portfolio Analytics is a cutting-edge web application that leverages artificial intelligence to provide users with deep insights into their investment portfolios. By analyzing market trends, asset performance, and risk factors, it offers personalized recommendations to optimize returns and manage risks effectively.",
     image: panalysis,
