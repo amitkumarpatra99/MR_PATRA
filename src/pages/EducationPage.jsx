@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";

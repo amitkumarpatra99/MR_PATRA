@@ -30,7 +30,6 @@ const pageMotion = {
   exit: { opacity: 0, y: -12, transition: { duration: 0.35, ease: "easeIn" } },
 };
 
-/* eslint-disable react/prop-types */
 const PageContainer = ({ children }) => (
   <motion.main
     initial="initial"
