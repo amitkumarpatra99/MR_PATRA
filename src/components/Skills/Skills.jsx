@@ -1,4 +1,3 @@
-import React from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { FaGithub } from "react-icons/fa6";
 import { SkillsInfo } from "../../constants";
@@ -6,15 +5,7 @@ import personalMemoji from "../../assets/avatar/Samsung.png";
 import warmCupImg from "../../assets/Project Photo/Warm Cup.png";
 import connectXImg from "../../assets/Project Photo/ConnectX.png";
 
-// Compacted Memoji component with transparent glass styling
-const MemojiAvatar = ({ src, alt, className = "", zIndex }) => (
-  <div
-    className={`w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shrink-0 shadow-[inset_0_2px_10px_rgba(255,255,255,0.05),0_10px_20px_rgba(0,0,0,0.5)] ${className}`}
-    style={{ zIndex }}
-  >
-    <img src={src} alt={alt} className="w-full h-full object-cover" />
-  </div>
-);
+
 
 const Skills = () => {
   const allSkills = SkillsInfo.flatMap(cat => cat.skills);
