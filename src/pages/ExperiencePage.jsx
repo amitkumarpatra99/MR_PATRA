@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTimes, FaCalendarAlt, FaBriefcase, FaArrowRight, FaCode } from "react-icons/fa";
+import { FaTimes, FaCalendarAlt, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { experiences } from "../constants";
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import virat from "/src/assets/avatar/Virat.png";
 import rohit from "/src/assets/avatar/Rohit.png";
 import abd from "/src/assets/avatar/ABD.jpeg";
@@ -97,7 +97,6 @@ const Testimonials = () => {
         scrollContainer.scrollLeft += 1; // Adjust this number for speed (higher = faster)
 
         const scrollWidth = scrollContainer.scrollWidth;
-        const clientWidth = scrollContainer.clientWidth;
         const maxScroll = scrollWidth / 3; 
 
         if (scrollContainer.scrollLeft >= maxScroll) {
