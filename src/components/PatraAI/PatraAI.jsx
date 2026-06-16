@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   FaTimes,
   FaVolumeUp,
   FaVolumeMute,
-  FaPaperPlane,
-  FaTrash
+  FaPaperPlane
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
@@ -322,13 +321,15 @@ const PatraAI = () => {
                           remarkPlugins={[remarkGfm]}
                           className="prose prose-sm dark:prose-invert max-w-none text-xs leading-relaxed text-gray-200 break-words"
                           components={{
-                            a: ({ node, ...props }) => (
+                            a: ({ href, children }) => (
                               <a 
-                                {...props} 
+                                href={href} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 style={{ color: '#60a5fa', fontWeight: 'bold', textDecoration: 'underline' }}
-                              />
+                              >
+                                {children}
+                              </a>
                             )
                           }}
                         >

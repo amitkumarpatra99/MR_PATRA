@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -83,7 +83,7 @@ const ContactPage = () => {
                 </span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4 leading-tight">
-                Let's Build <br className="hidden sm:inline" /> Something Great.
+                Let&apos;s Build <br className="hidden sm:inline" /> Something Great.
               </h2>
               <p className="text-neutral-400 text-sm sm:text-base max-w-sm">
                 I am open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!

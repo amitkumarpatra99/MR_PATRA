@@ -1,10 +1,10 @@
-import { projects, SkillsInfo, experiences, education, contactDetails, aboutMe } from "../../constants";
+import { projects, SkillsInfo, contactDetails, aboutMe } from "../../constants";
 
 // Helper to calculate keyword overlap score
 const getScore = (query, keywords) => {
   let pts = 0;
   keywords.forEach(kw => {
-    const escapedKw = kw.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const escapedKw = kw.replace(/[-\\^$*+?.()|[\]{}/]/g, '\\$&');
     // Boundary check matching start/end of string or non-alphanumeric surrounds
     const regex = new RegExp(`(?:^|[^a-zA-Z0-9_])${escapedKw}(?:$|[^a-zA-Z0-9_])`, 'i');
     if (regex.test(query)) {
@@ -134,7 +134,6 @@ export const generateLocalResponse = (query) => {
 
   // B. Check for specific certificates matches
   if (q.includes("aiml certificate") || q.includes("ai/ml certificate") || q.includes("ai ml certificate")) {
-    const cert = experiences[0]?.certificates?.find(c => c.label.includes("AIML"));
     return {
       text: `🤖 <b>AI & Machine Learning Internship Certificate</b><br/>
       Issued by <b>Central Tool and Training Center (CTTC)</b> in Sept 2025.
@@ -152,7 +151,6 @@ export const generateLocalResponse = (query) => {
   }
 
   if (q.includes("data analytics certificate") || q.includes("data certificate")) {
-    const cert = experiences[0]?.certificates?.find(c => c.label.includes("Data"));
     return {
       text: `📊 <b>Data Analytics Internship Certificate</b><br/>
       Issued by <b>Central Tool and Training Center (CTTC)</b> in Sept 2025.
