@@ -94,7 +94,7 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
 
     const autoScroll = () => {
       if (!isPaused) {
-        scrollContainer.scrollLeft += 0.8; // Controlled scrolling speed
+        scrollContainer.scrollLeft += 0.8;
 
         const scrollWidth = scrollContainer.scrollWidth;
         const maxScroll = scrollWidth / 3;
@@ -118,7 +118,6 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-[4px] p-4 sm:p-6 cursor-zoom-out"
     >
-      {/* Centered Modal Card - Changed width to 60vw on desktop */}
       <motion.div
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
