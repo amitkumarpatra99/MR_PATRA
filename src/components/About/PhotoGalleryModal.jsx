@@ -86,7 +86,6 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
-// HORIZONTAL SCROLLING WITH CONTAINER 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer || !isOpen) return;
@@ -100,7 +99,6 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
         const scrollWidth = scrollContainer.scrollWidth;
         const maxScroll = scrollWidth / 3;
 
-        // Reset scroll position seamlessly when the first group completes
         if (scrollContainer.scrollLeft >= maxScroll) {
           scrollContainer.scrollLeft -= maxScroll;
         }
