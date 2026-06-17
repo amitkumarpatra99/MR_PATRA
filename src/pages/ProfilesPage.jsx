@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaTimes, FaArrowRight } from "react-icons/fa";
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
-import { SiLeetcode, SiCodeforces, SiHackerrank, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
+import { SiLeetcode, SiHackerrank, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
+import { FaCode } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Coffee } from "lucide-react";
 
 const ProfilesPage = () => {
   const navigate = useNavigate();
@@ -77,14 +79,7 @@ const ProfilesPage = () => {
       color: "hover:text-amber-500 hover:border-amber-500/30 hover:bg-amber-500/5 hover:shadow-[0_0_25px_rgba(245,158,11,0.25)]",
       textColor: "text-amber-400"
     },
-    {
-      name: "Codeforces",
-      username: "amitkumarpatra99",
-      link: "https://codeforces.com/profile/amitkumarpatra99",
-      icon: <SiCodeforces size={28} />,
-      color: "hover:text-red-500 hover:border-red-500/30 hover:bg-red-500/5 hover:shadow-[0_0_25px_rgba(239,68,68,0.25)]",
-      textColor: "text-red-400"
-    },
+
     {
       name: "HackerRank",
       username: "amitkumarpatra99",
@@ -96,7 +91,7 @@ const ProfilesPage = () => {
     {
       name: "CodeChef",
       username: "amitkumarpatra99",
-      link: "https://www.codechef.com/users/amitkumarpatra99",
+      link: "https://www.codechef.com/users/amitpatra99",
       icon: <SiCodechef size={28} />,
       color: "hover:text-amber-700 hover:border-amber-700/30 hover:bg-amber-700/5 hover:shadow-[0_0_25px_rgba(180,83,9,0.25)]",
       textColor: "text-amber-600"
@@ -108,6 +103,22 @@ const ProfilesPage = () => {
       icon: <SiGeeksforgeeks size={28} />,
       color: "hover:text-green-600 hover:border-green-600/30 hover:bg-green-600/5 hover:shadow-[0_0_25px_rgba(22,163,74,0.25)]",
       textColor: "text-green-500"
+    },
+    {
+      name: "Codolio",
+      username: "amitkumarpatra99",
+      link: "https://codolio.com/profile/amitkumarpatra99",
+      icon: <FaCode size={28} />,
+      color: "hover:text-green-500 hover:border-green-500/30 hover:bg-green-500/5 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]",
+      textColor: "text-green-400"
+    },
+    {
+      name: "WarmCup",
+      username: "@mr_patraa_",
+      link: "https://warmcup.vercel.app",
+      icon: <Coffee size={28} />,
+      color: "hover:text-yellow-500 hover:border-yellow-500/30 hover:bg-yellow-500/5 hover:shadow-[0_0_25px_rgba(250,204,21,0.25)]",
+      textColor: "text-yellow-400"
     }
   ];
 
@@ -162,7 +173,7 @@ const ProfilesPage = () => {
 
         {/* Section 1: Coding Platforms */}
         <div className="mb-14">
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -184,7 +195,7 @@ const ProfilesPage = () => {
               >
                 {/* Inner Gradient Flash on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-                
+
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 group-hover:scale-105 group-hover:bg-white/[0.05] ${platform.textColor}`}>
                     {platform.icon}
@@ -204,7 +215,7 @@ const ProfilesPage = () => {
 
         {/* Section 2: Social Platforms */}
         <div>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -226,7 +237,7 @@ const ProfilesPage = () => {
               >
                 {/* Inner Gradient Flash on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-                
+
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 group-hover:scale-105 group-hover:bg-white/[0.05] ${platform.textColor}`}>
                     {platform.icon}

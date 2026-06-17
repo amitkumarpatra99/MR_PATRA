@@ -77,7 +77,7 @@ const Projects = () => {
       {/* Background Ambient Gradient */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/10 via-transparent to-transparent" />
 
-      <div className="relative z-10 w-full max-w-[1400px] px-6 lg:px-12">
+      <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-16 lg:px-20">
 
         {/* Header Section */}
         <div className="mb-12 flex flex-col items-start">
@@ -101,13 +101,13 @@ const Projects = () => {
           {/* Navigation Arrows (Visible on Hover/Desktop) */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
+            className="absolute -left-12 lg:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
+            className="absolute -right-12 lg:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
           >
             <ChevronRight size={24} />
           </button>
