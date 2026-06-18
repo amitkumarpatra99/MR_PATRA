@@ -34,6 +34,11 @@ const About = () => {
       desc: "Explore my academic background and certifications.",
       path: "/education",
     },
+    {
+      title: "Profiles",
+      desc: "Explore my social media and coding accounts.",
+      path: "/profiles",
+    },
   ];
 
   const socialIcons = [
@@ -228,7 +233,7 @@ const About = () => {
 
         </motion.div>
 
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           {pageLinks.map((page) => (
             <Link
               key={page.title}

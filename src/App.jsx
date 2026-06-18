@@ -23,6 +23,7 @@ import ExperiencePage from "./pages/ExperiencePage";
 import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
 import NavigationPage from "./pages/NavigationPage";
+import ProfilesPage from "./pages/ProfilesPage";
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -116,6 +117,16 @@ const AnimatedRoutes = () => {
           element={
             <PageContainer>
               <NavigationPage />
+              <Footer />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/profiles"
+          element={
+            <PageContainer>
+              <ProfilesPage />
               <Footer />
             </PageContainer>
           }
