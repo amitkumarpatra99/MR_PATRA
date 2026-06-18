@@ -123,17 +123,12 @@ const ProfilesPage = () => {
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1, rotate: 90 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05, rotate: 90 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => navigate("/")}
-        className="fixed top-4 right-4 md:top-6 md:right-6 z-50 p-2 md:p-3 rounded-full 
-                   bg-black/40 backdrop-blur-md 
-                   border border-white/10 shadow-lg
-                   text-neutral-400 hover:text-white hover:bg-white/[0.1]
-                   transition-all duration-300"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-50 w-11 h-11 md:w-12 md:h-12 premium-close-btn cursor-pointer shadow-lg"
       >
-        <FaTimes size={20} className="md:hidden" />
-        <FaTimes size={24} className="hidden md:block" />
+        <FaTimes size={20} />
       </motion.button>
 
       {/* Main Content Container */}

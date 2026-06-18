@@ -133,13 +133,15 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Close Button */}
-        <button
+        <motion.button
           onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.15] text-neutral-400 hover:text-white transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
+          whileHover={{ scale: 1.05, rotate: 90 }}
+          whileTap={{ scale: 0.95 }}
+          className="absolute top-5 right-5 z-20 w-10 h-10 premium-close-btn cursor-pointer shadow-md"
           title="Close (Esc)"
         >
-          <X size={16} />
-        </button>
+          <X size={18} />
+        </motion.button>
 
         {/* Header */}
         <div className="mb-6 text-left flex flex-col items-start px-2 relative z-10 pr-12">
