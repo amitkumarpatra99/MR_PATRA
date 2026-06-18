@@ -503,7 +503,7 @@ export const projects = [
 export const experiences = [
 
   {
-    id: 0,
+    id: 1,
     img: abacus,
     role: "Web Developer Internship",
     company: "Abacus System and Solution",
@@ -520,26 +520,44 @@ export const experiences = [
 
 
   {
-    id: 0,
+    id: 2,
     img: cttc,
-    role: "AIML and Data Analytics Internship",
-    company: "Central Tool and Training Center ",
-    date: "July 2025 - Sept 2025",
-    project: "Face Detection, Netflix Dashboard,Cricket Dashboard",
+    role: "AIML Internship",
+    company: "Central Tool and Training Center",
+    date: "July 2025 - August 2025",
+    project: "Face Detection Using AI",
     certificates: [
       { label: "AIML Certificate", file: aiml },
-      { label: "Data Analytics Certificate", file: data },
     ],
     skills: [
       "AI & ML",
       "Python",
       "NLP",
-      "CV",
+      "CV (Computer Vision)",
       "Keras"
     ],
   },
+
   {
-    id: 1,
+    id: 3,
+    img: cttc,
+    role: "Data Analytics Internship",
+    company: "Central Tool and Training Center",
+    date: "Sept 2025 - Oct 2025",
+    project: "Netflix Dashboard, Cricket Dashboard",
+    certificates: [
+      { label: "Data Analytics Certificate", file: data },
+    ],
+    skills: [
+      "Python",
+      "Data Analysis",
+      "Data Visualization",
+      "Dashboarding",
+      "Pandas" 
+    ],
+  },
+  {
+    id: 4,
     img: abacus,
     role: "Python Internship",
     company: "Abacus System and Solution",
@@ -555,7 +573,7 @@ export const experiences = [
     ],
   },
   {
-    id: 2,
+    id: 5,
     img: jt,
     role: "Java Internship",
     company: "Java Tecnocart",

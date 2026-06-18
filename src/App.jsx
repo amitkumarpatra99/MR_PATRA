@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useIsPresent } from "framer-motion";
 import Lenis from "lenis";
 
 // Components
@@ -58,81 +58,78 @@ const ScrollToTop = () => {
 };
 
 const AnimatedRoutes = () => {
-  const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <PageContainer>
-              <Navbar />
-              <Home />
-              <About />
-              <SectionDivider />
-              <Skills />
-              <SectionDivider />
-              <Projects />
-              <SectionDivider />
-              <Testimonials />
-              <SectionDivider />
-              <VisitingBanner />
-              <Footer />
-            </PageContainer>
-          }
-        />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <PageContainer>
+            <Navbar />
+            <Home />
+            <About />
+            <SectionDivider />
+            <Skills />
+            <SectionDivider />
+            <Projects />
+            <SectionDivider />
+            <Testimonials />
+            <SectionDivider />
+            <VisitingBanner />
+            <Footer />
+          </PageContainer>
+        }
+      />
 
-        <Route
-          path="/experience"
-          element={
-            <PageContainer>
-              <ExperiencePage />
-              <Footer />
-            </PageContainer>
-          }
-        />
+      <Route
+        path="/experience"
+        element={
+          <PageContainer>
+            <ExperiencePage />
+            <Footer />
+          </PageContainer>
+        }
+      />
 
-        <Route
-          path="/education"
-          element={
-            <PageContainer>
-              <EducationPage />
-              <Footer />
-            </PageContainer>
-          }
-        />
+      <Route
+        path="/education"
+        element={
+          <PageContainer>
+            <EducationPage />
+            <Footer />
+          </PageContainer>
+        }
+      />
 
-        <Route
-          path="/contact"
-          element={
-            <PageContainer>
-              <ContactPage />
-              <Footer />
-            </PageContainer>
-          }
-        />
+      <Route
+        path="/contact"
+        element={
+          <PageContainer>
+            <ContactPage />
+            <Footer />
+          </PageContainer>
+        }
+      />
 
-        <Route
-          path="/navigation"
-          element={
-            <PageContainer>
-              <NavigationPage />
-              <Footer />
-            </PageContainer>
-          }
-        />
+      <Route
+        path="/navigation"
+        element={
+          <PageContainer>
+            <NavigationPage />
+            <Footer />
+          </PageContainer>
+        }
+      />
 
-        <Route
-          path="/profiles"
-          element={
-            <PageContainer>
-              <ProfilesPage />
-              <Footer />
-            </PageContainer>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+      <Route
+        path="/profiles"
+        element={
+          <PageContainer>
+            <ProfilesPage />
+            <Footer />
+          </PageContainer>
+        }
+      />
+    </Routes>
   );
 };
 
