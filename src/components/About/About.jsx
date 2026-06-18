@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Briefcase, Coffee, Database, ExternalLink, User, Camera, ArrowRight } from "lucide-react";
+import { Briefcase, Coffee, Database, ExternalLink, User, Camera, ArrowRight, GraduationCap } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import profileImage from '../../assets/Profile/A.jpg';
@@ -28,16 +28,19 @@ const About = () => {
       title: "Experience",
       desc: "See my roles, projects, and professional timeline.",
       path: "/experience",
+      icon: <Briefcase size={18} className="text-blue-400" />,
     },
     {
       title: "Education",
       desc: "Explore my academic background and certifications.",
       path: "/education",
+      icon: <GraduationCap size={18} className="text-indigo-400" />,
     },
     {
       title: "Profiles",
       desc: "Explore my social media and coding accounts.",
       path: "/profiles",
+      icon: <User size={18} className="text-sky-400" />,
     },
   ];
 
@@ -233,23 +236,30 @@ const About = () => {
 
         </motion.div>
 
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
-          {pageLinks.map((page) => (
-            <Link
-              key={page.title}
-              to={page.path}
-              className="group bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between rounded-[1.25rem] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)]"
-            >
-              <div>
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-1.5">{page.title}</h3>
-                <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">{page.desc}</p>
-              </div>
-              <span className="mt-3 self-start inline-flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] group-hover:border-blue-500/[0.3] group-hover:bg-blue-500/[0.1] group-hover:text-blue-400 px-4 py-2 text-[10px] font-bold tracking-wider text-neutral-300 transition-all duration-300">
-                View   {page.title}   <ArrowRight size={12} className="ml-1" />
-              </span>
-            </Link>
-          ))}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+  {pageLinks.map((page) => (
+    <Link
+      key={page.title}
+      to={page.path}
+      className="group bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between rounded-[1.25rem] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)]"
+    >
+      <div>
+        {/* Wrapper added here to make icon and title inline */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.08] group-hover:bg-blue-500/[0.05] group-hover:border-blue-500/[0.15] transition-all duration-300">
+            {page.icon}
+          </div>
+          <h3 className="text-lg md:text-xl font-semibold text-white">{page.title}</h3>
         </div>
+        
+        <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">{page.desc}</p>
+      </div>
+      <span className="mt-3 self-start inline-flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] group-hover:border-blue-500/[0.3] group-hover:bg-blue-500/[0.1] group-hover:text-blue-400 px-4 py-2 text-[10px] font-bold tracking-wider text-neutral-300 transition-all duration-300">
+        View {page.title} <ArrowRight size={12} className="ml-1" />
+      </span>
+    </Link>
+  ))}
+</div>
       </div>
 
       <AnimatePresence>
