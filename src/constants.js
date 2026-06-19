@@ -94,6 +94,7 @@ import python from './assets/certificate/Python.pdf'
 import java from './assets/certificate/JAVA CERTIFICATE.pdf'
 import aiml from './assets/certificate/AIML.pdf'
 import data from './assets/certificate/Data Analytics.pdf'
+import BDMS from'./assets/certificate/BDMS.pdf'
 // Project Section
 import cup from './assets/Project Photo/Warm Cup.png'
 import url from './assets/Project Photo/URL shortner.png'
@@ -509,6 +510,7 @@ export const experiences = [
     company: "Abacus System and Solution",
     date: "Nov 2025 - May 2026",
     project: "Blood Donation And Mannagement System",
+    certificate:BDMS,
     skills: [
       "Web Development",
       "React JS",
