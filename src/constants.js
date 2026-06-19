@@ -545,7 +545,7 @@ export const experiences = [
     img: cttc,
     role: "Data Analytics Internship",
     company: "Central Tool and Training Center",
-    date: "Sept 2025 - Oct 2025",
+    date: "September 2025 - October 2025",
     project: "Netflix Dashboard, Cricket Dashboard",
     certificates: [
       { label: "Data Analytics Certificate", file: data },
