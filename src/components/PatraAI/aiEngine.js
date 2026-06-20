@@ -5,7 +5,6 @@ const getScore = (query, keywords) => {
   let pts = 0;
   keywords.forEach(kw => {
     const escapedKw = kw.replace(/[-\\^$*+?.()|[\]{}/]/g, '\\$&');
-    // Boundary check matching start/end of string or non-alphanumeric surrounds
     const regex = new RegExp(`(?:^|[^a-zA-Z0-9_])${escapedKw}(?:$|[^a-zA-Z0-9_])`, 'i');
     if (regex.test(query)) {
       pts += 2.5;
@@ -16,11 +15,10 @@ const getScore = (query, keywords) => {
   return pts;
 };
 
-// 1. Local rules-based response generator
 export const generateLocalResponse = (query) => {
   const q = query.toLowerCase().trim();
 
-  // Custom Navigation Handlers
+
   if (q === "main menu" || q === "menu" || q.includes("back to main")) {
     return {
       text: "🏠 <b>Main Menu</b><br/>What would you like to explore next? Click any option below:",
