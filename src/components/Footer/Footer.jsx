@@ -21,6 +21,54 @@ import {
   FaRegEye
 } from "react-icons/fa";
 
+const paymentMethods = [
+  {
+    id: 'amex',
+    name: 'American Express',
+    bgClass: 'bg-[#0177b2]',
+    icon: (
+      <div className="flex flex-col items-center justify-center leading-[0.95] tracking-[0.05em] font-sans">
+        <span className="text-[5.5px] font-black text-white">AM</span>
+        <span className="text-[5.5px] font-black text-white">EX</span>
+      </div>
+    ),
+  },
+ 
+
+  {
+    id: 'mastercard',
+    name: 'Mastercard',
+    bgClass: 'bg-[#141416]',
+    icon: (
+      <div className="flex items-center justify-center">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1.2 opacity-90" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
+      </div>
+    ),
+  },
+  {
+    id: 'rupay',
+    name: 'RuPay',
+    bgClass: 'bg-white',
+    icon: (
+      <svg className="w-full h-full p-0.5" viewBox="0 0 38 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="1.5" y="13" fill="#002b80" style={{ fontStyle: 'italic', fontWeight: 900, fontSize: '10.5px', fontFamily: 'sans-serif', letterSpacing: '-0.8px' }}>Ru</text>
+        <text x="14" y="13" fill="#0f8a47" style={{ fontStyle: 'italic', fontWeight: 900, fontSize: '10.5px', fontFamily: 'sans-serif', letterSpacing: '-0.8px' }}>Pay</text>
+        <path d="M31 5 L34 5 L32.5 9.5 L29.5 9.5 Z" fill="#eb781f" />
+        <path d="M29 10.5 L32 10.5 L30.5 15 L27.5 15 Z" fill="#0f8a47" />
+      </svg>
+    ),
+  },
+  {
+    id: 'visa',
+    name: 'Visa',
+    bgClass: 'bg-[#002f93]',
+    icon: (
+      <span className="text-[7.5px] font-black italic text-white tracking-widest">VISA</span>
+    ),
+  },
+];
+
 const Footer = () => {
   const [openSections, setOpenSections] = useState({
     navigation: false,
@@ -38,30 +86,35 @@ const Footer = () => {
   const icons = [
     {
       id: 1,
+      name: "GitHub",
       icon: <Github size={18} />,
       link: "https://github.com/amitkumarpatra99",
       color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]",
     },
     {
       id: 2,
+      name: "LinkedIn",
       icon: <FaLinkedin size={18} />,
       link: "https://www.linkedin.com/in/amitkumarpatra99",
       color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
     },
     {
       id: 3,
+      name: "Instagram",
       icon: <Instagram size={18} />,
       link: "https://www.instagram.com/mr_patraa_",
       color: "hover:text-pink-500 hover:border-pink-500 hover:bg-pink-500/5 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]",
     },
     {
       id: 4,
+      name: "Twitter",
       icon: <Twitter size={18} />,
       link: "https://x.com/mr_patra_",
       color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]",
     },
     {
       id: 5,
+      name: "Razorpay",
       icon: <CreditCard size={18} />,
       link: "https://rzp.io/rzp/amitpatra",
       color: "hover:text-indigo-400 hover:border-indigo-400 hover:bg-indigo-400/5 hover:shadow-[0_0_15px_rgba(129,140,248,0.3)]",
@@ -127,46 +180,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 🌟 CTA BANNER 🌟 */}
-        <div className="mb-12 p-8 md:p-10 rounded-[2rem] bg-gradient-to-r from-white/[0.01] to-white/[0.03] border border-white/[0.06] backdrop-blur-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden group">
-          {/* Subtle hover background highlight */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/[0.02] to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-          
-          <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[11px] font-bold text-emerald-400/90 tracking-widest uppercase">
-                Available for select projects
-              </span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white max-w-xl leading-tight">
-              Let's collaborate to build something{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 font-extrabold">
-                extraordinary
-              </span>
-            </h3>
-          </div>
-
-          <Link 
-            to="/contact" 
-            onClick={() => {
-              if (window.location.pathname === "/contact") {
-                if (window.lenis) {
-                  window.lenis.scrollTo(0, { duration: 1.2 });
-                } else {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
-              }
-            }}
-            className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm transition-all duration-300 hover:bg-neutral-200 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.1)] cursor-pointer animate-pulse hover:animate-none"
-          >
-            <span>Start a Conversation</span>
-            <Send size={14} />
-          </Link>
-        </div>
 
         {/* 🌟 RESPONSIVE COLUMNS (Accordions on Mobile, Columns on Desktop) 🌟 */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-0 md:gap-12 lg:gap-16 pb-8 md:pb-16">
@@ -177,7 +190,7 @@ const Footer = () => {
               onClick={() => toggleSection("navigation")}
               className="w-full flex items-center justify-between text-left focus:outline-none pointer-events-auto md:pointer-events-none"
             >
-              <h4 className="text-sm font-bold text-white tracking-widest uppercase opacity-85 md:opacity-40">
+              <h4 className="text-sm font-bold mb-2 text-white tracking-widest uppercase opacity-85 md:opacity-40">
                 Navigation
               </h4>
               <span className="text-neutral-400 md:hidden text-lg font-light transition-transform duration-300">
@@ -216,7 +229,7 @@ const Footer = () => {
               onClick={() => toggleSection("highlights")}
               className="w-full flex items-center justify-between text-left focus:outline-none pointer-events-auto md:pointer-events-none"
             >
-              <h4 className="text-sm font-bold text-white tracking-widest uppercase opacity-85 md:opacity-40">
+              <h4 className="text-sm font-bold text-white mb-2 tracking-widest uppercase opacity-85 md:opacity-40">
                 Highlights
               </h4>
               <span className="text-neutral-400 md:hidden text-lg font-light transition-transform duration-300">
@@ -262,7 +275,7 @@ const Footer = () => {
               onClick={() => toggleSection("contact")}
               className="w-full flex items-center justify-between text-left focus:outline-none pointer-events-auto md:pointer-events-none"
             >
-              <h4 className="text-sm font-bold text-white tracking-widest uppercase opacity-85 md:opacity-40">
+              <h4 className="text-sm font-bold text-white mb-2 tracking-widest uppercase opacity-85 md:opacity-40">
                 Get in Touch
               </h4>
               <span className="text-neutral-400 md:hidden text-lg font-light transition-transform duration-300">
@@ -290,18 +303,6 @@ const Footer = () => {
 
                 <li className="flex items-center gap-4 group p-1 -ml-1 rounded-xl transition-colors duration-300">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.02] border border-white/[0.06] text-neutral-400 group-hover:bg-blue-500/[0.08] group-hover:border-blue-500/[0.15] group-hover:text-blue-400 transition-all duration-300">
-                    <Phone size={16} />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-neutral-500 font-bold tracking-widest uppercase mb-0.5">Phone</span>
-                    <a href="tel:+918144129955" className="text-neutral-300 hover:text-white transition-colors font-medium">
-                      +91 81441 29955
-                    </a>
-                  </div>
-                </li>
-
-                <li className="flex items-center gap-4 group p-1 -ml-1 rounded-xl transition-colors duration-300">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.02] border border-white/[0.06] text-neutral-400 group-hover:bg-blue-500/[0.08] group-hover:border-blue-500/[0.15] group-hover:text-blue-400 transition-all duration-300">
                     <MapPin size={16} />
                   </div>
                   <div className="flex flex-col">
@@ -310,6 +311,25 @@ const Footer = () => {
                       Bhubaneswar, Odisha
                     </span>
                   </div>
+                </li>
+
+                <li className="pt-2 pl-1">
+                  <Link
+                    to="/contact"
+                    onClick={() => {
+                      if (window.location.pathname === "/contact") {
+                        if (window.lenis) {
+                          window.lenis.scrollTo(0, { duration: 1.2 });
+                        } else {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs transition-all duration-300 hover:bg-neutral-200 active:scale-95 shadow-[0_4px_15px_rgba(255,255,255,0.05)] cursor-pointer"
+                  >
+                    <span>Start a Conversation</span>
+                    <Send size={12} />
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -328,7 +348,8 @@ const Footer = () => {
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 transition-all duration-300 hover:-translate-y-1 ${social.color}`}
+                aria-label={`Visit our ${social.name} page`}
+                className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-neutral-400 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white/20 ${social.color}`}
               >
                 {social.icon}
               </a>
@@ -357,31 +378,18 @@ const Footer = () => {
                 </p>
               </div>
 
-              {/* Payment Badges */}
+              {/* DRY Payment Badges - Mapped from array */}
               <div className="flex items-center gap-2">
-                <div className="h-5 w-8 rounded-[3px] bg-[#0177b2] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="American Express">
-                  <span className="text-[6px] font-bold text-white tracking-wider select-none">AMEX</span>
-                </div>
-                <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-110" title="Maestro">
-                  <div className="flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#00a6ff] opacity-90" />
+                {paymentMethods.map((method) => (
+                  <div
+                    key={method.id}
+                    title={method.name}
+                    aria-label={`Pay with ${method.name}`}
+                    className={`h-5 w-8 rounded-[3px] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110 select-none overflow-hidden relative ${method.bgClass}`}
+                  >
+                    {method.icon}
                   </div>
-                </div>
-                <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-110" title="Mastercard">
-                  <div className="flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
-                  </div>
-                </div>
-                <div className="h-5 w-8 rounded-[3px] bg-[#003087] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="PayPal">
-                  <span className="text-[7px] font-extrabold italic text-white tracking-tighter select-none">
-                    <span className="text-[#0079c1]">Pay</span>Pal
-                  </span>
-                </div>
-                <div className="h-5 w-8 rounded-[3px] bg-[#0f1b5f] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="Visa">
-                  <span className="text-[7px] font-black italic text-[#f7a918] tracking-widest select-none">VISA</span>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -395,7 +403,8 @@ const Footer = () => {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.02] border border-white/[0.06] text-neutral-400 transition-all duration-300 hover:-translate-y-1 ${social.color}`}
+                  aria-label={`Visit our ${social.name} page`}
+                  className={`w-9 h-9 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-neutral-400 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white/20 ${social.color}`}
                 >
                   {social.icon}
                 </a>
@@ -404,7 +413,8 @@ const Footer = () => {
 
             <button
               onClick={handleScrollTop}
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 active:scale-95 cursor-pointer"
+              aria-label="Scroll back to top"
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/20"
             >
               <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-white tracking-wider uppercase transition-colors">
                 Back to top
@@ -417,45 +427,30 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 🌟 MOBILE ONLY BOTTOM BAR (MATCHING SCREENSHOT) 🌟 */}
         <div className="md:hidden flex flex-col items-center gap-4 py-8">
           <p className="text-xs text-neutral-500 font-sans select-none">
             © mr patra {new Date().getFullYear()}
           </p>
           
-          {/* Payment Badges */}
+          {/* DRY Payment Badges - Reusing the exact same array! */}
           <div className="flex items-center justify-center gap-2">
-            <div className="h-5 w-8 rounded-[3px] bg-[#0177b2] flex items-center justify-center border border-white/10 shadow-sm" title="American Express">
-              <span className="text-[6px] font-bold text-white tracking-wider select-none">AMEX</span>
-            </div>
-            <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden" title="Maestro">
-              <div className="flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#00a6ff] opacity-90" />
+            {paymentMethods.map((method) => (
+              <div
+                key={method.id}
+                title={method.name}
+                aria-label={`Pay with ${method.name}`}
+                className={`h-5 w-8 rounded-[3px] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110 select-none overflow-hidden relative ${method.bgClass}`}
+              >
+                {method.icon}
               </div>
-            </div>
-            <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden" title="Mastercard">
-              <div className="flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
-              </div>
-            </div>
-            <div className="h-5 w-8 rounded-[3px] bg-[#003087] flex items-center justify-center border border-white/10 shadow-sm" title="PayPal">
-              <span className="text-[7px] font-extrabold italic text-white tracking-tighter select-none">
-                <span className="text-[#0079c1]">Pay</span>Pal
-              </span>
-            </div>
-            <div className="h-5 w-8 rounded-[3px] bg-[#0f1b5f] flex items-center justify-center border border-white/10 shadow-sm" title="Visa">
-              <span className="text-[7px] font-black italic text-[#f7a918] tracking-widest select-none">VISA</span>
-            </div>
+            ))}
           </div>
         </div>
 
       </div>
 
-      {/* Massive Background Text "mr patra" */}
       <div className="w-full text-center mt-12 select-none pointer-events-none overflow-hidden relative z-0">
-        <span className="inline-block text-[15vw] md:text-[18vw] lg:text-[20vw] font-black leading-none tracking-tighter text-white/[0.03] transition-colors duration-1000 select-none lowercase">
+        <span className="inline-block text-[15vw] md:text-[18vw] lg:text-[20vw] font-black leading-none tracking-tighter text-white/[0.03] transition-colors duration-1000 select-none">
           mr patra
         </span>
       </div>
