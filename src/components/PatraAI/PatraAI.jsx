@@ -359,7 +359,6 @@ const PatraAI = () => {
               </div>
 
               <div className="bg-[#050b1a]/95 border-t border-white/[0.05] p-3 pb-4">
-                {/* Fixed Navigation / Back Buttons at the top of the footer */}
                 {navOptions.length > 0 && (
                   <div className="flex flex-wrap gap-2 justify-center mb-3">
                     {navOptions.map((s, i) => (
