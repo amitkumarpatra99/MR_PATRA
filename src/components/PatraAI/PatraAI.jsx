@@ -298,7 +298,6 @@ const PatraAI = () => {
                 </div>
               </div>
 
-              {/* --- MESSAGES --- */}
               <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 cyber-scrollbar scroll-smooth bg-transparent" data-lenis-prevent>
                 {messages.map((m) => (
                   <motion.div
@@ -359,7 +358,6 @@ const PatraAI = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* --- FOOTER (Suggestions / Interactive Buttons) --- */}
               <div className="bg-[#050b1a]/95 border-t border-white/[0.05] p-3 pb-4">
                 {/* Fixed Navigation / Back Buttons at the top of the footer */}
                 {navOptions.length > 0 && (
