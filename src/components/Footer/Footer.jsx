@@ -250,10 +250,44 @@ const Footer = () => {
 
       {/* 🌟 BOTTOM BAR 🌟 */}
       <div className="relative z-10 max-w-[1200px] mx-auto mt-20 pt-8 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-sm text-neutral-500 font-medium">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-white">Mr Patra</span>. All Rights Reserved.
-        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <p className="text-sm text-neutral-500 font-medium">
+            © {new Date().getFullYear()}{" "}
+            <span className="text-white">Mr Patra</span>. All Rights Reserved.
+          </p>
+
+          {/* Payment Badges */}
+          <div className="flex items-center gap-2">
+            {/* Amex */}
+            <div className="h-5 w-8 rounded-[3px] bg-[#0177b2] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="American Express">
+              <span className="text-[6px] font-bold text-white tracking-wider select-none">AMEX</span>
+            </div>
+            {/* Maestro */}
+            <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-110" title="Maestro">
+              <div className="flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#00a6ff] opacity-90" />
+              </div>
+            </div>
+            {/* Mastercard */}
+            <div className="h-5 w-8 rounded-[3px] bg-[#141416] flex items-center justify-center border border-white/10 shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-110" title="Mastercard">
+              <div className="flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1 opacity-90" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
+              </div>
+            </div>
+            {/* PayPal */}
+            <div className="h-5 w-8 rounded-[3px] bg-[#003087] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="PayPal">
+              <span className="text-[7px] font-extrabold italic text-white tracking-tighter select-none">
+                <span className="text-[#0079c1]">Pay</span>Pal
+              </span>
+            </div>
+            {/* Visa */}
+            <div className="h-5 w-8 rounded-[3px] bg-[#0f1b5f] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110" title="Visa">
+              <span className="text-[7px] font-black italic text-[#f7a918] tracking-widest select-none">VISA</span>
+            </div>
+          </div>
+        </div>
 
         <button
           onClick={handleScrollTop}
@@ -267,6 +301,13 @@ const Footer = () => {
             className="text-neutral-500 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
           />
         </button>
+      </div>
+
+      {/* Massive Background Text "AMIT" */}
+      <div className="w-full text-center mt-16 select-none pointer-events-none overflow-hidden relative z-0">
+        <span className="inline-block text-[14vw] md:text-[18vw] lg:text-[22vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-transparent transition-all duration-1000 ease-out hover:from-blue-500/[0.15] hover:via-indigo-500/[0.1] hover:to-transparent hover:scale-[1.02] cursor-default uppercase">
+          AMIT
+        </span>
       </div>
     </footer>
   );
