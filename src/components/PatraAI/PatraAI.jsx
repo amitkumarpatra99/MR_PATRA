@@ -190,7 +190,6 @@ const PatraAI = () => {
 
   return (
     <>
-      {/* ================= FLOATING BUTTON ================= */}
       <AnimatePresence>
         {showButton && !isOpen && (
           <motion.div
@@ -237,7 +236,6 @@ const PatraAI = () => {
         )}
       </AnimatePresence>
 
-      {/* ================= CHAT WINDOW ================= */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -265,7 +263,6 @@ const PatraAI = () => {
                 md:bottom-24 md:right-8 md:w-[380px] md:h-[600px] md:rounded-2xl md:left-auto
               "
             >
-              {/* --- HEADER --- */}
               <div className="relative flex items-center justify-between px-5 py-4 border-b border-white/[0.05] bg-gradient-to-r from-blue-950/20 via-transparent to-transparent">
                 <div className="flex items-center gap-3">
                   <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 p-[2px]">
