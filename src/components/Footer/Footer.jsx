@@ -204,11 +204,9 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* 4. CONTACT */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-6 tracking-tight">Get in Touch</h3>
           <ul className="space-y-3 text-sm">
-            {/* Email */}
             <li className="flex items-center gap-4 group p-2 -ml-2 rounded-xl hover:bg-white/[0.02] transition-colors duration-300">
               <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.08] text-neutral-400 group-hover:bg-blue-500/[0.1] group-hover:border-blue-500/[0.2] group-hover:text-blue-400 transition-all duration-300">
                 <Mail size={16} />
