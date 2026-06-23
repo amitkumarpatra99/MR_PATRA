@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Mail,
   Phone,
@@ -149,13 +150,22 @@ const Footer = () => {
             </h3>
           </div>
 
-          <a 
-            href="mailto:mrpatra.web@gmail.com" 
-            className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm transition-all duration-300 hover:bg-neutral-200 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.1)] cursor-pointer"
+          <Link 
+            to="/contact" 
+            onClick={() => {
+              if (window.location.pathname === "/contact") {
+                if (window.lenis) {
+                  window.lenis.scrollTo(0, { duration: 1.2 });
+                } else {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }
+            }}
+            className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-semibold text-sm transition-all duration-300 hover:bg-neutral-200 active:scale-95 shadow-[0_4px_20px_rgba(255,255,255,0.1)] cursor-pointer animate-pulse hover:animate-none"
           >
             <span>Start a Conversation</span>
             <Send size={14} />
-          </a>
+          </Link>
         </div>
 
         {/* 🌟 RESPONSIVE COLUMNS (Accordions on Mobile, Columns on Desktop) 🌟 */}
