@@ -630,4 +630,31 @@ html.lenis body {
     inset 0 0 16px 0 rgba(59, 130, 246, 0.25),
     0 0 25px 0 rgba(59, 130, 246, 0.25),
     0 12px 30px -5px rgba(0, 0, 0, 0.7);
-}
+}
+
+/* Image Optimization & Performance Utilities */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(5, 7, 15, 0.8) 25%,
+    rgba(20, 25, 40, 0.8) 37%,
+    rgba(5, 7, 15, 0.8) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
