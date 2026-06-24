@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import profileImage from '../../assets/Profile/A.jpg';
 import PhotoGalleryModal from "./PhotoGalleryModal";
+import OptimizedImage from "../common/OptimizedImage";
 import { FaGithub, FaLinkedin, FaWhatsapp, FaReact } from "react-icons/fa6";
 
 const containerVariants = {
@@ -145,11 +146,11 @@ const About = () => {
                 className="text-white/80 transition-all duration-300 ease-out group-hover/gallery:translate-x-1 group-hover/gallery:text-white" />
             </motion.div>
 
-            <img
+            <OptimizedImage
               src={profileImage}
               alt="Profile"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[15%] group-hover:grayscale-0"
+              className="object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[15%] group-hover:grayscale-0"
+              wrapperClassName="absolute inset-0 w-full h-full"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#020205] via-[#020205]/60 to-transparent opacity-90 z-10" />
