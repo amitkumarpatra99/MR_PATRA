@@ -33,7 +33,7 @@ const paymentMethods = [
       </div>
     ),
   },
- 
+
 
   {
     id: 'mastercard',
@@ -167,7 +167,7 @@ const Footer = () => {
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto">
-        
+
         {/* 🌟 MOBILE ONLY LOGO 🌟 */}
         <div className="md:hidden flex justify-start mb-8">
           <div className="relative p-[1.5px] rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500">
@@ -183,7 +183,7 @@ const Footer = () => {
 
         {/* 🌟 RESPONSIVE COLUMNS (Accordions on Mobile, Columns on Desktop) 🌟 */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-0 md:gap-12 lg:gap-16 pb-8 md:pb-16">
-          
+
           {/* 1. NAVIGATION */}
           <div className="border-b border-white/[0.06] md:border-b-0 py-4 md:py-0">
             <button
@@ -197,11 +197,10 @@ const Footer = () => {
                 {openSections.navigation ? "−" : "+"}
               </span>
             </button>
-            
+
             <div
-              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${
-                openSections.navigation ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
-              }`}
+              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${openSections.navigation ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
+                }`}
             >
               <ul className="space-y-4 pt-2 pb-4 md:py-0">
                 {links.map((link, index) => (
@@ -236,11 +235,10 @@ const Footer = () => {
                 {openSections.highlights ? "−" : "+"}
               </span>
             </button>
-            
+
             <div
-              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${
-                openSections.highlights ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
-              }`}
+              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${openSections.highlights ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
+                }`}
             >
               <ul className="space-y-4 pt-2 pb-4 md:py-0">
                 {[
@@ -282,11 +280,10 @@ const Footer = () => {
                 {openSections.contact ? "−" : "+"}
               </span>
             </button>
-            
+
             <div
-              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${
-                openSections.contact ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
-              }`}
+              className={`transition-all duration-300 ease-in-out overflow-hidden md:max-h-none md:opacity-100 ${openSections.contact ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 md:mt-0"
+                }`}
             >
               <ul className="space-y-4 text-sm pt-2 pb-4 md:py-0">
                 <li className="flex items-center gap-4 group p-1 -ml-1 rounded-xl transition-colors duration-300">
@@ -431,7 +428,7 @@ const Footer = () => {
           <p className="text-xs text-neutral-500 font-sans select-none">
             © mr patra {new Date().getFullYear()}
           </p>
-          
+
           {/* DRY Payment Badges - Reusing the exact same array! */}
           <div className="flex items-center justify-center gap-2">
             {paymentMethods.map((method) => (
@@ -449,11 +446,12 @@ const Footer = () => {
 
       </div>
 
-      <div className="w-full text-center mt-12 select-none pointer-events-none overflow-hidden relative z-0">
-        <span className="inline-block text-[15vw] md:text-[18vw] lg:text-[20vw] font-black leading-none tracking-tighter text-white/[0.03] transition-colors duration-1000 select-none">
+      <div className="w-full flex justify-center items-center mt-12 select-none pointer-events-none overflow-hidden relative z-0">
+        <span className="inline-block text-[15vw] md:text-[18vw] lg:text-[20vw] font-black leading-none tracking-tighter bg-gradient-to-b from-neutral-400 via-neutral-700 to-neutral-900 bg-clip-text text-transparent opacity-90 select-none">
           mr patra
         </span>
       </div>
+
     </footer>
   );
 };
