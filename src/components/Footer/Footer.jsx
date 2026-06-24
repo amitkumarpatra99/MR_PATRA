@@ -21,53 +21,7 @@ import {
   FaRegEye
 } from "react-icons/fa";
 
-const paymentMethods = [
-  {
-    id: 'amex',
-    name: 'American Express',
-    bgClass: 'bg-[#0177b2]',
-    icon: (
-      <div className="flex flex-col items-center justify-center leading-[0.95] tracking-[0.05em] font-sans">
-        <span className="text-[5.5px] font-black text-white">AM</span>
-        <span className="text-[5.5px] font-black text-white">EX</span>
-      </div>
-    ),
-  },
 
-
-  {
-    id: 'mastercard',
-    name: 'Mastercard',
-    bgClass: 'bg-[#141416]',
-    icon: (
-      <div className="flex items-center justify-center">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1.2 opacity-90" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
-      </div>
-    ),
-  },
-  {
-    id: 'rupay',
-    name: 'RuPay',
-    bgClass: 'bg-white',
-    icon: (
-      <svg className="w-full h-full p-0.5" viewBox="0 0 38 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <text x="1.5" y="13" fill="#002b80" style={{ fontStyle: 'italic', fontWeight: 900, fontSize: '10.5px', fontFamily: 'sans-serif', letterSpacing: '-0.8px' }}>Ru</text>
-        <text x="14" y="13" fill="#0f8a47" style={{ fontStyle: 'italic', fontWeight: 900, fontSize: '10.5px', fontFamily: 'sans-serif', letterSpacing: '-0.8px' }}>Pay</text>
-        <path d="M31 5 L34 5 L32.5 9.5 L29.5 9.5 Z" fill="#eb781f" />
-        <path d="M29 10.5 L32 10.5 L30.5 15 L27.5 15 Z" fill="#0f8a47" />
-      </svg>
-    ),
-  },
-  {
-    id: 'visa',
-    name: 'Visa',
-    bgClass: 'bg-[#002f93]',
-    icon: (
-      <span className="text-[7.5px] font-black italic text-white tracking-widest">VISA</span>
-    ),
-  },
-];
 
 const Footer = () => {
   const [openSections, setOpenSections] = useState({
@@ -375,19 +329,6 @@ const Footer = () => {
                 </p>
               </div>
 
-              {/* DRY Payment Badges - Mapped from array */}
-              <div className="flex items-center gap-2">
-                {paymentMethods.map((method) => (
-                  <div
-                    key={method.id}
-                    title={method.name}
-                    aria-label={`Pay with ${method.name}`}
-                    className={`h-5 w-8 rounded-[3px] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110 select-none overflow-hidden relative ${method.bgClass}`}
-                  >
-                    {method.icon}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -429,19 +370,6 @@ const Footer = () => {
             © mr patra {new Date().getFullYear()}
           </p>
 
-          {/* DRY Payment Badges - Reusing the exact same array! */}
-          <div className="flex items-center justify-center gap-2">
-            {paymentMethods.map((method) => (
-              <div
-                key={method.id}
-                title={method.name}
-                aria-label={`Pay with ${method.name}`}
-                className={`h-5 w-8 rounded-[3px] flex items-center justify-center border border-white/10 shadow-sm transition-transform duration-300 hover:scale-110 select-none overflow-hidden relative ${method.bgClass}`}
-              >
-                {method.icon}
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>
