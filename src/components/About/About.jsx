@@ -176,7 +176,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 relative z-10">
+            <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 relative z-10 w-full">
 
               <a
                 href="https://drive.google.com/file/d/1isT561I17ECXGPFFXhOiTJ11duS4IsIk/view?usp=sharing"
@@ -197,7 +197,7 @@ const About = () => {
                 </span>
               </Link>
 
-              <div className="flex items-center justify-center gap-2 w-full sm:w-auto ml-auto">
+              <div className="flex items-center justify-center gap-2 w-full sm:w-auto sm:ml-auto">
                 {socialIcons.map((social) => (
                   <a
                     key={social.id}

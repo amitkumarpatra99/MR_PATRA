@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { motion, AnimatePresence, useIsPresent } from "framer-motion";
+import { motion } from "framer-motion";
 import Lenis from "lenis";
 
 // Components
@@ -37,7 +37,7 @@ const PageContainer = ({ children }) => (
     animate="animate"
     exit="exit"
     variants={pageMotion}
-    className="bg-transparent min-h-screen flex flex-col"
+    className="bg-transparent min-h-screen flex flex-col w-full max-w-full overflow-x-hidden"
   >
     {children}
   </motion.main>
