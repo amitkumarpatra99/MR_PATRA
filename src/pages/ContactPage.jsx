@@ -120,7 +120,7 @@ const ContactPage = () => {
               {/* Socials */}
               <div>
                 <span className="text-[10px] text-neutral-500 font-bold tracking-widest uppercase block mb-3">Connect With Me</span>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   {[
                     { icon: <FaLinkedin size={18} />, link: "https://www.linkedin.com/in/amitkumarpatra99", color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]" },
                     { icon: <FaGithub size={18} />, link: "https://github.com/amitkumarpatra99", color: "hover:text-white hover:border-white hover:bg-white/5 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]" },
