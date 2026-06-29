@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { X, Camera } from "lucide-react";
+import OptimizedImage from "../common/OptimizedImage";
 import profileImage1 from "../../assets/Profile/A.jpg";
 import profileImage2 from "../../assets/Profile/AMIT1.jpg";
 import profileImage3 from "../../assets/Profile/AMIT2.jpg";
@@ -175,11 +176,11 @@ const PhotoGalleryModal = ({ isOpen, onClose }) => {
                 className="flex-shrink-0 w-[160px] sm:w-[220px] md:w-[250px] aspect-[3/4] rounded-2xl overflow-hidden relative group border border-white/[0.05] hover:border-blue-500/30 hover:shadow-[0_10px_25px_rgba(59,130,246,0.1)] transition-all duration-500"
               >
                 {/* Image Cover */}
-                <img
+                <OptimizedImage
                   src={photo.url}
                   alt={photo.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                  wrapperClassName="w-full h-full"
                 />
 
                 {/* Dark Vignette Overlay */}

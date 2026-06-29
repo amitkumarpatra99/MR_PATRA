@@ -4,6 +4,7 @@ import { SkillsInfo } from "../../constants";
 import personalMemoji from "../../assets/avatar/Samsung.png";
 import warmCupImg from "../../assets/Project Photo/Warm Cup.png";
 import connectXImg from "../../assets/Project Photo/ConnectX.png";
+import OptimizedImage from "../common/OptimizedImage";
 
 
 
@@ -20,7 +21,7 @@ const Skills = () => {
 
   return (
     // Restored original background (bg-transparent) and selection styles
-    <section id="skills" className="py-12 lg:py-0 bg-transparent relative overflow-hidden font-sans selection:bg-neutral-700 selection:text-white min-h-screen lg:h-screen flex items-center justify-center">
+    <section id="skills" className="content-visibility-auto py-12 lg:py-0 bg-transparent relative overflow-hidden font-sans selection:bg-neutral-700 selection:text-white min-h-screen lg:h-screen flex items-center justify-center">
 
       <style>
         {`
@@ -78,10 +79,11 @@ const Skills = () => {
             </h3>
 
             <div className="mt-auto relative z-10 w-32 h-32 lg:w-36 lg:h-36 xl:w-44 xl:h-44 transform transition-all duration-700 ease-out group-hover:-translate-y-3 group-hover:scale-105">
-              <img
+              <OptimizedImage
                 src={personalMemoji}
                 alt="Engineering with Empathy"
-                className="w-full h-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                wrapperClassName="w-full h-full"
               />
             </div>
           </div>
@@ -96,14 +98,14 @@ const Skills = () => {
               <div className="flex w-[200%] animate-marquee-left items-center">
                 {[...row1Skills, ...row1Skills].map((skill, index) => (
                   <div key={`row1-${index}`} className="w-12 h-12 lg:w-14 lg:h-14 shrink-0 mx-1.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-2.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_10px_rgba(0,0,0,0.2)] transition-all duration-500 hover:bg-white/[0.1] hover:border-white/30 hover:scale-110 cursor-pointer backdrop-blur-sm" title={skill.name}>
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 drop-shadow-md" />
+                    <img src={skill.logo} alt={skill.name} loading="lazy" decoding="async" className="w-full h-full object-contain filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 drop-shadow-md" />
                   </div>
                 ))}
               </div>
               <div className="flex w-[200%] animate-marquee-right items-center">
                 {[...row2Skills, ...row2Skills].map((skill, index) => (
                   <div key={`row2-${index}`} className="w-12 h-12 lg:w-14 lg:h-14 shrink-0 mx-1.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-2.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_10px_rgba(0,0,0,0.2)] transition-all duration-500 hover:bg-white/[0.1] hover:border-white/30 hover:scale-110 cursor-pointer backdrop-blur-sm" title={skill.name}>
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 drop-shadow-md" />
+                    <img src={skill.logo} alt={skill.name} loading="lazy" decoding="async" className="w-full h-full object-contain filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 drop-shadow-md" />
                   </div>
                 ))}
               </div>
@@ -191,13 +193,13 @@ const Skills = () => {
             <div className="relative h-24 lg:h-28 w-full flex items-center justify-center mb-4 lg:mb-6 z-10">
               {/* Left rotated pane - strictly transparent glass */}
               <div className="absolute w-24 h-16 lg:w-28 lg:h-20 border border-white/20 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] transform -rotate-12 -translate-x-6 translate-y-2 group-hover:-rotate-6 group-hover:-translate-x-8 group-hover:translate-y-0 transition-all duration-700 ease-out overflow-hidden bg-black/30 backdrop-blur-md">
-                <img src={warmCupImg} alt="Warm Cup Design" className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100" />
+                <OptimizedImage src={warmCupImg} alt="Warm Cup Design" className="object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-700 scale-110 group-hover:scale-100" wrapperClassName="w-full h-full" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
 
               {/* Right front pane - strictly transparent glass */}
               <div className="absolute w-28 h-20 lg:w-32 lg:h-24 border border-white/30 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-10 backdrop-blur-xl transform group-hover:scale-110 transition-all duration-700 ease-out overflow-hidden bg-black/40 flex flex-col justify-between p-2 lg:p-3">
-                <img src={connectXImg} alt="ConnectX UI" className="absolute inset-0 w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-700 z-0 scale-105 group-hover:scale-100" />
+                <OptimizedImage src={connectXImg} alt="ConnectX UI" className="object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-700 scale-105 group-hover:scale-100" wrapperClassName="absolute inset-0 w-full h-full z-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                 <div className="relative z-20 flex flex-col gap-1 w-full mt-auto">
                   <div className="w-1/2 h-1 bg-white/80 rounded-full shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
