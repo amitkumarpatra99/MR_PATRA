@@ -79,7 +79,7 @@ const Footer = () => {
     { name: "About", to: "about", icon: <FaUser size={14} /> },
     { name: "Skill Set", to: "skills", icon: <FaTools size={14} /> },
     { name: "Project Hub", to: "projects", icon: <FaBriefcase size={14} /> },
-    { name: "My Journey", to: "Journey", icon: <FaCompass size={14} /> },
+    { name: "Testimonials", to: "testimonials", icon: <FaCompass size={14} /> },
   ];
 
   const handleScroll = (to) => {

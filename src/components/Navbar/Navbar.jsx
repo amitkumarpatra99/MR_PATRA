@@ -162,7 +162,7 @@ export default function NavbarPremium() {
 
           <div className="flex items-center gap-3 cursor-pointer relative z-20" onClick={() => scrollToSection("home")}>
             <div className="h-10 w-10 rounded-full border border-white/10 overflow-hidden shadow-lg">
-              <img src="DP.jpg" alt="Profile" className="w-full h-full object-cover" />
+              <img src="DP.jpg" alt="Profile" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
             </div>
           </div>
 
