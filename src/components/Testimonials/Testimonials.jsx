@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import OptimizedImage from "../common/OptimizedImage";
 import virat from "/src/assets/avatar/Virat.png";
 import rohit from "/src/assets/avatar/Rohit.png";
 import abd from "/src/assets/avatar/ABD.jpeg";
@@ -114,7 +115,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="relative py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center z-10"
+      className="content-visibility-auto relative py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center z-10"
     >
       {/* Background Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/[0.02] rounded-[100%] blur-[120px] pointer-events-none z-0" />
@@ -168,10 +169,11 @@ const Testimonials = () => {
                 <div className="flex items-center gap-3.5 mt-auto relative z-10">
                   {/* Avatar */}
                   <div className="w-11 h-11 rounded-full overflow-hidden border border-white/10 shrink-0 shadow-lg">
-                    <img
+                    <OptimizedImage
                       src={item.avatar}
                       alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+                      wrapperClassName="w-full h-full"
                     />
                   </div>
                   {/* Text details */}

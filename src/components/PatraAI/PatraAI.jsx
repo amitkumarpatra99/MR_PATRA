@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { generateLocalResponse } from "./aiEngine";
 import mrpatra from "/DP.jpg";
+import OptimizedImage from "../common/OptimizedImage";
 
 const sendSound = new Audio(
   "https://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3"
@@ -266,7 +267,7 @@ const PatraAI = () => {
               <div className="relative flex items-center justify-between px-5 py-4 border-b border-white/[0.05] bg-gradient-to-r from-blue-950/20 via-transparent to-transparent">
                 <div className="flex items-center gap-3">
                   <div className="relative flex items-center justify-center w-9 h-9 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 p-[2px]">
-                    <img src={mrpatra} alt="Patra AI" className="w-full h-full object-cover rounded-full" />
+                    <OptimizedImage src={mrpatra} alt="Patra AI" className="rounded-full" wrapperClassName="w-full h-full" />
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-blue-400 border-2 border-[#050b1a] rounded-full animate-pulse"></span>
                   </div>
                   <div className="flex flex-col">
