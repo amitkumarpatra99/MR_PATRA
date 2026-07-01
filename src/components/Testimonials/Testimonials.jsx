@@ -80,37 +80,44 @@ const TESTIMONIALS_DATA = [
 ];
 
 const Testimonials = () => {
-  const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Triplicate the array to ensure we never run out of scrolling runway 
-  // before the JS seamlessly resets it back to the middle.
-  const scrollItems = [...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA, ...TESTIMONIALS_DATA];
+  const renderCard = (item, index, prefix) => (
+    <div
+      key={`${prefix}-${item.id}-${index}`}
+      className="shrink-0 w-[290px] sm:w-[350px] min-h-[260px] rounded-[2rem] bg-[#0b0c10]/40 border border-white/[0.08] backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between relative hover:bg-[#12141c]/60 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(255,255,255,0.04)] hover:-translate-y-4 transition-all duration-500 ease-out group/card"
+    >
+      {/* Subtle Inner Highlight */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none rounded-[2rem]" />
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+      {/* Testimonial Text */}
+      <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mb-6 font-medium selection:bg-neutral-800">
+        {item.text}
+      </p>
 
-    let animationFrameId;
-
-    const autoScroll = () => {
-      if (!isPaused) {
-        scrollContainer.scrollLeft += 1; // Adjust this number for speed (higher = faster)
-
-        const scrollWidth = scrollContainer.scrollWidth;
-        const maxScroll = scrollWidth / 3; 
-
-        if (scrollContainer.scrollLeft >= maxScroll) {
-          scrollContainer.scrollLeft -= maxScroll;
-        }
-      }
-      animationFrameId = requestAnimationFrame(autoScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(autoScroll);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
+      {/* Reviewer Info */}
+      <div className="flex items-center gap-3.5 mt-auto relative z-10">
+        {/* Avatar */}
+        <div className="w-11 h-11 rounded-full overflow-hidden border border-white/10 shrink-0 shadow-lg">
+          <OptimizedImage
+            src={item.avatar}
+            alt={item.name}
+            className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+            wrapperClassName="w-full h-full"
+          />
+        </div>
+        {/* Text details */}
+        <div className="flex flex-col text-left">
+          <span className="text-white font-bold text-sm tracking-tight leading-tight">
+            {item.name}
+          </span>
+          <span className="text-neutral-500 text-[11px] font-semibold tracking-wide mt-0.5 max-w-[180px] truncate" title={item.role}>
+            {item.role}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section
@@ -138,72 +145,44 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Native JS Scroll Layout */}
-        <div className="w-full relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          
+        {/* CSS Marquee Scroll Layout */}
+        <div className="w-full relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div 
-            ref={scrollRef}
-            // Pause scrolling on both mouse hover and touch drag
+            className="flex gap-0 w-max animate-marquee-testimonials py-4"
+            style={{
+              animationPlayState: isPaused ? "paused" : "running",
+              willChange: "transform"
+            }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onTouchStart={() => setIsPaused(true)}
             onTouchEnd={() => setIsPaused(false)}
-            // 'py-8' added to give the cards vertical room to float up without getting clipped
-            className="flex w-full gap-6 py-8 overflow-x-auto hide-scrollbar px-10 cursor-grab active:cursor-grabbing"
           >
-            {scrollItems.map((item, index) => (
-              <div
-                key={`${item.id}-${index}`}
-                // hover:-translate-y-4 added for the rise up effect!
-                className="shrink-0 w-[290px] sm:w-[350px] min-h-[260px] rounded-[2rem] bg-[#0b0c10]/40 border border-white/[0.08] backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between relative hover:bg-[#12141c]/60 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(255,255,255,0.04)] hover:-translate-y-4 transition-all duration-500 ease-out group/card"
-              >
-                {/* Subtle Inner Highlight */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none rounded-[2rem]" />
-
-                {/* Testimonial Text */}
-                <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mb-6 font-medium selection:bg-neutral-800">
-                  {item.text}
-                </p>
-
-                {/* Reviewer Info */}
-                <div className="flex items-center gap-3.5 mt-auto relative z-10">
-                  {/* Avatar */}
-                  <div className="w-11 h-11 rounded-full overflow-hidden border border-white/10 shrink-0 shadow-lg">
-                    <OptimizedImage
-                      src={item.avatar}
-                      alt={item.name}
-                      className="object-cover transition-transform duration-500 group-hover/card:scale-110"
-                      wrapperClassName="w-full h-full"
-                    />
-                  </div>
-                  {/* Text details */}
-                  <div className="flex flex-col text-left">
-                    <span className="text-white font-bold text-sm tracking-tight leading-tight">
-                      {item.name}
-                    </span>
-                    <span className="text-neutral-500 text-[11px] font-semibold tracking-wide mt-0.5 max-w-[180px] truncate" title={item.role}>
-                      {item.role}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
+            {/* Copy 1 */}
+            <div className="flex gap-6 pr-6 shrink-0">
+              {TESTIMONIALS_DATA.map((item, index) => renderCard(item, index, "copy1"))}
+            </div>
+            {/* Copy 2 */}
+            <div className="flex gap-6 pr-6 shrink-0">
+              {TESTIMONIALS_DATA.map((item, index) => renderCard(item, index, "copy2"))}
+            </div>
           </div>
-
         </div>
       </div>
 
-      {/* Internal CSS for Hiding Scrollbar */}
+      {/* Internal CSS for marquee and styles */}
       <style dangerouslySetInnerHTML={{
         __html: `
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
+        @keyframes marquee-testimonials {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-50%, 0, 0);
+          }
         }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .hide-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+        .animate-marquee-testimonials {
+          animation: marquee-testimonials 35s linear infinite;
         }
       `}} />
     </section>

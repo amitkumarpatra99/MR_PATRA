@@ -12,19 +12,35 @@ const Home = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#020205] via-[#050b1a] to-[#000000]" />
 
-        <motion.div
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15), transparent 50%)",
-              "radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15), transparent 50%)",
-              "radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1), transparent 50%)",
-            ]
-          }}
-          transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute inset-0 animate-mesh blur-[100px]"
-        />
+        {/* Optimized Static Radial Glows with Compositor-only Animations */}
+        <div className="absolute inset-0 overflow-hidden opacity-80 pointer-events-none z-0">
+          {/* Blob 1 - Blue */}
+          <div 
+            className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.15)_0%,transparent_70%)] blur-[80px]"
+            style={{
+              animation: "float-blob-1 25s infinite alternate ease-in-out",
+              willChange: "transform"
+            }}
+          />
+          {/* Blob 2 - Indigo */}
+          <div 
+            className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] max-w-[700px] max-h-[700px] rounded-full bg-[radial-gradient(circle,rgba(79,70,229,0.15)_0%,transparent_70%)] blur-[80px]"
+            style={{
+              animation: "float-blob-2 20s infinite alternate ease-in-out",
+              willChange: "transform"
+            }}
+          />
+          {/* Blob 3 - Emerald */}
+          <div 
+            className="absolute top-[40%] left-[30%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.08)_0%,transparent_70%)] blur-[90px]"
+            style={{
+              animation: "float-blob-3 22s infinite alternate ease-in-out",
+              willChange: "transform"
+            }}
+          />
+        </div>
 
-        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow" />
       </div>
 
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center justify-between h-full pt-28 pb-16 lg:pt-16 lg:pb-16">
@@ -125,6 +141,33 @@ const Home = () => {
           </div>
         </motion.div>
       </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes float-blob-1 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(40px, 30px, 0) scale(1.1); }
+            100% { transform: translate3d(-20px, -40px, 0) scale(0.95); }
+          }
+          @keyframes float-blob-2 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(-50px, 20px, 0) scale(1.05); }
+            100% { transform: translate3d(30px, -30px, 0) scale(0.9); }
+          }
+          @keyframes float-blob-3 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(20px, -40px, 0) scale(1.15); }
+            100% { transform: translate3d(-30px, 30px, 0) scale(0.95); }
+          }
+          
+          /* Performance adjustment for mobile/low-end devices */
+          @media (max-width: 768px) {
+            .float-blob-1, .float-blob-2, .float-blob-3 {
+              animation-duration: 40s !important;
+            }
+          }
+        `
+      }} />
     </section>
   );
 };
