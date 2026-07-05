@@ -21,39 +21,42 @@ const galleryPhotos = [
   {
     id: 2,
     url: profileImage2,
-    title: "Signature Portrait",
-    caption: "Official portrait showcasing dedication and focus.",
+    title: "Google Developer Group",
+    caption: "Build with AI code for communities.",
     isLocal: true,
   },
   {
+    id: 6,
+    url: profileImage6,
+    title: "Raajdhani Engineering College",
+    caption: "Cultural meet",
+    isLocal: true,
+  },
+
+  {
+    id: 5,
+    url: profileImage5,
+    title: "BPUT Program",
+    caption: "At Institute of Minerals and Materials Technology",
+    isLocal: true,
+  },
+
+
+  {
     id: 3,
     url: profileImage3,
-    title: "Deep Work Environment",
-    caption: "Where complex logic becomes elegant user solutions.",
+    title: "Victorial Memorial",
+    // caption: "Kolkata",
     isLocal: true,
   },
   {
     id: 4,
     url: profileImage4,
     title: "Interface Crafting",
-    caption: "Iterating on modern UI designs and user experience flows.",
+    // caption: "At Utkal Galleria.",
     isLocal: true,
   },
- 
-  {
-    id: 6,
-    url: profileImage5,
-    title: "Signature Pose",
-    caption: "A confident pose showcasing my personality.",
-    isLocal: true,
-  },
-  {
-    id: 7,
-    url: profileImage6,
-    title: "Signature Pose",
-    caption: "A confident pose showcasing my personality.",
-    isLocal: true,
-  },  
+
 ];
 
 const PhotoGalleryModal = ({ isOpen, onClose }) => {
