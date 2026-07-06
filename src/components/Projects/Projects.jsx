@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { projects, techLogos } from "../../constants";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Github, ExternalLink, Clock, Target, Cpu, Zap, HelpCircle, Code2, Globe } from "lucide-react";
-import OptimizedImage from "../common/OptimizedImage";
 
 
 const Projects = () => {
@@ -71,7 +70,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className={`content-visibility-auto relative min-h-screen py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
+      className={`relative min-h-screen py-24 bg-transparent text-white font-sans overflow-hidden flex flex-col items-center ${selectedProject ? "z-[99999]" : "z-10"
         }`}
     >
 
@@ -136,11 +135,10 @@ const Projects = () => {
 
                 {/* Card Image (Anchored to bottom like the reference) */}
                 <div className="absolute bottom-0 left-0 w-full h-[60%] flex items-end justify-center px-6 transition-transform duration-500 group-hover:translate-y-[-8px]">
-                  <OptimizedImage
+                  <img
                     src={project.image}
                     alt={project.title}
-                    className="object-cover object-top rounded-t-xl border-t border-l border-r border-white/10"
-                    wrapperClassName="w-full h-[90%] shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
+                    className="w-full h-[90%] object-cover object-top rounded-t-xl shadow-[0_-10px_30px_rgba(0,0,0,0.5)] border-t border-l border-r border-white/10"
                   />
                   {/* Bottom fade out to blend with card */}
                   <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#111111] to-transparent pointer-events-none group-hover:from-[#161616] transition-colors" />
@@ -192,13 +190,12 @@ const Projects = () => {
 
                     {/* Hero Image */}
                     <div className="mt-12 w-full max-w-3xl h-[180px] sm:h-[250px] md:h-[400px] relative rounded-t-3xl overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-l border-r border-white/10 bg-[#111]">
-                      <OptimizedImage
+                      <img
                         src={selectedProject.image}
                         alt="Hero"
-                        className="object-cover object-top"
-                        wrapperClassName="w-full h-full"
+                        className="w-full h-full object-cover object-top"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80 z-20 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
                     </div>
                   </div>
 
@@ -260,7 +257,7 @@ const Projects = () => {
                                   className="w-10 h-10 rounded-lg bg-white/[0.02] border border-white/[0.05] flex items-center justify-center p-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:bg-white/[0.08] hover:scale-105 transition-all duration-300"
                                   title={tag}
                                 >
-                                  <img src={logo} alt={tag} loading="lazy" decoding="async" className="w-full h-full object-contain" />
+                                  <img src={logo} alt={tag} className="w-full h-full object-contain" />
                                 </div>
                               );
                             }
