@@ -180,7 +180,7 @@ const About = () => {
             <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 relative z-10 w-full">
 
               <a
-                href="https://www.dropbox.com/scl/fi/581mpxhb65ij6lr3nlh04/AMIT-CV.pdf?rlkey=gainzh6s99fzf9avgkkkm4s7s&st=ygwbafcn&dl=0"
+                href="https://drive.google.com/file/d/1la8ihMqlx5t1p2E97W1NJRmdcudPQuPA/view?usp=drivesdk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group/btn inline-flex items-center justify-center gap-2 px-5 py-2.5 font-semibold rounded-full text-xs md:text-sm text-black bg-white hover:bg-neutral-200 transition-all duration-300 w-full sm:w-auto shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] active:scale-95"
