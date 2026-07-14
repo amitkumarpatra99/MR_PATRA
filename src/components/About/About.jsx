@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef } from "react";   
 import { Briefcase, Coffee, Database, ExternalLink, User, Camera, ArrowRight, GraduationCap } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";   
 import profileImage from '../../assets/Profile/A.jpg';
 import PhotoGalleryModal from "./PhotoGalleryModal";
 import OptimizedImage from "../common/OptimizedImage";
@@ -19,6 +19,7 @@ const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] } },
 };
+
 
 const About = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
