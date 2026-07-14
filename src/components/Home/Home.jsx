@@ -96,7 +96,7 @@ const Home = () => {
             className="flex flex-wrap items-center gap-3 md:gap-4"
           >
             <a
-              href="https://drive.google.com/file/d/1la8ihMqlx5t1p2E97W1NJRmdcudPQuPA/view?usp=drivesdk"
+              href="https://drive.google.com/file/d/1_BrhJs06yD1BwwCeLDzYvQLggvlN3lEE/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-button flex items-center gap-2 px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold rounded-full text-black hover:scale-[1.02]"
