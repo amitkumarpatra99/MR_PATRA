@@ -20,7 +20,6 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] } },
 };
 
-
 const About = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const sectionRef = useRef(null);
