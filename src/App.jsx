@@ -16,6 +16,7 @@ import StickyMiniNavbar from "./components/StickyMiniNavbar/StickyMiniNavbar";
 import MobileTopBar from "./components/MobileTopBar/MobileTopBar";
 import SectionDivider from "./components/SectionDivider";
 import Testimonials from "./components/Testimonials/Testimonials";
+import Pricing from "./components/Pricing/Pricing";
 import VisitingBanner from "./components/VisitingBanner/VisitingBanner";
 
 // Pages
@@ -73,6 +74,8 @@ const AnimatedRoutes = () => {
             <Projects />
             <SectionDivider />
             <Testimonials />
+            <SectionDivider />
+            <Pricing />
             <SectionDivider />
             <VisitingBanner />
             <Footer />
