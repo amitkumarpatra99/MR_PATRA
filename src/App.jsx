@@ -25,6 +25,7 @@ import EducationPage from "./pages/EducationPage";
 import ContactPage from "./pages/ContactPage";
 import NavigationPage from "./pages/NavigationPage";
 import ProfilesPage from "./pages/ProfilesPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -128,6 +129,16 @@ const AnimatedRoutes = () => {
         element={
           <PageContainer>
             <ProfilesPage />
+            <Footer />
+          </PageContainer>
+        }
+      />
+
+      <Route
+        path="/checkout"
+        element={
+          <PageContainer>
+            <CheckoutPage />
             <Footer />
           </PageContainer>
         }
