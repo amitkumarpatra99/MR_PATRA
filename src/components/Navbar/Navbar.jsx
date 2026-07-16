@@ -7,7 +7,8 @@ import {
   FiMoreVertical,
   FiArrowUp,
   FiX,
-  FiMessageSquare
+  FiMessageSquare,
+  FiDollarSign
 } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 import {
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { id: "skills", label: "Skills", icon: FiCpu },
   { id: "projects", label: "Projects", icon: FiLayers },
   { id: "testimonials", label: "Testimonials", icon: FiMessageSquare },
+  { id: "pricing", label: "Pricing", icon: FiDollarSign },
 ];
 
 export default function NavbarPremium() {
@@ -243,6 +245,30 @@ export default function NavbarPremium() {
 
               <div className="h-[1px] w-full bg-white/10 my-1"></div>
 
+              {/* Mobile Testimonials */}
+              <button 
+                onClick={() => scrollToSection("testimonials")} 
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
+                  activeTab === "testimonials" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
+                }`}
+              >
+                <FiMessageSquare className="text-lg text-blue-400" />
+                <span className="text-sm font-medium">Testimonials</span>
+              </button>
+
+              {/* Mobile Pricing */}
+              <button 
+                onClick={() => scrollToSection("pricing")} 
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
+                  activeTab === "pricing" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
+                }`}
+              >
+                <FiDollarSign className="text-lg text-[#4FB7B3]" />
+                <span className="text-sm font-medium">Pricing</span>
+              </button>
+
+              <div className="h-[1px] w-full bg-white/10 my-1"></div>
+
               <div className="flex items-center justify-evenly py-1">
                 <a href="https://github.com/amitkumarpatra99" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 text-slate-200 hover:text-white hover:bg-white/10 transition-colors">
                   <FaGithub size={20} />
@@ -273,7 +299,7 @@ export default function NavbarPremium() {
             rounded-full 
           "
         >
-          {NAV_ITEMS.map((item) => {
+          {NAV_ITEMS.slice(0, 4).map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
