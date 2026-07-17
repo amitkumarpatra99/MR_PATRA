@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, ChevronUp, Sparkles, Zap, Shield } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Sparkles, Zap, Shield, ChevronLeft, ChevronRight } from "lucide-react";
 
 const PLANS = [
   {
@@ -9,9 +9,9 @@ const PLANS = [
     badge: "STARTER",
     name: "Basic",
     subtitle: "Ideal for personal sites, portfolios, and launching a digital presence.",
-    priceMonthly: 12999,
-    priceYearly: 10999,
-    saving: "Save ₹24,000 / year",
+    priceMonthly: 2999,
+    priceYearly: 1999,
+    saving: "Save ₹12,000 / year",
     tags: ["HTML5", "CSS3", "JavaScript"],
     icon: Zap,
     features: [
@@ -32,9 +32,9 @@ const PLANS = [
     badge: "MOST POPULAR",
     name: "Professional",
     subtitle: "Perfect for growing businesses requiring dynamic workflows and custom CMS.",
-    priceMonthly: 19999,
-    priceYearly: 14999,
-    saving: "Save ₹60,000 / year",
+    priceMonthly: 5999,
+    priceYearly: 4999,
+    saving: "Save ₹12,000 / year",
     tags: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
     icon: Sparkles,
     features: [
@@ -56,9 +56,9 @@ const PLANS = [
     badge: "FULL SOLUTION",
     name: "Enterprise",
     subtitle: "For complex web applications, platforms, and full-scale software products.",
-    priceMonthly: 29999,
-    priceYearly: 24999,
-    saving: "Save ₹120,000 / year",
+    priceMonthly: 11999,
+    priceYearly: 9999,
+    saving: "Save ₹24,000 / year",
     tags: ["TypeScript", "Node.js", "PostgreSQL", "Docker", "AWS"],
     icon: Shield,
     features: [
@@ -94,6 +94,15 @@ export default function Pricing() {
 
   // Mouse hover coordinate tracking for card glow effect
   const cardRefs = useRef([]);
+  const sliderRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (sliderRef.current) {
+      const { scrollLeft, clientWidth } = sliderRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      sliderRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
 
   const handleMouseMove = (index, e) => {
     const card = cardRefs.current[index];
@@ -181,142 +190,164 @@ export default function Pricing() {
           
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full items-stretch px-2 sm:px-0">
-          {PLANS.map((plan, idx) => {
-            const PlanIcon = plan.icon;
-            const isYearly = billingCycle === "yearly";
-            const price = isYearly ? plan.priceYearly : plan.priceMonthly;
+        {/* Pricing Cards Slider */}
+        <div className="relative group/slider w-full px-4">
+          {/* Navigation Arrows (Visible on Hover/Desktop) */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute -left-12 lg:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute -right-12 lg:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 items-center justify-center text-white opacity-0 group-hover/slider:opacity-100 transition-opacity hidden md:flex hover:bg-[#2a2a2a] shadow-xl"
+          >
+            <ChevronRight size={24} />
+          </button>
 
-            return (
-              <div
-                key={plan.id}
-                ref={(el) => (cardRefs.current[idx] = el)}
-                onMouseMove={(e) => handleMouseMove(idx, e)}
-                className={`group relative flex flex-col justify-between rounded-[2.2rem] bg-[#0b0c10]/40 border ${
-                  plan.isRecommended
-                    ? "border-[#4FB7B3]/40 bg-[#0b0c10]/70 shadow-[0_30px_60px_rgba(79,183,179,0.08)]"
-                    : "border-white/[0.07]"
-                } backdrop-blur-md p-6 sm:p-8 lg:p-10 transition-all duration-500 hover:-translate-y-2 hover:bg-[#12141c]/50 hover:border-white/20`}
-                style={{
-                  "--mouse-x": "0px",
-                  "--mouse-y": "0px",
-                }}
-              >
-                {/* Mouse follow glow */}
+          {/* Slider Track */}
+          <div
+            ref={sliderRef}
+            className="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4 hide-scrollbar w-full"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            data-lenis-prevent
+          >
+            {PLANS.map((plan, idx) => {
+              const PlanIcon = plan.icon;
+              const isYearly = billingCycle === "yearly";
+              const price = isYearly ? plan.priceYearly : plan.priceMonthly;
+
+              return (
                 <div
-                  className="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), ${plan.glowColor}, transparent 85%)`,
-                  }}
-                />
-
-                {/* Subtle Inner Highlight */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.015] to-transparent pointer-events-none rounded-[2.2rem]" />
-
-                {/* Card Top Details */}
-                <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <span className={`text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full ${
-                      plan.isRecommended 
-                        ? "bg-[#4FB7B3]/15 text-[#4FB7B3] border border-[#4FB7B3]/25" 
-                        : "bg-white/[0.04] text-neutral-400 border border-white/[0.06]"
-                    }`}>
-                      {plan.badge}
-                    </span>
-                    {plan.isRecommended && (
-                      <span className="flex items-center gap-1 text-[11px] font-semibold text-[#4FB7B3] animate-pulse">
-                        <Sparkles className="w-3.5 h-3.5" /> Popular
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`p-2 rounded-xl bg-gradient-to-br ${plan.color} border border-white/5`}>
-                      <PlanIcon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white tracking-tight">{plan.name}</h3>
-                  </div>
-
-                  <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-8 font-medium">
-                    {plan.subtitle}
-                  </p>
-
-                  {/* Pricing Header */}
-                  <div className="mb-8">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                        {formatPrice(price)}
-                      </span>
-                      <span className="text-neutral-500 text-sm font-semibold">/month</span>
-                    </div>
-                    <div className="h-6 mt-1.5 flex items-center">
-                      <AnimatePresence mode="wait">
-                        {isYearly ? (
-                          <motion.span
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 4 }}
-                            transition={{ duration: 0.2 }}
-                            className="text-[11px] font-bold text-[#4FB7B3] tracking-wide uppercase"
-                          >
-                            {plan.saving}
-                          </motion.span>
-                        ) : (
-                          <span className="text-[11px] font-bold text-neutral-500 tracking-wide uppercase">
-                            Billed monthly
-                          </span>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-
-                  {/* Technology badging */}
-                  <div className="flex flex-wrap gap-2 mb-8 border-t border-b border-white/[0.06] py-5">
-                    {plan.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] font-semibold bg-white/[0.03] text-neutral-300 border border-white/[0.06] rounded-md px-2.5 py-1 transition-all duration-300 hover:bg-white/[0.07] hover:border-white/[0.12]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-4 mb-10">
-                    <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-500">Key Deliverables</p>
-                    <ul className="space-y-3.5 text-left">
-                      {plan.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <div className={`p-0.5 rounded-full shrink-0 mt-0.5 ${
-                            plan.isRecommended ? "bg-[#4FB7B3]/15 text-[#4FB7B3]" : "bg-white/[0.04] text-neutral-400"
-                          }`}>
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                          <span className="text-neutral-300 text-xs sm:text-[13px] leading-snug font-medium">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* CTA Action Button */}
-                <button
-                  onClick={() => handlePurchase(plan.id)}
-                  className={`w-full py-4 px-6 rounded-full text-sm font-bold tracking-tight transition-all duration-300 flex items-center justify-center gap-2 group/btn ${
+                  key={plan.id}
+                  ref={(el) => (cardRefs.current[idx] = el)}
+                  onMouseMove={(e) => handleMouseMove(idx, e)}
+                  className={`snap-center shrink-0 w-[290px] sm:w-[350px] md:w-[380px] group relative flex flex-col justify-between rounded-[2.2rem] bg-[#0b0c10]/40 border ${
                     plan.isRecommended
-                      ? "bg-white text-black hover:bg-neutral-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)]"
-                      : "bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#4FB7B3]/40 hover:-translate-y-0.5 text-white"
-                  }`}
+                      ? "border-[#4FB7B3]/40 bg-[#0b0c10]/70 shadow-[0_30px_60px_rgba(79,183,179,0.08)]"
+                      : "border-white/[0.07]"
+                  } backdrop-blur-md p-5 sm:p-6 md:p-7 transition-all duration-500 hover:-translate-y-2 hover:bg-[#12141c]/50 hover:border-white/20`}
+                  style={{
+                    "--mouse-x": "0px",
+                    "--mouse-y": "0px",
+                  }}
                 >
-                  {plan.buttonText}
-                </button>
-              </div>
-            );
-          })}
+                  {/* Mouse follow glow */}
+                  <div
+                    className="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), ${plan.glowColor}, transparent 85%)`,
+                    }}
+                  />
+
+                  {/* Subtle Inner Highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/[0.015] to-transparent pointer-events-none rounded-[2.2rem]" />
+
+                  {/* Card Top Details */}
+                  <div>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className={`text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full ${
+                        plan.isRecommended 
+                          ? "bg-[#4FB7B3]/15 text-[#4FB7B3] border border-[#4FB7B3]/25" 
+                          : "bg-white/[0.04] text-neutral-400 border border-white/[0.06]"
+                      }`}>
+                        {plan.badge}
+                      </span>
+                      {plan.isRecommended && (
+                        <span className="flex items-center gap-1 text-[11px] font-semibold text-[#4FB7B3] animate-pulse">
+                          <Sparkles className="w-3.5 h-3.5" /> Popular
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`p-2 rounded-xl bg-gradient-to-br ${plan.color} border border-white/5`}>
+                        <PlanIcon className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white tracking-tight">{plan.name}</h3>
+                    </div>
+
+                    <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-4 font-medium">
+                      {plan.subtitle}
+                    </p>
+
+                    {/* Pricing Header */}
+                    <div className="mb-4">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                          {formatPrice(price)}
+                        </span>
+                        <span className="text-neutral-500 text-sm font-semibold">/month</span>
+                      </div>
+                      <div className="h-4 mt-1 flex items-center">
+                        <AnimatePresence mode="wait">
+                          {isYearly ? (
+                            <motion.span
+                              initial={{ opacity: 0, y: -4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 4 }}
+                              transition={{ duration: 0.2 }}
+                              className="text-[11px] font-bold text-[#4FB7B3] tracking-wide uppercase"
+                            >
+                              {plan.saving}
+                            </motion.span>
+                          ) : (
+                            <span className="text-[11px] font-bold text-neutral-500 tracking-wide uppercase">
+                              Billed monthly
+                            </span>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+
+                    {/* Technology badging */}
+                    <div className="flex flex-wrap gap-2 mb-4 border-t border-b border-white/[0.06] py-3.5">
+                      {plan.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[11px] font-semibold bg-white/[0.03] text-neutral-300 border border-white/[0.06] rounded-md px-2.5 py-1 transition-all duration-300 hover:bg-white/[0.07] hover:border-white/[0.12]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Features List */}
+                    <div className="space-y-3 mb-6">
+                      <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-500">Key Deliverables</p>
+                      <ul className="space-y-2 text-left">
+                        {plan.features.map((feature, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className={`p-0.5 rounded-full shrink-0 mt-0.5 ${
+                              plan.isRecommended ? "bg-[#4FB7B3]/15 text-[#4FB7B3]" : "bg-white/[0.04] text-neutral-400"
+                            }`}>
+                              <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            </div>
+                            <span className="text-neutral-300 text-xs sm:text-[13px] leading-snug font-medium">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* CTA Action Button */}
+                  <button
+                    onClick={() => handlePurchase(plan.id)}
+                    className={`w-full py-3 px-6 rounded-full text-sm font-bold tracking-tight transition-all duration-300 flex items-center justify-center gap-2 group/btn ${
+                      plan.isRecommended
+                        ? "bg-white text-black hover:bg-neutral-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)]"
+                        : "bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-[#4FB7B3]/40 hover:-translate-y-0.5 text-white"
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Compare Features Section */}
@@ -382,6 +413,15 @@ export default function Pricing() {
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Internal CSS for scrollbar hiding/styling */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        /* Hide scrollbar for slider track */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+      `}} />
     </section>
   );
 }
