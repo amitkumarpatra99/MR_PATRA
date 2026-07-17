@@ -74,9 +74,9 @@ const AnimatedRoutes = () => {
             <SectionDivider />
             <Projects />
             <SectionDivider />
-            <Testimonials />
-            <SectionDivider />
             <Pricing />
+            <SectionDivider />
+            <Testimonials />
             <SectionDivider />
             <VisitingBanner />
             <Footer />

@@ -113,7 +113,6 @@ const Footer = () => {
       {/* 🌟 Top Subtle Divider 🌟 */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
-      {/* 🌟 Ambient OLED Background Glows 🌟 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[5%] w-[600px] h-[600px] bg-blue-600/[0.03] rounded-full blur-[140px] mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] bg-indigo-600/[0.03] rounded-full blur-[140px] mix-blend-screen" />
@@ -134,7 +133,6 @@ const Footer = () => {
         </div>
 
 
-        {/* 🌟 RESPONSIVE COLUMNS (Accordions on Mobile, Columns on Desktop) 🌟 */}
         <div className="flex flex-col md:grid md:grid-cols-3 gap-0 md:gap-12 lg:gap-16 pb-8 md:pb-16">
 
           {/* 1. NAVIGATION */}
@@ -213,7 +211,7 @@ const Footer = () => {
                 <li className="flex items-center pt-2 text-neutral-400 text-sm cursor-default group">
                   <FaRegEye size={16} className="mr-3.5 text-blue-500/50 group-hover:text-blue-400 transition-colors" />
                   <span className="font-semibold group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300">
-                    5985+ <span className="font-normal opacity-50">Site Visits</span>
+                    8154+ <span className="font-normal opacity-50">Site Visits</span>
                   </span>
                 </li>
               </ul>
@@ -287,7 +285,6 @@ const Footer = () => {
 
         </div>
 
-        {/* 🌟 MOBILE SOCIAL / FOLLOW SECTION (MATCHING SCREENSHOT) 🌟 */}
         <div className="md:hidden py-6 border-b border-white/[0.06] my-2">
           <h4 className="text-sm font-bold text-white uppercase tracking-widest opacity-85 mb-2">Follow</h4>
           <p className="text-xs text-neutral-400 mb-6">Connect with us on our social channels</p>
