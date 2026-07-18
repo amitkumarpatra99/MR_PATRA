@@ -24,8 +24,8 @@ const NAV_ITEMS = [
   { id: "about", label: "About", icon: FiUser },
   { id: "skills", label: "Skills", icon: FiCpu },
   { id: "projects", label: "Projects", icon: FiLayers },
-  { id: "testimonials", label: "Testimonials", icon: FiMessageSquare },
   { id: "pricing", label: "Pricing", icon: FiDollarSign },
+  { id: "testimonials", label: "Testimonials", icon: FiMessageSquare },
 ];
 
 export default function NavbarPremium() {
@@ -211,14 +211,7 @@ export default function NavbarPremium() {
         </motion.nav>
       </div>
 
-      {/* 
-          MOBILE TOP BAR (Always Visible)
-      */}
-
-
-      {/* 
-          MOBILE BOTTOM FLOATING DOCK (Hides on Scroll)
-     */}
+    
       <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-[95%] max-w-[390px]">
 
         {/* --- POPUP MENU ("...") --- */}
