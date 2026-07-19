@@ -211,7 +211,7 @@ export default function NavbarPremium() {
         </motion.nav>
       </div>
 
-    
+
       <div className="md:hidden fixed bottom-6 inset-x-0 mx-auto z-50 w-[95%] max-w-[390px]">
 
         {/* --- POPUP MENU ("...") --- */}
@@ -239,22 +239,20 @@ export default function NavbarPremium() {
               <div className="h-[1px] w-full bg-white/10 my-1"></div>
 
               {/* Mobile Testimonials */}
-              <button 
-                onClick={() => scrollToSection("testimonials")} 
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
-                  activeTab === "testimonials" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
-                }`}
+              <button
+                onClick={() => scrollToSection("testimonials")}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${activeTab === "testimonials" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
+                  }`}
               >
                 <FiMessageSquare className="text-lg text-blue-400" />
                 <span className="text-sm font-medium">Testimonials</span>
               </button>
 
               {/* Mobile Pricing */}
-              <button 
-                onClick={() => scrollToSection("pricing")} 
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${
-                  activeTab === "pricing" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
-                }`}
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors ${activeTab === "pricing" ? "text-white bg-white/5 font-semibold" : "text-slate-200"
+                  }`}
               >
                 <FiDollarSign className="text-lg text-[#4FB7B3]" />
                 <span className="text-sm font-medium">Pricing</span>
