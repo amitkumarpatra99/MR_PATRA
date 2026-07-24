@@ -168,13 +168,15 @@ const Projects = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Close Button */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05, rotate: 90 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleCloseModal}
                   // 🔥 FIX: Added z-[10000] here just to be safe
-                  className="absolute top-6 right-6 z-[10000] w-10 h-10 flex items-center justify-center rounded-full bg-[#1a1a1a] text-neutral-400 hover:text-white hover:bg-[#2a2a2a] transition-colors border border-white/10"
+                  className="absolute top-6 right-6 z-[10000] w-10 h-10 premium-close-btn cursor-pointer shadow-lg"
                 >
                   <X size={20} />
-                </button>
+                </motion.button>
 
                 {/* Scrollable Content Area */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar pb-20" data-lenis-prevent>
