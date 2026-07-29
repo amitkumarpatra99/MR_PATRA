@@ -123,6 +123,9 @@ import jaap from './assets/Project Photo/Jaap.png'
 import finman from './assets/Project Photo/finman.png'
 import panalysis from './assets/Project Photo/portfolioanalysis.png'
 import bdms from './assets/Project Photo/bdms.png'
+import loop from './assets/Project Photo/Loop AI.png'
+import drug from './assets/Project Photo/pharma.png'
+
 
 
 
@@ -273,6 +276,41 @@ export const projects = [
     image: finman,
     tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
     github: "https://github.com/amitkumarpatra99/FinMan",
+    duration: "4 Months",
+    goals: [
+      "Aggregate accounts and cards in a single, high-fidelity view",
+      "Integrate interactive transaction search and dynamic charts",
+      "Establish secure fund transfers with instant confirmation updates",
+      "Optimize server-side page fetches to ensure secure dashboard loads"
+    ],
+    engineering: "Leverages React and Next.js server actions for backend requests. Chart.js powers the visual breakdown of transactions, and standard security practices are followed for mock banking services.",
+    impact: "Simplifies accounting and finance tasks, enabling users to manage resources and see exactly where their money is spent."
+  },
+  {
+    id: 27,
+    title: "LOOP AI",
+    description: "Loop AI is an innovative web application that leverages artificial intelligence to provide users with personalized insights and recommendations. By analyzing user behavior and preferences, Loop AI delivers tailored content, predictive analytics, and actionable suggestions to enhance decision-making and optimize user experiences.",
+    image: loop,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/AI_Customer_Feedback_Platform",
+    duration: "3 Months",
+    goals: [
+      "Aggregate accounts and cards in a single, high-fidelity view",
+      "Integrate interactive transaction search and dynamic charts",
+      "Establish secure fund transfers with instant confirmation updates",
+      "Optimize server-side page fetches to ensure secure dashboard loads"
+    ],
+    engineering: "Leverages React and Next.js server actions for backend requests. Chart.js powers the visual breakdown of transactions, and standard security practices are followed for mock banking services.",
+    impact: "Simplifies accounting and finance tasks, enabling users to manage resources and see exactly where their money is spent."
+  },
+
+  {
+    id: 28,
+    title: "Drug Mannager",
+    description: "Pharma AI is a cutting-edge web application that utilizes artificial intelligence to streamline pharmaceutical research and development. It provides predictive modeling, drug interaction analysis, and personalized treatment recommendations, enabling researchers and healthcare professionals to make data-driven decisions and accelerate the drug discovery process.",
+    image: drug,
+    tags: ["HTML", "CSS", "JavaScript", "Mongo DB", "Express Js", "React JS ", "Next JS", "Node JS", "Tailwind CSS", "API", "Framer Motion", "React-Icons", "Redux", "Material UI", "GSAP"],
+    github: "https://github.com/amitkumarpatra99/DrugMannager",
     duration: "4 Months",
     goals: [
       "Aggregate accounts and cards in a single, high-fidelity view",
