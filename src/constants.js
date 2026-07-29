@@ -123,7 +123,7 @@ import jaap from './assets/Project Photo/Jaap.png'
 import finman from './assets/Project Photo/finman.png'
 import panalysis from './assets/Project Photo/portfolioanalysis.png'
 import bdms from './assets/Project Photo/bdms.png'
-import loop from './assets/Project Photo/Loop AI.png'
+import loop from './assets/Project Photo/LOOP AI.png'
 import drug from './assets/Project Photo/pharma.png'
 
 
