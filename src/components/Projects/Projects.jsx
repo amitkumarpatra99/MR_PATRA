@@ -91,7 +91,7 @@ const Projects = () => {
             Featured <span className="text-neutral-400">Work</span>
           </h2>
           <p className="text-neutral-400 text-sm md:text-base">
-            My past projects showcasing my expertise.
+            Explore 35+ Projects With Live Previews & Source Code of Each Project.
           </p>
         </div>
 
