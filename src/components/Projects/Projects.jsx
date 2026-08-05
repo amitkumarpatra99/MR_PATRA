@@ -123,7 +123,7 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 onClick={() => handleOpenModal(project)}
-                className="snap-center shrink-0 w-[280px] md:w-[340px] h-[420px] rounded-[2rem] glass-card border border-white/10 flex flex-col relative overflow-hidden cursor-pointer hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-2 transition-all duration-500 group"
+                className="snap-center shrink-0 min-w-[240px] w-[280px] sm:w-[300px] md:w-[340px] h-auto sm:h-[420px] rounded-[2rem] glass-card border border-white/10 flex flex-col relative overflow-hidden cursor-pointer hover:border-white/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-2 transition-all duration-500 group"
               >
                 {/* Card Text Content */}
                 <div className="p-8 z-10">

@@ -85,7 +85,7 @@ const Testimonials = () => {
   const renderCard = (item, index, prefix) => (
     <div
       key={`${prefix}-${item.id}-${index}`}
-      className="shrink-0 w-[290px] sm:w-[350px] min-h-[260px] rounded-[2rem] bg-[#0b0c10]/40 border border-white/[0.08] backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between relative hover:bg-[#12141c]/60 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(255,255,255,0.04)] hover:-translate-y-4 transition-all duration-500 ease-out group/card"
+      className="shrink-0 min-w-[240px] w-[280px] sm:w-[330px] min-h-[260px] rounded-[2rem] bg-[#0b0c10]/40 border border-white/[0.08] backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between relative hover:bg-[#12141c]/60 hover:border-white/20 hover:shadow-[0_20px_40px_rgba(255,255,255,0.04)] hover:-translate-y-4 transition-all duration-500 ease-out group/card"
     >
       {/* Subtle Inner Highlight */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none rounded-[2rem]" />
