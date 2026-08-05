@@ -223,7 +223,7 @@ export default function Pricing() {
                   key={plan.id}
                   ref={(el) => (cardRefs.current[idx] = el)}
                   onMouseMove={(e) => handleMouseMove(idx, e)}
-                  className={`snap-center shrink-0 w-[290px] sm:w-[350px] md:w-[380px] group relative flex flex-col justify-between rounded-[2.2rem] bg-[#0b0c10]/40 border ${
+                  className={`snap-center shrink-0 min-w-[240px] w-[280px] sm:w-[320px] md:w-[360px] group relative flex flex-col justify-between rounded-[2.2rem] bg-[#0b0c10]/40 border ${
                     plan.isRecommended
                       ? "border-[#4FB7B3]/40 bg-[#0b0c10]/70 shadow-[0_30px_60px_rgba(79,183,179,0.08)]"
                       : "border-white/[0.07]"
