@@ -48,7 +48,6 @@ const ContactPage = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
-      {/* --- CLOSE BUTTON --- */}
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -69,7 +68,6 @@ const ContactPage = () => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-          {/* Column 1: Info and Socials */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-10">
             <div>
               <div className="premium-header-badge mb-6">
