@@ -61,7 +61,6 @@ export default function CheckoutPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Get selected plan and cycle or default to professional monthly
   const { planId = "professional", billingCycle = "monthly" } = location.state || {};
   const plan = PLANS_DATA[planId] || PLANS_DATA.professional;
   
