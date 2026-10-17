@@ -101,10 +101,8 @@ const ExperiencePage = () => {
                     </div>
                   </div>
 
-                  {/* Content Body */}
                   <div className="flex flex-col gap-4 mt-auto">
 
-                    {/* Meta Badges */}
                     <div className="flex flex-wrap gap-2">
                       {/* Date */}
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-blue-500/[0.05] text-blue-300 border border-blue-500/[0.1]">
