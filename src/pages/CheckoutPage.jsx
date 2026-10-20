@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
-import { Check, CreditCard, ArrowLeft, ShieldCheck, HelpCircle, FileText } from "lucide-react";
+import { Check, CreditCard, ArrowLeft, ShieldCheck, HelpCircle, FileText, Loader2 } from "lucide-react";
 
 const PLANS_DATA = {
   basic: {
@@ -57,9 +57,24 @@ const PLANS_DATA = {
   },
 };
 
+// Smooth entrance animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, ease: "easeOut" }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+};
+
 export default function CheckoutPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const { planId = "professional", billingCycle = "monthly" } = location.state || {};
   const plan = PLANS_DATA[planId] || PLANS_DATA.professional;
@@ -84,16 +99,29 @@ export default function CheckoutPage() {
   };
 
   const handlePay = () => {
-    window.open("https://pages.razorpay.com/amitpatra", "_blank");
+    // Add visual feedback before redirecting
+    setIsProcessing(true);
+    setTimeout(() => {
+      window.open("https://pages.razorpay.com/amitpatra", "_blank");
+      setIsProcessing(false);
+    }, 800);
   };
 
   return (
     <div className="min-h-screen bg-transparent text-white flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 font-sans relative overflow-hidden">
       
-      {/* Ambient OLED Background Glows */}
+      {/* Ambient OLED Background Glows with slow pulsing */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.04] rounded-full blur-[120px] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" />
+        <motion.div 
+          animate={{ opacity: [0.4, 0.7, 0.4] }} 
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/[0.04] rounded-full blur-[120px] mix-blend-screen" 
+        />
+        <motion.div 
+          animate={{ opacity: [0.4, 0.7, 0.4] }} 
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/[0.03] rounded-full blur-[120px] mix-blend-screen" 
+        />
       </div>
 
       {/* Close button */}
@@ -102,21 +130,27 @@ export default function CheckoutPage() {
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.05, rotate: 90 }}
         whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
         onClick={() => navigate("/")}
         className="fixed top-4 right-4 md:top-6 md:right-6 z-50 w-11 h-11 md:w-12 md:h-12 premium-close-btn cursor-pointer shadow-lg flex items-center justify-center"
       >
         <FaTimes size={18} />
       </motion.button>
 
-      <div className="w-full max-w-5xl px-4 py-16 md:py-24 relative z-10">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="w-full max-w-5xl px-4 py-16 md:py-24 relative z-10"
+      >
         
         {/* Header section */}
-        <div className="mb-12 flex flex-col items-start">
+        <motion.div variants={itemVariants} className="mb-12 flex flex-col items-start">
           <button
             onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#4FB7B3] hover:text-[#4FB7B3]/80 transition-colors mb-6 group"
+            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#4FB7B3] hover:text-[#4FB7B3]/80 transition-all duration-300 mb-6 group"
           >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> Back to pricing
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform duration-300" /> Back to pricing
           </button>
           
           <div className="premium-header-badge mb-4">
@@ -128,14 +162,14 @@ export default function CheckoutPage() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
             Review <span className="text-neutral-400">Order Details</span>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Responsive Grid splits plan detail vs policy info */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Plan Description Card (Left) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="glass-card border border-white/10 rounded-[2rem] p-6 sm:p-8 bg-[#0b0c10]/40 backdrop-blur-md relative overflow-hidden shadow-2xl">
+          <motion.div variants={itemVariants} className="lg:col-span-7 space-y-6">
+            <div className="glass-card border border-white/10 rounded-[2rem] p-6 sm:p-8 bg-[#0b0c10]/40 backdrop-blur-md relative overflow-hidden shadow-2xl transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(79,183,179,0.05)]">
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
               
               <div className="flex justify-between items-start mb-6">
@@ -148,7 +182,7 @@ export default function CheckoutPage() {
                   </span>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                     {formatPrice(price)}
                   </div>
                   <span className="text-neutral-500 text-xs sm:text-sm font-medium">/month</span>
@@ -166,7 +200,7 @@ export default function CheckoutPage() {
                 {plan.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[11px] font-semibold bg-white/[0.03] text-neutral-300 border border-white/[0.06] rounded-md px-2.5 py-1"
+                    className="text-[11px] font-semibold bg-white/[0.03] text-neutral-300 border border-white/[0.06] rounded-md px-2.5 py-1 transition-colors hover:bg-white/[0.08]"
                   >
                     {tag}
                   </span>
@@ -174,7 +208,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Delivery Details */}
-              <div className="grid grid-cols-2 gap-4 mb-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4 text-xs sm:text-sm font-semibold">
+              <div className="grid grid-cols-2 gap-4 mb-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4 text-xs sm:text-sm font-semibold transition-colors hover:bg-white/[0.03]">
                 <div>
                   <span className="text-neutral-500 text-[10px] uppercase tracking-wider block mb-0.5">Estimated Delivery</span>
                   <span className="text-neutral-200">{plan.delivery}</span>
@@ -192,11 +226,11 @@ export default function CheckoutPage() {
                 </h3>
                 <ul className="space-y-3">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div className="p-0.5 rounded-full bg-[#4FB7B3]/15 text-[#4FB7B3] shrink-0 mt-0.5">
+                    <li key={idx} className="flex items-start gap-3 group">
+                      <div className="p-0.5 rounded-full bg-[#4FB7B3]/15 text-[#4FB7B3] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110">
                         <Check className="w-3.5 h-3.5 stroke-[3]" />
                       </div>
-                      <span className="text-neutral-300 text-sm leading-snug">
+                      <span className="text-neutral-300 text-sm leading-snug transition-colors duration-300 group-hover:text-white">
                         {feature}
                       </span>
                     </li>
@@ -204,11 +238,11 @@ export default function CheckoutPage() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Payment Policies & Pay Actions (Right) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="glass-card border border-white/10 rounded-[2rem] p-6 sm:p-8 bg-[#0b0c10]/40 backdrop-blur-md relative overflow-hidden shadow-2xl space-y-6">
+          <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
+            <div className="glass-card border border-white/10 rounded-[2rem] p-6 sm:p-8 bg-[#0b0c10]/40 backdrop-blur-md relative overflow-hidden shadow-2xl space-y-6 transition-all duration-500 hover:border-white/20">
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
               
               <h3 className="text-lg font-bold tracking-tight text-white flex items-center gap-2.5">
@@ -217,37 +251,23 @@ export default function CheckoutPage() {
 
               {/* Terms and policies list */}
               <div className="space-y-4 text-xs sm:text-[13px] leading-relaxed text-neutral-400">
-                <div>
+                <div className="hover:text-neutral-300 transition-colors duration-300">
                   <h4 className="font-bold text-neutral-200 uppercase tracking-wider text-[11px] mb-1">
                     1. Downpayment & Milestones
                   </h4>
-                  <p>
-                    A standard 50% advance downpayment is required to schedule and initiate code development. The remaining 50% balance is invoiced upon project sign-off and before source code transfer.
-                  </p>
+                  <p>A standard 50% advance downpayment is required to schedule and initiate code development. The remaining 50% balance is invoiced upon project sign-off and before source code transfer.</p>
                 </div>
-                <div>
+                <div className="hover:text-neutral-300 transition-colors duration-300">
                   <h4 className="font-bold text-neutral-200 uppercase tracking-wider text-[11px] mb-1">
                     2. Revision Scope
                   </h4>
-                  <p>
-                    Revisions include visual refinements, typography tweaks, and functional adjustments within the initial scope. Changes outside of the initial design contract will be billed separately.
-                  </p>
+                  <p>Revisions include visual refinements, typography tweaks, and functional adjustments within the initial scope. Changes outside of the initial design contract will be billed separately.</p>
                 </div>
-                <div>
+                <div className="hover:text-neutral-300 transition-colors duration-300">
                   <h4 className="font-bold text-neutral-200 uppercase tracking-wider text-[11px] mb-1">
                     3. Refund Policy
                   </h4>
-                  <p>
-                    Once work begins (after project kickoff discussion), the advance fee is non-refundable. If the project is terminated mid-way, invoice values will be recalculated based on hours worked.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-neutral-200 uppercase tracking-wider text-[11px] mb-1">
-                    4. Post-Delivery Support
-                  </h4>
-                  <p>
-                    Includes bug fixes and minor troubleshooting. Major updates, custom asset changes, and database modifications after launch require an ongoing maintenance package.
-                  </p>
+                  <p>Once work begins (after project kickoff discussion), the advance fee is non-refundable. If the project is terminated mid-way, invoice values will be recalculated based on hours worked.</p>
                 </div>
               </div>
 
@@ -255,14 +275,23 @@ export default function CheckoutPage() {
               <div className="space-y-3 pt-4 border-t border-white/[0.08]">
                 <button
                   onClick={handlePay}
-                  className="w-full py-4 px-6 rounded-full bg-white text-black hover:bg-neutral-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] transition-all duration-300 text-sm font-bold tracking-tight flex items-center justify-center gap-2.5"
+                  disabled={isProcessing}
+                  className="w-full py-4 px-6 rounded-full bg-white text-black hover:bg-neutral-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all duration-300 text-sm font-bold tracking-tight flex items-center justify-center gap-2.5 disabled:opacity-80 disabled:hover:translate-y-0 disabled:active:scale-100"
                 >
-                  <CreditCard className="w-4.5 h-4.5" /> Pay with Razorpay
+                  {isProcessing ? (
+                    <>
+                      <Loader2 className="w-4.5 h-4.5 animate-spin" /> Processing...
+                    </>
+                  ) : (
+                    <>
+                      <CreditCard className="w-4.5 h-4.5" /> Pay with Razorpay
+                    </>
+                  )}
                 </button>
                 
                 <button
                   onClick={() => navigate("/")}
-                  className="w-full py-4 px-6 rounded-full bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5 text-white transition-all duration-300 text-sm font-semibold tracking-tight"
+                  className="w-full py-4 px-6 rounded-full bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5 active:scale-[0.98] text-white transition-all duration-300 text-sm font-semibold tracking-tight"
                 >
                   Cancel
                 </button>
@@ -274,17 +303,17 @@ export default function CheckoutPage() {
             </div>
 
             {/* Assistance Badge */}
-            <div className="flex items-center gap-3 p-4 bg-white/[0.02] border border-white/[0.05] rounded-2xl">
+            <motion.div variants={itemVariants} className="flex items-center gap-3 p-4 bg-white/[0.02] border border-white/[0.05] rounded-2xl transition-colors hover:bg-white/[0.04]">
               <HelpCircle className="w-5 h-5 text-indigo-400 shrink-0" />
               <div className="text-xs">
                 <span className="font-bold text-white block mb-0.5">Need help before checkout?</span>
-                <span className="text-neutral-500">Contact me via WhatsApp at <a href="https://wa.me/8144129955" target="_blank" rel="noreferrer" className="text-[#4FB7B3] hover:underline">+91 81441 29955</a></span>
+                <span className="text-neutral-500">Contact me via WhatsApp at <a href="https://wa.me/8144129955" target="_blank" rel="noreferrer" className="text-[#4FB7B3] hover:underline transition-all">+91 81441 29955</a></span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
